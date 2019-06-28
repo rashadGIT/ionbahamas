@@ -1,0 +1,119 @@
+import React from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem 
+} from 'reactstrap';
+import '../css/navbar.css';
+import img from '../imgs/ioniconflame.png'
+
+
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
+    this.logout = this.logout.bind(this);
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  logout() {
+    console.log("Logging Out")
+    // cookie.remove('adoc');
+    // window.location = '/';
+  }
+  render() {
+    return (
+      <div className="NavBar">
+        <Navbar color="light" light expand="md" fixed={`top`}>
+          <NavbarBrand href="/">
+            <img style={{position : 'absolute', top : '0%'}}src={img} alt="" width="20" height="40" />
+            &nbsp;&nbsp;
+            <span style={{paddingLeft : '10px'}}>ION Bahamas</span>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/about">About Us</NavLink>
+              </NavItem>
+              {/* <NavItem>
+                <NavLink href="/testimonials">Testimonials</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/volunteer">Become a volunteer</NavLink>
+              </NavItem> */}
+              <NavItem>
+                <NavLink href="/donate">Donate</NavLink>
+              </NavItem>
+            </Nav>
+            {/* <Nav className="ml-auto" navbar>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                    Rashad
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    <NavLink href="/">
+                      Profile
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/">
+                      Security
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/">
+                      Settings
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <NavLink onClick={this.logout}>
+                      Logout
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/Signin">
+                  <div style={{display: 'inline-block', paddingRight: '10px'}}>
+                    <FontAwesomeIcon 
+                      icon="user" 
+                      color="#6DB65B"
+                      size="lg" />
+                  </div>
+                  <div style={{display: 'inline-block'}}>
+                    {this.props.userName}
+                  </div>
+                </NavLink>
+              </NavItem>
+            </Nav> */}
+          </Collapse>
+        </Navbar>
+        </div>
+    );
+  }
+}

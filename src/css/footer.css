@@ -1,0 +1,21 @@
+.footer{
+    bottom: 0;
+}
+.socialMedia {
+    display: flex;
+    justify-content: center;
+}
+.helpDocs{
+    display: inline-block;
+}
+.missionFooter{
+    text-align: left;
+}
+@media only screen and (min-width: 768px) {
+    .socialMedia{
+        justify-content: flex-start;
+    }
+    .missionFooter{
+        text-align: left;
+    }
+}

@@ -1,0 +1,160 @@
+.carousel .thumb img {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.carousel .slide img {
+    max-height: 500px;  
+    width: 100%;
+    /* width: auto; */
+}
+.carousel .slide {
+    background-color: #e6e6e6;
+}
+.highlights{
+    /* display: none; */
+}
+.caroselLeftBox{
+    width : calc(30% - 0px);
+    float:left;
+}
+.caroselRightBox{
+    /* background-color: '#e6e6e6'; */
+    width : calc(70% - 0px);
+    float:left;
+}
+.carouselTextContainer{
+    position: absolute;
+    left: 25%;
+    top: 5%;
+    max-width: 1000px;
+}
+.textTitle{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+    /* background-color: coral; */
+    -ms-transform: skew(-20deg); /* IE 9 */
+    -webkit-transform: skew(-20deg); /* Safari prior 9.0 */
+    transform: skew(-20deg); /* Standard syntax */
+}
+.textDescription{
+    color: white;
+    text-align: start;
+    font-size: 12px;
+}
+.carousel{
+    display: none;
+}
+@media only screen and (min-width: 768px) {
+    .highlights {
+        display: block;
+        padding-bottom: 20px;
+    }
+    .carouselTextContainer{
+        position: absolute;
+        left: 3%;
+        top: 10%;
+        max-width: 1000px;
+    }
+
+    .auctionTextContainer{
+        position: absolute;
+        left: 15%;
+        top: 10%;
+        max-width: 1000px;
+    }
+    .textTitle{
+        color: white;
+        font-weight: bold;
+        /* font-size: 40px; */
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg); /* IE 9 */
+        -webkit-transform: skew(-20deg); /* Safari prior 9.0 */
+        transform: skew(-20deg); /* Standard syntax */
+        padding: 7px;
+    }
+    .textDescription{
+        color: white;
+        text-align: start;
+        font-size: 20px;
+        border-style: none solid none solid;
+        border-width: 5px;
+        border-color: white;
+        padding : 15px;
+        background: rgba(0,0,0,0.7);
+    }
+
+    .auctionTextDescription{
+        color: white;
+        text-align: start;
+        font-size: 20px;
+        border-width: 5px;
+        border-color: white;
+        padding : 15px;
+        background: rgba(0,0,0, 0.6);
+    }
+
+    .auctionTextTitle{
+        color: white;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg); 
+        -webkit-transform: skew(-20deg);
+        transform: skew(-20deg); 
+        padding: 7px;
+    }
+
+    .dateContainer{
+        display: flex;
+        padding-left: 70px; 
+    }
+    .fixed{
+        width : 60px;
+        font-size : 65px;
+    }
+    .flex-item{
+        flex-grow: 1;
+        position: absolute;
+        top: 40%;
+        left : 45%;
+    }
+    .month{
+        font-size : 20px;
+        /* background-color: coral; */
+        padding: 0px 5px 0px 5px;
+    }
+    .year{
+        font-size : 20px;
+        padding: 0px 5px 0px 5px;
+    }
+    .carousel{
+        display: flex;
+    }
+    .amazon{
+        width:200px;
+        background-color:#FECD57;
+        border:1px solid #FBC43C;
+        border-radius:4px;
+        padding:10px;
+        margin:10px 5px;
+        color: 'black';
+    }
+    .amazon-btn{
+        padding-right:10px;
+        padding-left:10px;
+    }
+    .amazon-link{
+        font-size:12px;
+        font-family:Arial;
+        font-weight:bold;
+        color:#333333;
+        white-space:nowrap;
+        display:block; 
+        text-align:center;
+    }
+}
