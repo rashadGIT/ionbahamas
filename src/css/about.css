@@ -14,4 +14,8 @@
     .bioTitle{
        text-align: left;
     }
+    .center{
+        margin: auto;
+        width: '20%';
+    }
 }

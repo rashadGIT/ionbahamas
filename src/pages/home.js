@@ -9,6 +9,7 @@ import InfiniteCarousel from '../components/InfiniteCarousel';
 import Membership from '../components/MembershipBoxes';
 import img from '../imgs/bid.jpg'
 import show from '../imgs/show.jpg'
+import {Link , Link as RRNavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
 import '../css/col.css';
@@ -32,7 +33,7 @@ class home extends Component {
   }
 
   componentDidMount(){
-    document.title = "Home";
+    document.title = "ION Bahamas";
   }
   componentDidCatch(error, errorInfo){
     this.setState({err : true})
@@ -73,7 +74,9 @@ class home extends Component {
                             <b>Eat, Drink, Bid, &amp; Enjoy</b><br /><br />
                             <font size="4">Where: </font><b>123 Main St, Dallas TX, 12345</b><br />
                             <font size="4">When : </font><b>September 21, 2019</b><br />
-                            <Button outline={false} style={{color: 'black'}} size="sm" href="/about" color="warning">Purchase Tickets</Button>
+                            <Link to="/about">
+                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
+                            </Link>
                             <br />
                             <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door</h6>
                           </center>
@@ -91,7 +94,9 @@ class home extends Component {
                             <font size="4">Where: </font><b>123 Main St, Dallas TX, 12345</b><br />
                             <font size="4">When : </font><b>September 21, 2019</b><br /><br />
                             <center>
-                            <Button outline={false} style={{color: 'black'}} size="sm" color="warning" href="/about">Purchase Tickets</Button>
+                            <Link to="/about">
+                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
+                            </Link>
                           </center>
                         </p>
                       </div>
@@ -106,7 +111,7 @@ class home extends Component {
                   <div className="meetingBox">
                     <div className="meetingBoxTitle">Shortcut Links</div>
                     <div  className="meetingBoxDescription">
-                      {shortcutLinks.map(x => <NavLink href={x.link}>{x.name}</NavLink>)}
+                      {shortcutLinks.map(x => <NavLink tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
                     </div>
                   </div>
                 </center>

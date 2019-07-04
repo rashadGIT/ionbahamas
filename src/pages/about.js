@@ -37,7 +37,6 @@ class index extends Component {
 
   
   render() {
-    const hi = "This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     const sponsors = [
         // {name:"KFC", link : "https://www.google.com"},
         // {name : "Bahamas Air",link : "https://www.google.com"},
@@ -47,25 +46,25 @@ class index extends Component {
       ];
     const events = [
       {
-        name : "Fashion Show", 
+        name : "A taste of Paradise Gala", 
         date: new Date("09/21/2019"), 
-        time : "10:00am - 2:00pm",
-        location: null,
-        address: "TBD", 
-        mapURL : "", 
+        time : "8:00 pm - 10:00 pm",
+        location: "African American Museum of Dallas",
+        address: "T3536 Grand Ave, Dallas, TX 75210BD", 
+        mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68", 
         detailsLink: "",
-        calendarLink: "http://www.google.com/calendar/event?action=TEMPLATE&dates=20190921T220000Z%2F20190921T230000Z&text=Ion%20Fashion%20Show&location=Outside&details=fpierjnpgifjernpigjnepr"
-      },
-      {
-        name : "Mommy and Tea", 
-        date: new Date("09/21/2019"), 
-        time : "10:00am - 2:00pm", 
-        address: "TBD", 
-        mapURL : "", 
-        detailsLink: "",
-        calendarLink: "http://www.google.com/calendar/event?action=TEMPLATE&dates=20190921T220000Z%2F20190921T230000Z&text=Ion%20Fashion%20Show&location=Outside&details=fpierjnpgifjernpigjnepr"
-
+        calendarLink: "http://www.google.com/calendar/event?action=TEMPLATE&dates=20190922T10000Z%2F20190922T30000Z&text=ION%20Bahamas%20-%20A%20taste%20of%20Paradise%20Gala&location=African%20American%20Museum%20of%20Dallas%20-%203536%20Grand%20Ave%2C%20Dallas%2C%20TX%2075210&details=ION%20Bahamas%20Gala%0APearls%20%26%20Feathers%20-%20A%20taste%20of%20Paradise%20%0AGala%20Dinner%20in%20Aide%20of%20ION%20Bahamas"
       }
+      // {
+      //   name : "Mommy and Tea", 
+      //   date: new Date("09/21/2019"), 
+      //   time : "10:00am - 2:00pm", 
+      //   address: "TBD", 
+      //   mapURL : "", 
+      //   detailsLink: "",
+      //   calendarLink: "http://www.google.com/calendar/event?action=TEMPLATE&dates=20190921T220000Z%2F20190921T230000Z&text=Ion%20Fashion%20Show&location=Outside&details=fpierjnpgifjernpigjnepr"
+
+      // }
       // {
       //   name : "Mommy and Tea", 
       //   date: new Date("12/22/1988"), 

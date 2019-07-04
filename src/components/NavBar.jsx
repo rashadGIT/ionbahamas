@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link as RRNavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -12,6 +13,7 @@ import {
   DropdownMenu,
   DropdownItem 
 } from 'reactstrap';
+
 import '../css/navbar.css';
 import img from '../imgs/ioniconflame.png'
 
@@ -48,11 +50,11 @@ export default class Example extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
+              {/* <NavItem>
+                <NavLink tag={RRNavLink} to="/" >Home</NavLink>
+              </NavItem> */}
               <NavItem>
-                <NavLink href="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/about">About Us</NavLink>
+                <NavLink tag={RRNavLink} to="/about" >About Us</NavLink>
               </NavItem>
               {/* <NavItem>
                 <NavLink href="/testimonials">Testimonials</NavLink>
@@ -61,7 +63,10 @@ export default class Example extends React.Component {
                 <NavLink href="/volunteer">Become a volunteer</NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink href="/donate">Donate</NavLink>
+                <NavLink tag={RRNavLink} to="/board">Our Board</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/donate">Donate</NavLink>
               </NavItem>
             </Nav>
             {/* <Nav className="ml-auto" navbar>

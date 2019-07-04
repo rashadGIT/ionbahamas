@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import '../css/donate.css';
 
-
 const bread = [
   {order : 2, title: "Donate", link : "/donate"},
   {order : 1, title: "Home", link : "/"}

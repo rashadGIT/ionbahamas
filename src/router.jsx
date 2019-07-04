@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, BrowserRouter, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
 import donate from './pages/donate';
@@ -11,7 +11,7 @@ import member from './pages/member';
 import board from './pages/board';
 
 render ((
-<BrowserRouter basename="/">
+<HashRouter basename="/">
     <Switch>
         <Route exact path="/" component={home} />
         <Route path="/about" component={about} />
@@ -21,6 +21,7 @@ render ((
         <Route path="/volunteer" component={volunteer} />
         <Route path="/board" component={board} />
         <Route path="/member" component={member} />
+        <Route component={member} />
     </Switch>
-</BrowserRouter>
+</HashRouter>
 ),document.getElementById("root"));
