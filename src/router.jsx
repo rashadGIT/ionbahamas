@@ -9,6 +9,7 @@ import testimonials from './pages/testimonials';
 import volunteer from './pages/volunteer';
 import member from './pages/member';
 import board from './pages/board';
+import calendar from './pages/calendar';
 
 render ((
 <HashRouter basename="/">
@@ -21,6 +22,7 @@ render ((
         <Route path="/volunteer" component={volunteer} />
         <Route path="/board" component={board} />
         <Route path="/member" component={member} />
+        <Route path="/calendar" component={calendar} />
         <Route component={member} />
     </Switch>
 </HashRouter>

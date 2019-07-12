@@ -6,11 +6,15 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "bootstrap": "^4.3.0",
     "mdbreact": "^4.12.0",
+    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-app-polyfill": "^0.2.2",
     "react-avatar": "^3.6.0",
+    "react-calendar": "^2.19.0",
+    "react-calendar-events": "0.0.15",
     "react-dom": "^16.8.6",
+    "react-event-calendar": "^0.3.0",
     "react-leaf-carousel": "^1.2.2",
     "react-responsive-carousel": "^3.1.49",
     "react-router-dom": "^5.0.0",
@@ -19,6 +23,7 @@
     "react-super-responsive-table": "^4.3.7",
     "react-users-avatar": "0.0.10",
     "reactstrap": "^8.0.0",
+    "speak-tts": "^2.0.8",
     "styled-components": "^4.2.0"
   },
   "scripts": {

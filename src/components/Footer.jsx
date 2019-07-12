@@ -33,14 +33,14 @@ const FooterPage = () => {
           <MDBRow>
             <MDBCol md="3">
               <h5 className="title">Contact Us</h5>
-              <label>Email: &nbsp;</label><b><a href="mailto:webmaster@example.com">inquires@IonBahamas.org</a></b><br />
-              <label>Phone: &nbsp;</label><b><a href="mailto:webmaster@example.com">(242)123-4567</a></b><br />
-              <label>Mailing Address: &nbsp;</label><b>123 Main Street, Dallas TX 75281 </b>
+              <label>Email: &nbsp;</label><b><a href="mailto:ignitingournation@gmail.com">ignitingournation@gmail.com</a></b><br />
+              {/* <label>Phone: &nbsp;</label><b><a href="mailto:webmaster@example.com">(242)123-4567</a></b><br /> */}
+              <label>Mailing Address: &nbsp;</label><b>11632 McRae Road Dallas 75228</b>
             </MDBCol>
             <MDBCol md="6">
               <h5 className="title">Mission Statement</h5>
               <p className="missionFooter">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              ION Bahamas is dedicated to uniting all Bahamians in the Dallas/Fort Worth Metroplex, as well as descendants of The Bahamas to continue expressing our standards of excellence, through our culture while educating, sharing and helping each other reach a common goal.
               </p>
               {/* <ul>
                 <li className="list-unstyled">
@@ -61,19 +61,19 @@ const FooterPage = () => {
               <h5 className="title">Help</h5>
               <div style={{paddingBottom : '10px'}}>
                 <div className="helpDocs">
-                  <a href="/">FAQs</a>
+                  <a href="#">FAQs</a>
                 </div>&nbsp;&bull;&nbsp;
                 <div className="helpDocs">
-                  <a href="/">Resources</a>
+                  <a href="#">Resources</a>
                 </div>&nbsp;&bull;&nbsp;
                 <div className="helpDocs">
-                  <a href="/">Documentation</a>
+                  <a href="#">Documentation</a>
                 </div>&nbsp;&bull;&nbsp;
                 <div className="helpDocs">
-                  <a href="/">Press Center</a>
+                  <a href="#">Press Center</a>
                 </div>&nbsp;&bull;&nbsp;
                 <div className="helpDocs">
-                  <a href="/">Code of Conduct</a>
+                  <a href="#">Code of Conduct</a>
                 </div>
               </div>
               <h5>Follow Us</h5>
@@ -92,7 +92,7 @@ const FooterPage = () => {
           <MDBContainer fluid>
               <a href="/">Conditions of Use</a> 
               <a href="/"> Privacy Notice</a> 
-              &nbsp; &copy; 2019 - {new Date().getFullYear()} <a href="https://www.MDBootstrap.com"> IonBahamas.org </a> or its affiliates
+              &nbsp; &copy; 2019 - {new Date().getFullYear()} <a target="_blank" href="http://www.ionbahamas.org"> IonBahamas.org</a> or its affiliates
           </MDBContainer>
         </div>
       </MDBFooter>

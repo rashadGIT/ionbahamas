@@ -7,7 +7,7 @@ import { Button, NavLink } from 'reactstrap';
 import { Carousel } from 'react-responsive-carousel';
 import InfiniteCarousel from '../components/InfiniteCarousel';
 import Membership from '../components/MembershipBoxes';
-import img from '../imgs/bid.jpg'
+import img from '../imgs/gala.jpg'
 import show from '../imgs/show.jpg'
 import {Link , Link as RRNavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -68,11 +68,11 @@ class home extends Component {
                       <div className="auctionTextContainer">
                         <p className="auctionTextDescription">
                           <h1 className="auctionTextTitle">
-                            <i>ION Gala and Silent Auction</i>
+                            <i>ION A taste of Paradise Gala</i>
                           </h1>
                           <center>
-                            <b>Eat, Drink, Bid, &amp; Enjoy</b><br /><br />
-                            <font size="4">Where: </font><b>123 Main St, Dallas TX, 12345</b><br />
+                            <b>Eat, Drink, &amp; Enjoy</b><br /><br />
+                            <font size="4">Where: </font><b><a style={{color:'white'}} rel="noopener noreferrer" target="_blank" href="https://goo.gl/maps/1K96gzDvLR2TiDn68">African American Museum of Dallas</a></b><br />
                             <font size="4">When : </font><b>September 21, 2019</b><br />
                             <Link to="/about">
                               <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
@@ -83,7 +83,7 @@ class home extends Component {
                         </p>
                       </div>
                     </div>
-                    <div key={"Fashion Show"}>
+                    {/* <div key={"Fashion Show"}>
                       <img alt="" src={show} />
                       <div className="carouselTextContainer">
                       <p className="auctionTextDescription">
@@ -100,7 +100,7 @@ class home extends Component {
                           </center>
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                   </Carousel>
                   {/* <InfiniteCarousel /> */}
                 </div>

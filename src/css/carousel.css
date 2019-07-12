@@ -61,8 +61,8 @@
 
     .auctionTextContainer{
         position: absolute;
-        left: 15%;
-        top: 10%;
+        left: 30%;
+        top: 15%;
         max-width: 1000px;
     }
     .textTitle{
@@ -94,7 +94,7 @@
         border-width: 5px;
         border-color: white;
         padding : 15px;
-        background: rgba(0,0,0, 0.6);
+        background: rgba(0,0,0, 0.75);
     }
 
     .auctionTextTitle{

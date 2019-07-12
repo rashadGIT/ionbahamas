@@ -40,8 +40,8 @@ export default class extends Component{
                 </div>
                 <div className="txtDescription">
                   {membership.description}
-                  <br />
-                  <a href="/">Download MEMBERSHIP form!</a>
+                  {/* <br />
+                  <a href="/">Download MEMBERSHIP form!</a> */}
                 </div>
               </div>
             </div>)}
