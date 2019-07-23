@@ -8,7 +8,8 @@ import { Carousel } from 'react-responsive-carousel';
 import InfiniteCarousel from '../components/InfiniteCarousel';
 import Membership from '../components/MembershipBoxes';
 import img from '../imgs/gala.jpg'
-import show from '../imgs/show.jpg'
+import bowlAThon from '../imgs/Bowl-A-Thon.jpg'
+import Golf from '../imgs/Golf.jpg'
 import {Link , Link as RRNavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
@@ -45,6 +46,10 @@ class home extends Component {
       {
         name : "Event Calender",
         link : "/about"
+      },
+      {
+        name : "Silent Auction Donation",
+        link : "/actionDonation"
       }
     ];
     return (
@@ -67,32 +72,52 @@ class home extends Component {
                       <img alt="" src={img} />
                       <div className="auctionTextContainer">
                         <p className="auctionTextDescription">
-                          <h1 className="auctionTextTitle">
+                          <h1 className="auctionTextTitle"><center>
                             <i>ION A taste of Paradise Gala</i>
+                            <br /> &amp; Silent Auction
+                            </center>
                           </h1>
                           <center>
-                            <b>Eat, Drink, &amp; Enjoy</b><br /><br />
+                            <b>Eat, Drink &amp; Enjoy</b><br /><br />
                             <font size="4">Where: </font><b><a style={{color:'white'}} rel="noopener noreferrer" target="_blank" href="https://goo.gl/maps/1K96gzDvLR2TiDn68">African American Museum of Dallas</a></b><br />
-                            <font size="4">When : </font><b>September 21, 2019</b><br />
+                            <font size="4">When : </font><b>September 21, 2019 <br />7:00pm - 10:00pm</b><br />
                             <Link to="/about">
                               <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
                             </Link>
                             <br />
-                            <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door</h6>
+                            <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door &nbsp;&bull;&nbsp; <Link to="/actionDonation" >Make Donations</Link></h6>
                           </center>
                         </p>
                       </div>
                     </div>
-                    {/* <div key={"Fashion Show"}>
-                      <img alt="" src={show} />
+                    <div key={"Bowl-A-Thon"}>
+                      <img alt="" src={bowlAThon} />
                       <div className="carouselTextContainer">
                       <p className="auctionTextDescription">
                           <h1 className="auctionTextTitle">
-                            <i>ION Fashion Show</i>
+                            <i>ION Bowl-A-Thon</i>
                           </h1>
-                          <center><b>Come and join us "On the Catwalk"!!</b></center><br />
-                            <font size="4">Where: </font><b>123 Main St, Dallas TX, 12345</b><br />
-                            <font size="4">When : </font><b>September 21, 2019</b><br /><br />
+                          <center><b>Strike!!</b></center><br />
+                            <font size="4">Where: </font><b>TBA</b><br />
+                            <font size="4">When : </font><b>TBA</b><br /><br />
+                            <center>
+                            {/* <Link to="/about">
+                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
+                            </Link> */}
+                          </center>
+                        </p>
+                      </div>
+                    </div>
+                    <div key={"Golf Tournament"}>
+                      <img alt="" src={Golf} />
+                      <div className="carouselTextContainer">
+                      <p className="auctionTextDescription">
+                          <h1 className="auctionTextTitle">
+                            <i>ION Golf Tournament</i>
+                          </h1>
+                          <center><b>Four!!</b></center><br />
+                            <font size="4">Where: </font><b>TBA</b><br />
+                            <font size="4">When : </font><b>TBA</b><br /><br />
                             <center>
                             <Link to="/about">
                               <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
@@ -100,7 +125,7 @@ class home extends Component {
                           </center>
                         </p>
                       </div>
-                    </div> */}
+                    </div>
                   </Carousel>
                   {/* <InfiniteCarousel /> */}
                 </div>

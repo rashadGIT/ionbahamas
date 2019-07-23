@@ -10,6 +10,8 @@ import volunteer from './pages/volunteer';
 import member from './pages/member';
 import board from './pages/board';
 import calendar from './pages/calendar';
+import pageNotFound from './pages/pageNotFound';
+import silentAuctionDonation from './pages/silentAuctionDonation';
 
 render ((
 <HashRouter basename="/">
@@ -23,7 +25,8 @@ render ((
         <Route path="/board" component={board} />
         <Route path="/member" component={member} />
         <Route path="/calendar" component={calendar} />
-        <Route component={member} />
+        <Route path="/actionDonation" component={silentAuctionDonation} />
+        <Route component={pageNotFound} />
     </Switch>
 </HashRouter>
 ),document.getElementById("root"));

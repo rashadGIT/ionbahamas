@@ -51,31 +51,31 @@ class index extends Component {
       {
         name : "A taste of Paradise Gala", 
         date: new Date("09/21/2019"), 
-        time : "8:00 pm - 10:00 pm",
+        time : "7:00 pm - 10:00 pm",
         location: "African American Museum of Dallas",
         address: "3536 Grand Ave, Dallas, TX 75210", 
         mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68", 
         detailsLink: "",
-        calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T020000Z"
-      }
-      // {
-      //   name : "Mommy and Tea", 
-      //   date: new Date("09/21/2019"), 
-      //   time : "10:00am - 2:00pm", 
-      //   address: "TBD", 
-      //   mapURL : "", 
-      //   detailsLink: "",
-      //   calendarLink: "http://www.google.com/calendar/event?action=TEMPLATE&dates=20190921T220000Z%2F20190921T230000Z&text=Ion%20Fashion%20Show&location=Outside&details=fpierjnpgifjernpigjnepr"
+        calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T030000Z"
+      },
+      {
+        name : "Bowl-A-Thon", 
+        date: null, 
+        time : "TBD", 
+        address: "TBD", 
+        mapURL : null, 
+        detailsLink: null,
+        calendarLink: null
 
-      // }
-      // {
-      //   name : "Mommy and Tea", 
-      //   date: new Date("12/22/1988"), 
-      //   time : "10:00am - 2:00pm", 
-      //   address: "", 
-      //   mapURL : "", 
-      //   detailsLink: ""
-      // },
+      },
+      {
+        name : "Golf Tournament", 
+        date: null, 
+        time : "TBD", 
+        address: "TBD", 
+        mapURL : null, 
+        detailsLink: null
+      }
       // {
       //   name : "Mommy and Tea", 
       //   date: new Date(), 
@@ -84,7 +84,10 @@ class index extends Component {
       //   mapURL : "", 
       //   detailsLink: ""
       // }
-    ].sort((a,b) => a.date - b.date);
+    ].sort((a,b) => {
+      if(a.date) return 1;
+      return a.date - b.date
+    });
     const values = [
       {
         title : "Our Mission",
@@ -198,7 +201,7 @@ class index extends Component {
               <tbody>
                 {events.map((evt,i) => 
                   <tr key={i}>
-                    <td>{evt.date.toDateString()} <br />{evt.time}</td>
+                    <td>{(evt.date) ? evt.date.toDateString() : "TBD"} <br />{evt.time}</td>
                     <td>
                       {evt.name}
                       <br />

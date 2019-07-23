@@ -2,14 +2,13 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 const Example = (props) => {
-console.log(props.crumbs)
   return (
-    <div style={{backgroundColor : '#e6e6e6', position :'fixed', width: '100%', 'z-index': '999', height : '40px'}}>
+    <div style={{backgroundColor : '#e6e6e6', position :'fixed', width: '100%', zIndex: '999', height : 40, top : 55}}>
       <Breadcrumb tag="nav" listTag="div" >
         {props.crumbs.map( (crumb, i) => {
             if(props.crumbs.length -1 !== i) 
-            return <BreadcrumbItem tag="a"  href={crumb.link}>{crumb.title}</BreadcrumbItem>
-            else  return <BreadcrumbItem active tag="span">{crumb.title}</BreadcrumbItem>
+            return <BreadcrumbItem key={i} tag="a"  href={crumb.link}>{crumb.title}</BreadcrumbItem>
+            else  return <BreadcrumbItem active key={i} tag="span">{crumb.title}</BreadcrumbItem>
         })}
         {/* <BreadcrumbItem tag="a" href="/">Home</BreadcrumbItem>
         <BreadcrumbItem tag="a" href="/about">Library</BreadcrumbItem>

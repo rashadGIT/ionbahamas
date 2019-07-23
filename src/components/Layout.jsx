@@ -10,7 +10,7 @@ function App(InnerComponent,bread) {
       return(
           <div>
             <NavBar />
-            {(bread) ? <div style={{paddingBottom : '48px'}}><Breadcrumbs crumbs={bread}/></div> : null}
+            {(bread) ? <div style={{paddingBottom : 100}}><Breadcrumbs crumbs={bread}/></div> : null}
             <InnerComponent />
             <Footer />
           </div>

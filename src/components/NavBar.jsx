@@ -45,7 +45,7 @@ export default class Example extends React.Component {
           <NavbarBrand href="/">
             <img style={{position : 'absolute', top : '0%'}}src={img} alt="" width="20" height="40" />
             &nbsp;&nbsp;
-            <span style={{paddingLeft : '10px'}}>ION Bahamas</span>
+            <span style={{paddingLeft : '10px'}}><font  size="3">I</font>ON Bahamas</span>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

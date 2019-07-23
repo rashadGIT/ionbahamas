@@ -11,7 +11,8 @@ import Italia from '../imgs/board/Italia.jpeg'
 import Sean from '../imgs/board/Sean.jpg';
 import Chantell from '../imgs/board/Chantell.jpeg';
 import Renee from '../imgs/board/Renee.jpeg';
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
+import Ancilleno from '../imgs/board/Ancilleno.jpeg';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import '../css/col.css';
 import '../css/board.css';
 
@@ -42,7 +43,6 @@ class member extends Component {
 
   
   render() {
-    const hi = "This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     const board = [
       {
         name: "Carlisle Mott", 
@@ -87,34 +87,33 @@ class member extends Component {
         position : "Secretary",
         order : 3
       },
-      {
-        name: "Maria Mott", 
-        bio : null, 
-        img : null, 
-        position : "Treasurer",
-        order : 4
-      },
-      {
-        name: "Lestia Walker", 
-        bio : null, 
-        img : null, 
-        position : "Director of Community Services",
-        order : 5
-      },
-      {
-        name: "Chantell", 
-        bio : null, 
-        img : Chantell, 
-        position : "Director of Education & Resources",
-        order : 6
-      },
+      // {
+      //   name: "Maria Mott", 
+      //   bio : null, 
+      //   img : null, 
+      //   position : "Treasurer",
+      //   order : 4
+      // },
+      // {
+      //   name: "Lestia Walker", 
+      //   bio : null, 
+      //   img : null, 
+      //   position : "Director of Community Services",
+      //   order : 5
+      // },
+      // {
+      //   name: "Chantell", 
+      //   bio : null, 
+      //   img : Chantell, 
+      //   position : "Director of Education & Resources",
+      //   order : 6
+      // },
       {
         name: "Sean Smith", 
         bio : (
           <div>
-            <p>I have been a DJ for over 20 years in the Dallas Fort Worth area and counting. Being raised in the Bahamas where music is the life blood of the country; gives me my LOVE of music. I’ve collected tens of thousands of songs over the years. Every event to me is once-in-a-lifetime and I love making people happy.  I want to bring personalized service to make each event special.</p>
-            <p>As the Partners First Program Manager for The Crowther Group. The most exciting part of my job is coordinating our safety and affirmative action programs. I have had the pleasure of developing, implementing and enforcing policies that impact people’s lives. </p>
-              {/* <p>I work directly with the jobsite personnel to ensure they have proper training and follow accident prevention policies. People are our most important asset, and I am charged to keep them safe and free from harassment and discrimination.  </p> */}
+            <p>Sean Smith is a full time Manager at the firm Partners first for The Crowther Group. He  has the pleasure of developing, implementing and enforcing policies that impact people’s lives. People are our most important asset, and he is charged with keeping them safe and free from harassment and discrimination.</p>
+            <p>As co-owner Of Party DJ Dallas for more than twenty years Sean works hard to provide personalized service, making each event special. </p>
           </div>), 
         img : Sean, 
         position : "Director of Fundraising/Events",
@@ -122,8 +121,12 @@ class member extends Component {
       },
       {
         name: "Ancilleno Solomom", 
-        bio : null, 
-        img : null, 
+        bio : (
+            <div>
+              <p>Ancilleno Solomon is the Chef- Owner of Ice Chef Bahamas Catering and Events, based in Dallas Texas. Born and raised in The Bahamas, he is a graduate of The College of The Bahamas (COB), where he earned an Associate of Arts degree in Culinary Arts. After graduating COB Ancilleno went on to working a few years in the hospitality and tourism sector of the Bahamas.</p>
+              <p>As a food and culture enthusiast for the Bahamas Ancilleno later moved to Texas where he is considered “the Bahamian Food Whisper”. Ancilleno currently is employed by Hyatt Hotel as the Chef De Cuisine for banquet at the Hyatt Regency Dallas.</p>
+            </div>), 
+        img : Ancilleno, 
         position : "Director of Public Relations",
         order : 8
       },
@@ -136,14 +139,14 @@ class member extends Component {
         img : Rashad, 
         position : "Director of Technology & Logistics",
         order : 9
-      },
-      {
-        name: "Donald Glass", 
-        bio : null, 
-        img : null, 
-        position : "Director of Membership",
-        order : 10
       }
+      // {
+      //   name: "Donald Glass", 
+      //   bio : null, 
+      //   img : null, 
+      //   position : "Director of Membership",
+      //   order : 10
+      // }
     ].sort((a, b) => a.order - b.order);
     return (
       <div style={{width : '90%', margin: 'auto'}}>
