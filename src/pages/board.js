@@ -10,6 +10,8 @@ import Carlisle from '../imgs/board/Carlisle.jpg';
 import Italia from '../imgs/board/Italia.jpeg'
 import Sean from '../imgs/board/Sean.jpg';
 import Chantell from '../imgs/board/Chantell.jpeg';
+import Maria from '../imgs/board/Maria.jpeg';
+import Lestia from '../imgs/board/Lestia.jpeg';
 import Renee from '../imgs/board/Renee.jpeg';
 import Ancilleno from '../imgs/board/Ancilleno.jpeg';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
@@ -45,7 +47,7 @@ class member extends Component {
   render() {
     const board = [
       {
-        name: "Carlisle Mott", 
+        name : "Carlisle Mott", 
         bio : (
           <div>
             <p>Carlisle Mott is the principal Financial Advisor at Carlisle Mott Financial, LLC. They provide a range of professional services in financial planning and wealth management for individual investors. Born and raised in The Bahamas, he is a graduate of The College of The Bahamas. He obtained his Bachelor of Science in Electrical Engineering from the University of Texas at Dallas and worked at Texas Instruments for 13 years.</p>
@@ -87,27 +89,37 @@ class member extends Component {
         position : "Secretary",
         order : 3
       },
-      // {
-      //   name: "Maria Mott", 
-      //   bio : null, 
-      //   img : null, 
-      //   position : "Treasurer",
-      //   order : 4
-      // },
-      // {
-      //   name: "Lestia Walker", 
-      //   bio : null, 
-      //   img : null, 
-      //   position : "Director of Community Services",
-      //   order : 5
-      // },
-      // {
-      //   name: "Chantell", 
-      //   bio : null, 
-      //   img : Chantell, 
-      //   position : "Director of Education & Resources",
-      //   order : 6
-      // },
+      {
+        name: "Maria Mott", 
+        bio : (<div>
+          <p>Maria was born and raised in El Paso, Texas. She currently resides in the Dallas area with her husband Carlisle and 3 kids. She's a graduate of UT Arlington with a bachelor's degree in Production Quality Management. With over 15 years of experience as a procurement professional, Maria works at a fortune 500 semi-conductor company.</p> 
+          <p>Both Maria and her husband are passionate about making a difference in the lives of those around them. Among their favored activities is engaging youth through faith ministry and education.</p>
+        </div>), 
+        img : Maria, 
+        position : "Treasurer",
+        order : 4
+      },
+      {
+        name: "Lestia Walker", 
+        bio : (<div>
+          <p>Dr. Lestia Walker welcomes her appointment to the role of Director of Community Services, in line with her dedication and devotion to humanistic care and community empowerment.</p>
+          <p>Born and raised in the Bahamas, she adopted and honed her skills at the Latin American School of Medicine, Havana, graduating with honors.</p>
+          <p>She has proactively and repeatedly volunteered to serve various organizations since 2009. Some of her most cherished contributions through volunteerism include organizing community projects and working with Imerman Angels in support of cancer fighters, survivors and caregivers.</p>
+        </div>), 
+        img : Lestia, 
+        position : "Director of Community Services",
+        order : 5
+      },
+      {
+        name: "Chantell", 
+        bio : (<div>
+            <p>Chantel Jervis Walton is a native of northern Illinois, born to Bahamian father Cyril Jervis and Iowa native Julie V. Jervis. Loving mother of three, Chantel has a passion for serving and being a resource in her community and abroad.</p> 
+            <p>She is a certified teacher in the state of Texas where she earned her Bachelor of Arts degree in Liberal Studies and has professionally taught the last 7 years. In addition to teaching, Chantel is also a licensed real estate agent. She is committed to providing resources and support for others, using her gifts, education, and authentic personality to be an asset to this organization and to those that take part.
+            </p></div>), 
+        img : Chantell, 
+        position : "Director of Education & Resources",
+        order : 6
+      },
       {
         name: "Sean Smith", 
         bio : (
@@ -140,13 +152,6 @@ class member extends Component {
         position : "Director of Technology & Logistics",
         order : 9
       }
-      // {
-      //   name: "Donald Glass", 
-      //   bio : null, 
-      //   img : null, 
-      //   position : "Director of Membership",
-      //   order : 10
-      // }
     ].sort((a, b) => a.order - b.order);
     return (
       <div style={{width : '90%', margin: 'auto'}}>
@@ -158,8 +163,8 @@ class member extends Component {
               size="sm" 
               responsive>
               <tbody>
-                {board.map(x => {
-                  return(<tr>
+                {board.map((x,i) => {
+                  return(<tr key={i}>
                     <td>
                       <Container fluid={true}>
                         <Row noGutters={false}>

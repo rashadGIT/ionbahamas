@@ -84,26 +84,29 @@ class index extends Component {
       //   mapURL : "", 
       //   detailsLink: ""
       // }
-    ].sort((a,b) => {
-      if(a.date) return 1;
+    ]
+    .sort((a,b) => {
+      if(a.date == null) return 1
       return a.date - b.date
     });
+
     const values = [
       {
         title : "Our Mission",
-        description : (<div><p>ION Bahamas is dedicated to uniting all Bahamians in the Dallas/Fort Worth Metroplex, as well as
-          descendants of The Bahamas to continue expressing our standards of excellence,
-          through our culture while educating, sharing and helping each other reach a
-          common goal.</p></div>)
+        description : (<div>
+            <p>ION Bahamas is dedicated to uniting all Bahamians in the Dallas/Fort Worth Metroplex, as well as descendants of The Bahamas to continue expressing our standards of excellence, through our culture while educating, sharing and helping each other reach a common goal.</p>
+          </div>)
       },
       {
         title : "Our Vision",
-        description : (<div><p>ION Bahamas will become the uniting force for all Bahamians in the Dallas/Fort Worth Metroplex, with an interest in connecting with other Bahamian Associations throughout the United States and Canada.</p></div>)
+        description : (<div>
+              <p>ION Bahamas will become the uniting force for all Bahamians in the Dallas/Fort Worth Metroplex, with an interest in connecting with other Bahamian Associations throughout the United States and Canada.</p>
+            </div>)
       },
       {
         title : "The Purpose",
-        description : (<div><p>To educate, motivate, inspire and empower each other to a higher level of excellence in achieving our collective and individual goals.  This is done through
-          workshops, seminars, networking events and other social events etc.  Guest speakers are invited to address concerns and issues important to us such as:</p>
+        description : (<div>
+            <p>To educate, motivate, inspire and empower each other to a higher level of excellence in achieving our collective and individual goals.  This is done through workshops, seminars, networking events and other social events etc.  Guest speakers are invited to address concerns and issues important to us such as:</p>
           <ol type="I" className="column">
             <li>Immigration</li>
             <li>Taxes</li>
@@ -177,9 +180,9 @@ class index extends Component {
         <Row noGutters={false}>
           <Col xs={12} md={8}>
           {values.map((x,i) => 
-            <div>
+            <div key={i}>
               <h4><b>{x.title}</b></h4>
-              <p>{x.description}</p>
+              {x.description}
               {(values.length -1 !== i) ? <hr /> : null}
             </div>
           )}

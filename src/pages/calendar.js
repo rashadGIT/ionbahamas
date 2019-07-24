@@ -23,6 +23,10 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Modal from 'react-responsive-modal';
 import { Button } from 'reactstrap';
 import {Link } from "react-router-dom";
+import plus from '../imgs/Plus-icon.png'
+import { maxWidth } from '@material-ui/system';
+import '../css/calendar.css'
+import IosAddCircleOutline from 'react-ionicons/lib/IosAddCircleOutline'
 
 const bread = [
   {order : 2, title: "Calendar", link : "/calendar"},
@@ -39,7 +43,9 @@ const events = [
     startDate: new Date("09/21/2019"),
     endDate: new Date("09/21/2019"),
     title: 'A taste of Paradise Gala',
-    description : 'ifonfoirenoigferognoer'
+    description : 'ifonfoirenoigferognoer',
+    calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T030000Z"
+
   },
   {
     allDay: false,
@@ -73,7 +79,8 @@ const events = [
         selectedDate : new Date(),
         date: new Date(),
         width: 500,
-        open: false
+        open: false,
+        event : null
       }
     }
 
@@ -115,21 +122,30 @@ const events = [
       return (
         <div>
           <Modal open={this.state.open} onClose={this.onCloseModal} center>
-            <h2>Simple centered modal</h2>
+            <h5 style={{paddingRight : 60}}>{(this.state.event) ? this.state.event.title : null}</h5>
+            <div>When : {(this.state.event) ? this.state.event.startDate.toLocaleDateString("en-US", options) : null}</div>
+            <div>Time : </div>
+            <div>{(this.state.event) ? this.state.event.description : null}</div>
+            <center>
+              <Button color="link" onClick={(event) => {window.open(this.state.event.calendarLink);}} >&#43; Add event to Google Calendar</Button>
+            </center>
           </Modal>
           <Container fluid={true}>
             <Row>
-              <Col xs={{size :6, order : 2 }} md={{size :6 , order : 1}}>
+              <Col xs={{size :6, order : 2 }} md={{size :6 , order : 1}} className="bigCalendar">
                 <div style={{padding : '20px 0px 0px 20px'}}>
                   <Calendar
-                    style={{minHeight : 600}}
+                    style={{height : 600}}
                     localizer={localizer}
                     events={events}
                     culture='en-GB'
                     views={['month']}
                     startAccessor="startDate"
                     endAccessor="endDate"
-                    onSelectEvent={event => this.setState({ open : !this.state.open})}
+                    onSelectEvent={x => this.setState({ 
+                        open : !this.state.open,
+                        event : x
+                      })}
                     onNavigate={(date) => this.setState({ selectedDate: date })}
                     toolbar={true}
                     // step={60}
@@ -142,7 +158,7 @@ const events = [
               <Col xs={{size :6 , order: 1 }} md={{size: 6 , order : 2}}>
                 <div style={{padding : '0px 0px 0px 0px'}}>
                   <center>
-                    <h2>UpComing Events</h2>
+                    <h2>Events 2019</h2>
                   </center>
                   <List style={{borderStyle: 'solid', borderColor :this.color(1)}}>
                     {events
@@ -158,7 +174,17 @@ const events = [
                     .map((x,i) => {
                       return <div key={i}>
                         <ListItem alignItems="flex-start" style={{backgroundColor : this.color(i), cursor: 'pointer'}} >
-                          <ListItemText 
+                          {(x.startDate) ? <div>
+                            <IosAddCircleOutline  onClick={() => 
+                            this.setState({ 
+                              open : !this.state.open,
+                              event : x
+                            })} fontSize="40px" color="#000000" 
+                            className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
+                            />
+                          </div> : null}
+                          <ListItemText
+                            className="listItemText"
                             primary={x.title}
                             secondary={
                               <React.Fragment>
@@ -170,16 +196,11 @@ const events = [
                                   {(x.startDate) ? x.startDate.toLocaleDateString("en-US", options) : "TBD"}
                                 </Typography>
                                 {' - '+x.description}
-                                
-                               {/* <Button color="link">Add Event to my Google Calendar</Button> */}
                               </React.Fragment>
                               }
-                              onClick={() => {if(x.startDate) this.setState({ selectedDate: x.startDate})}}
+                              onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
                           />
-                          <Link style={{position: 'absolute', left : '70%', top: '50%', '-ms-transform': 'translateY(-50%)', 'transform': 'translateY(-50%)'}}>&#43; Add to Google Calendar</Link>
-                          {/* <button onClick={this.onOpenModal}>Open modal</button> */}
                         </ListItem>
-                          
                         </div>
                       })}
                   </List>

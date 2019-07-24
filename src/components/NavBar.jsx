@@ -68,6 +68,9 @@ export default class Example extends React.Component {
               {/* <NavItem>
                 <NavLink tag={RRNavLink} to="/donate">Donate</NavLink>
               </NavItem> */}
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/calendar">Calendar</NavLink>
+              </NavItem>
             </Nav>
             {/* <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>

@@ -45,7 +45,7 @@ class home extends Component {
     const shortcutLinks = [
       {
         name : "Event Calender",
-        link : "/about"
+        link : "/calendar"
       },
       {
         name : "Silent Auction Donation",
