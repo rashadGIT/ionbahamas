@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import family from '../imgs/family.jpg';
+import individual from '../imgs/individual.jpg';
+import student from '../imgs/student.jpg';
 import '../css/membership.css';
 
 
@@ -14,12 +16,12 @@ export default class extends Component{
       },
       {
         type : "Individual",
-        img : 'https://hbculifestyle.com/wp-content/uploads/2015/02/5-startegies-for-finding-a-dream-job.jpg',
+        img : individual,
         description : "This membership type is available to any individual who does not qualify for student membership."
       },
       {
         type : "Student",
-        img : 'https://uael.edu.ht/wp-content/uploads/2013/10/Black-College-Student-2.jpg',
+        img : student,
         description : "This membership type is available to any student enrolled in college or university."
       }
     ]

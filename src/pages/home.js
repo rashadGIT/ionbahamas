@@ -73,7 +73,7 @@ class home extends Component {
                       <div className="auctionTextContainer">
                         <p className="auctionTextDescription">
                           <h1 className="auctionTextTitle"><center>
-                            <i>ION A taste of Paradise Gala</i>
+                            <i>ION A Taste of Paradise Gala</i>
                             <br /> &amp; Silent Auction
                             </center>
                           </h1>
@@ -148,8 +148,8 @@ class home extends Component {
                 <div className="meetingBox">
                   <div className="meetingBoxTitle">Quarterly Meetings</div>
                   <div  className="meetingBoxDescription">
-                    <p>Quarterly meetings are held and open to the public. (Please check calendar for dates and times). Meetings usually open with a meet and greet, followed by a 45 minutes business session, with networking opportunities afterwards.</p>
-                    <p>General meetings usually include a guest speaker to provide expertise on various topics that are pertinent to our community, such as:  Motivation, Wealth Building, Immigration, Taxes, Community Service and Outreach, Bahamian events, etc.</p>
+                    <p>Quarterly meetings are held and open to the public. Please check calendar for dates and times. Meetings usually open with a meet and greet, followed by a 45 minute business session, with networking opportunities afterwards.</p>
+                    <p>General meetings usually include a guest speaker with expertise on various topics that are pertinent to our community, such as:  Motivation, Wealth Building, Immigration, Taxes, Community Service and Outreach, Bahamian events, etc.</p>
                   </div>
                 </div>
               </Col>

@@ -42,8 +42,8 @@ const events = [
     allDay: false,
     startDate: new Date("09/21/2019"),
     endDate: new Date("09/21/2019"),
-    title: 'A taste of Paradise Gala',
-    description : 'ifonfoirenoigferognoer',
+    title: 'A Taste of Paradise Fundraising Gala Dinner & Silent Auction',
+    description : <div><p>African American Museum At Fair Park<br />(Featuring a Uniquely Bahamian Mini Fashion Show)</p></div>,
     calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T030000Z"
 
   },
@@ -195,7 +195,7 @@ const events = [
                                 >
                                   {(x.startDate) ? x.startDate.toLocaleDateString("en-US", options) : "TBD"}
                                 </Typography>
-                                {' - '+x.description}
+                                {x.description}
                               </React.Fragment>
                               }
                               onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
