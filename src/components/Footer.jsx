@@ -33,14 +33,14 @@ const FooterPage = () => {
           <MDBRow>
             <MDBCol md="3">
               <h5 className="title">Contact Us</h5>
-              <label>Email: &nbsp;</label><b><a href="mailto:ignitingournation@gmail.com">ignitingournation@gmail.com</a></b><br />
+              <label>Email: &nbsp;</label><b><a href="mailto:info@ionbahamas.org">info@ionbahamas.org</a></b><br />
               {/* <label>Phone: &nbsp;</label><b><a href="mailto:webmaster@example.com">(242)123-4567</a></b><br /> */}
-              <label>Mailing Address: &nbsp;</label><b>11632 McRae Road Dallas 75228</b>
+              <label>Mailing Address: &nbsp;</label><b>3371 FM 1562, Celeste, TX 75423</b>
             </MDBCol>
             <MDBCol md="6">
               <h5 className="title">Mission Statement</h5>
               <p className="missionFooter">
-              ION Bahamas is dedicated to uniting all Bahamians in the Dallas/Fort Worth Metroplex, as well as descendants of The Bahamas to continue expressing our standards of excellence, through our culture while educating, sharing and helping each other reach a common goal.
+              Our mission is to be of assistance to and enhance the lives of Bahamians and those with a connection to the Bahamas either at home or abroad via education and civic engagement.
               </p>
               {/* <ul>
                 <li className="list-unstyled">

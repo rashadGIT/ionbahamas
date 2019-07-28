@@ -47,10 +47,10 @@ class home extends Component {
         name : "Event Calender",
         link : "/calendar"
       },
-      {
-        name : "Silent Auction Donation",
-        link : "/actionDonation"
-      }
+      // {
+      //   name : "Silent Auction Donation",
+      //   link : "/actionDonation"
+      // }
     ];
     return (
       <div>
@@ -73,19 +73,24 @@ class home extends Component {
                       <div className="auctionTextContainer">
                         <p className="auctionTextDescription">
                           <h1 className="auctionTextTitle"><center>
-                            <i>ION A Taste of Paradise Gala</i>
+                            <i>ION A Taste of Paradise Gala Dinner</i>
                             <br /> &amp; Silent Auction
                             </center>
                           </h1>
                           <center>
-                            <b>Eat, Drink &amp; Enjoy</b><br /><br />
-                            <font size="4">Where: </font><b><a style={{color:'white'}} rel="noopener noreferrer" target="_blank" href="https://goo.gl/maps/1K96gzDvLR2TiDn68">African American Museum of Dallas</a></b><br />
-                            <font size="4">When : </font><b>September 21, 2019 <br />7:00pm - 10:00pm</b><br />
-                            <Link to="/about">
+                            <b>Eat, Drink &amp; Enjoy</b><br />
+                            <font size="4">Where: </font><b><a style={{color:'white'}} rel="noopener noreferrer" target="_blank" href="https://goo.gl/maps/1K96gzDvLR2TiDn68">African American Museum at Fair Park</a></b><br />
+                            <font size="4">When : </font><b>September 21, 2019 <br />7:00pm - 10:00pm</b><br /><font size="3">Tickets $40</font>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                              <input type="hidden" name="cmd" value="_s-xclick" />
+                              <input type="hidden" name="hosted_button_id" value="JX33NTNBH52QQ" />
+                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                            </form>
+                            {/* <Link to="/about">
                               <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
-                            </Link>
-                            <br />
-                            <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door &nbsp;&bull;&nbsp; <Link to="/actionDonation" >Make Donations</Link></h6>
+                            </Link> */}
+                            <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door &nbsp;</h6>
                           </center>
                         </p>
                       </div>
@@ -119,9 +124,9 @@ class home extends Component {
                             <font size="4">Where: </font><b>TBA</b><br />
                             <font size="4">When : </font><b>TBA</b><br /><br />
                             <center>
-                            <Link to="/about">
+                            {/* <Link to="/about">
                               <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
-                            </Link>
+                            </Link> */}
                           </center>
                         </p>
                       </div>
@@ -137,6 +142,9 @@ class home extends Component {
                     <div className="meetingBoxTitle">Shortcut Links</div>
                     <div  className="meetingBoxDescription">
                       {shortcutLinks.map(x => <NavLink tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
+                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JX33NTNBH52QQ")}>
+                        Order Gala Dinner Tickets
+                      </NavLink>
                     </div>
                   </div>
                 </center>

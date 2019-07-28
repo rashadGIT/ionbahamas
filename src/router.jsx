@@ -11,7 +11,7 @@ import member from './pages/member';
 import board from './pages/board';
 import calendar from './pages/calendar';
 import pageNotFound from './pages/pageNotFound';
-import silentAuctionDonation from './pages/silentAuctionDonation';
+import pleasePrint from './pages/pleasePrint';
 
 render ((
 <HashRouter basename="/">
@@ -25,7 +25,7 @@ render ((
         <Route path="/board" component={board} />
         <Route path="/member" component={member} />
         <Route path="/calendar" component={calendar} />
-        <Route path="/actionDonation" component={silentAuctionDonation} />
+        <Route path="/pleasePrint" component={pleasePrint} />
         <Route component={pageNotFound} />
     </Switch>
 </HashRouter>

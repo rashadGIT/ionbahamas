@@ -42,9 +42,13 @@ const events = [
     allDay: false,
     startDate: new Date("09/21/2019"),
     endDate: new Date("09/21/2019"),
+    startTime : "7:00pm",
+    endTime : "10:00pm",
     title: 'A Taste of Paradise Fundraising Gala Dinner & Silent Auction',
-    description : <div><p>African American Museum At Fair Park<br />(Featuring a Uniquely Bahamian Mini Fashion Show)</p></div>,
-    calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T030000Z"
+    description : (<div><p>(Featuring a Uniquely Bahamian Mini Fashion Show)</p></div>),
+    calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+Taste+of+Paradise+Gala+Dinner&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=3536+Grand+Ave%2C+Dallas%2C+TX+75210&dates=20190922T000000Z%2F20190922T030000Z",
+    mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68",
+    location : (<div>African American Museum At Fair Park</div>)
 
   },
   {
@@ -52,14 +56,14 @@ const events = [
     startDate: null,
     endDate: null,
     title: 'Bowl-A-Thon',
-    description : 'ifonfoirenoigferognoer'
+    description : null
   },
   {
     allDay: false,
     startDate: null,
     endDate: null,
     title: 'Golf Tournament',
-    description : 'ifonfoirenoigferognoer'
+    description : null
   },
   
   ].filter(x => {
@@ -124,7 +128,8 @@ const events = [
           <Modal open={this.state.open} onClose={this.onCloseModal} center>
             <h5 style={{paddingRight : 60}}>{(this.state.event) ? this.state.event.title : null}</h5>
             <div>When : {(this.state.event) ? this.state.event.startDate.toLocaleDateString("en-US", options) : null}</div>
-            <div>Time : </div>
+            <div>Time : {(this.state.event) ? this.state.event.startTime : null} - {(this.state.event) ? this.state.event.endTime : null}</div>
+            <div>Location : {(this.state.event) ? <Link onClick={() => window.open(this.state.event.mapURL)}>{this.state.event.location}</Link> :  null}</div>
             <div>{(this.state.event) ? this.state.event.description : null}</div>
             <center>
               <Button color="link" onClick={(event) => {window.open(this.state.event.calendarLink);}} >&#43; Add event to Google Calendar</Button>
@@ -162,15 +167,8 @@ const events = [
                   </center>
                   <List style={{borderStyle: 'solid', borderColor :this.color(1)}}>
                     {events
-                    .filter(x => {
-                      if(x.startDate === null) return true;
-                      return x.endDate >= new Date().setHours(0,0,0,0)
-                    })
-                    .slice(0,7)
-                    .sort((a,b) => {
-                      if(a.startDate) return -1;
-                      return a.startDate - b.startDate;
-                    })
+                    .filter(x => x.endDate >= new Date().setHours(0,0,0,0))
+                    .sort((a,b) => a.startDate - b.startDate)
                     .map((x,i) => {
                       return <div key={i}>
                         <ListItem alignItems="flex-start" style={{backgroundColor : this.color(i), cursor: 'pointer'}} >
@@ -193,17 +191,66 @@ const events = [
                                   variant="body2"
                                   color="textPrimary"
                                 >
-                                  {(x.startDate) ? x.startDate.toLocaleDateString("en-US", options) : "TBD"}
+                                  <div>Date : {x.startDate.toLocaleDateString("en-US", options)}</div>
+                                  <div>Time : {x.startTime} - {x.endTime}</div>
                                 </Typography>
+                                <Link onClick={() => window.open(x.mapURL)}>{x.location}</Link>
                                 {x.description}
+                                <center>
+                                  <Button color="link" onClick={(event) => {window.open(x.calendarLink);}} >&#43; Add event to Google Calendar</Button>
+                                </center>
                               </React.Fragment>
                               }
-                              onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
+                              onClick={() => this.setState({selectedDate: x.startDate})}
                           />
                         </ListItem>
                         </div>
                       })}
                   </List>
+                  <br />
+                  
+                  <h4>Upcoming Events</h4>
+                    
+                  <List style={{borderStyle: 'solid', borderColor :this.color(1)}}>
+                    {events
+                      .filter(x => x.startDate === null)
+                      .sort((a,b) => {
+                        if(a.startDate) return -1;
+                        return a.startDate - b.startDate;
+                      })
+                      .map((x,i) => {
+                        return <div key={i}>
+                          <ListItem alignItems="flex-start" style={{backgroundColor : this.color(i)}} >
+                            {(x.startDate) ? <div>
+                              <IosAddCircleOutline  onClick={() => 
+                              this.setState({ 
+                                open : !this.state.open,
+                                event : x
+                              })} fontSize="40px" color="#000000" 
+                              className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
+                              />
+                            </div> : null}
+                            <ListItemText
+                              className="listItemText"
+                              primary={x.title}
+                              secondary={
+                                <React.Fragment>
+                                  <Typography
+                                    component="span"
+                                    variant="body2"
+                                    color="textPrimary"
+                                  >
+                                    {(x.startDate) ? x.startDate.toLocaleDateString("en-US", options) : x.startDate}
+                                  </Typography>
+                                  {x.description}
+                                </React.Fragment>
+                                }
+                                onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
+                            />
+                          </ListItem>
+                          </div>
+                        })}
+                    </List>
                 </div>
               </Col>
             </Row>

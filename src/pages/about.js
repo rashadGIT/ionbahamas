@@ -49,14 +49,14 @@ class index extends Component {
       ];
     const events = [
       {
-        name : "A taste of Paradise Gala", 
+        name : "A Taste of Paradise Gala Dinner", 
         date: new Date("09/21/2019"), 
         time : "7:00 pm - 10:00 pm",
         location: "African American Museum of Dallas",
         address: "3536 Grand Ave, Dallas, TX 75210", 
         mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68", 
         detailsLink: "",
-        calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+taste+of+Paradise+Gala&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=T3536+Grand+Ave%2C+Dallas%2C+TX+75210BD&dates=20190922T000000Z%2F20190922T030000Z"
+        calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+Taste+of+Paradise+Gala+Dinner&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=3536+Grand+Ave%2C+Dallas%2C+TX+75210&dates=20190922T000000Z%2F20190922T030000Z"
       },
       {
         name : "Bowl-A-Thon", 
@@ -94,53 +94,51 @@ class index extends Component {
       {
         title : "Our Mission",
         description : (<div>
-            <p>ION Bahamas is dedicated to uniting all Bahamians in the Dallas/Fort Worth Metroplex, as well as descendants of The Bahamas to continue expressing our standards of excellence, through our culture while educating, sharing and helping each other reach a common goal.</p>
+            <p>Our mission is to be of assistance to and enhance the lives of Bahamians and those with a connection to the Bahamas either at home or abroad via education and civic engagement.</p>
           </div>)
       },
-      {
-        title : "Our Vision",
-        description : (<div>
-              <p>ION Bahamas will become the uniting force for all Bahamians in the Dallas/Fort Worth Metroplex, with an interest in connecting with other Bahamian Associations throughout the United States and Canada.</p>
-            </div>)
-      },
-      {
-        title : "The Purpose",
-        description : (<div>
-            <p>To educate, motivate, inspire and empower each other to a higher level of excellence in achieving our collective and individual goals.  This is done through workshops, seminars, networking events and other social events etc.  Guest speakers are invited to address concerns and issues important to us such as:</p>
-          <ol type="I" className="column">
-            <li>Immigration</li>
-            <li>Taxes</li>
-            <li>Financial Consultation</li>
-            <li>Credit - Credit repair</li>
-            <li>College life as an international student</li>
-            <li>Career Planning</li>
-          </ol>
-        </div>)
-      },
+      // {
+      //   title : "Our Vision",
+      //   description : (<div>
+      //         <p>ION Bahamas will become the uniting force for all Bahamians in the Dallas/Fort Worth Metroplex, with an interest in connecting with other Bahamian Associations throughout the United States and Canada.</p>
+      //       </div>)
+      // },
+      // {
+      //   title : "The Purpose",
+      //   description : (<div>
+      //       <p>To educate, motivate, inspire and empower each other to a higher level of excellence in achieving our collective and individual goals.  This is done through workshops, seminars, networking events and other social events etc.  Guest speakers are invited to address concerns and issues important to us such as:</p>
+      //     <ol type="I" className="column">
+      //       <li>Immigration</li>
+      //       <li>Taxes</li>
+      //       <li>Financial Consultation</li>
+      //       <li>Credit - Credit repair</li>
+      //       <li>College life as an international student</li>
+      //       <li>Career Planning</li>
+      //     </ol>
+      //   </div>)
+      // },
       {
         title : "The Message",
         description : (<div><p>ION Bahamas is made up of Bahamians living in the Dallas/Fort Worth Metroplex.</p>
-          <p>These members come from a wide range of backgrounds and engage in a very diverse workforce that includes: doctors, lawyers, scientist, architects,
-          accountants and students, to name a few. Our members also serve in managing roles in some of the nation’s top corporate and government organizations.</p>
           <p>ION Bahamas is operated by its members, consisting of the Executive Board and Board of Directors. An elected
-          Board of Directors determines policies and set goals.  The President presides over all Board Meetings. Members become involved by working on
-          committees, which include: Membership Development, Public Relations, Fundraising, and Social Committees.</p>
+          Board of Directors determines policies and sets goals.  The President presides over all Board Meetings. Members become involved by working on
+          committees, which include: Membership Development, Public Relations, Fundraising, and Social Committees. These members come from a wide range of backgrounds and engage in a very diverse workforce.</p>
           <p>But enough about us-let’s talk about you. If you are a Bahamian residing in the Dallas/Fort Worth Metroplex, then ION Bahamas, is your home away from home. Come join us for an unparalleled experience to interact with fellow Bahamians and descendants of the
-          Bahamas.</p></div>)
+          Bahamas. Additionally, if you are a friend of The Bahamas or a friend of any Bahamian, we welcome you.</p></div>)
       },
       {
-        title : "Objectives Involved",
+        title : "Objectives",
         description : (<div>
           <ul type="curcle" className="column">
-            <li>Promoting opportunities for the interaction and networking of members</li>
-            <li>Fostering growth and prosperity of businesses and individuals</li>
+            <li>Promoting opportunities for interaction and networking</li>
+            {/* <li>Fostering growth and prosperity of businesses and individuals</li> */}
             <li>Increasing employment opportunities</li>
-            <li>Enhancing the economic stability of the Bahamian community</li>
-            <li>Providing educational scholarships for our youth</li>
+            <li>Enhancing the economic stability of our community</li>
+            <li>Providing educational benefits</li>
           </ul>
           <p>We provide quality programs and support to all of our professional, family and student members and are committed to preserving and sharing our culture.
             There is just so much to know about Bahamians, our history and who we are as a people.</p>
-          <p>We are highly respected for our unique cultural abilities, educational accomplishments, and political awareness.</p>
+          {/* <p>We are highly respected for our unique cultural abilities, educational accomplishments, and political awareness.</p> */}
           <p>ION Bahamas is currently led by its President, Mr. Carlisle Mott, supported by the Board of Directors.  Our
           Board of Directors is a distinct group of professionals with backgrounds in IT, Finance, Communications, Clinical Science and Engineering, serving in the
           roles of President, Assistant Chairman, Secretary, Treasurer, and Advisors.</p>
@@ -152,9 +150,10 @@ class index extends Component {
           <li>In order to be successful, our members and their respective communities must be fully engaged</li>
           <li>Transparency and accountability are vital to the success of our organization</li>
           <li>Our organization must be based on respect, diligence and commitment</li>
-          <li>Education is the key to success and we must propel and guide our youth to those paths</li>
-          <li>As responsible citizens we must provide guidance and mentorship to our nationals, especially our youth</li>
-          <li>Our organization exists as a connection to our homeland and that we must foster unity to move forward, upward, onward, together</li></ul></div>)
+          <li>Education is the key to success and we must propel and guide each other along those paths</li>
+          <li>As responsible citizens we must provide guidance and mentorship</li>
+          {/* <li>Our organization exists as a connection to our homeland and that we must foster unity to move forward, upward, onward, together</li> */}
+          </ul></div>)
       },
       {
         title : "We Pledge To You",

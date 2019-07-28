@@ -37,7 +37,7 @@ class donate extends Component {
         <Container fluid={true} style={{paddingTop : '10px'}}>
           <Row noGutters={false} center="xs" >
             <Col xs={12} lg={6} md={{ span: 6, offset: 0 }}>
-            <img 
+            {/* <img 
               className="supportImg"
               width="100%"
               alt="" 
@@ -51,7 +51,7 @@ class donate extends Component {
                     alt="Make your payments with PayPal. It is free, secure, effective."
                     src={"https://jaschoolsupport.org/wp-content/uploads/2018/02/paypal-credit-card-images1.jpg"} />
               </a>
-            </center>
+            </center> */}
             <p>
               If you would like to send a check , please send to:
               <br />
@@ -63,6 +63,13 @@ class donate extends Component {
               <p>
                 SignUp to become a <a href="/about">Volunteer</a>
               </p>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="QMC5JV7U8BDNU" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+              </form>
+
                 </Col>
                 <Col xs={12} lg={6} md={{ span: 6, offset: 0 }}>
             <h1>What you are supporting.</h1>

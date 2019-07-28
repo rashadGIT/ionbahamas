@@ -65,11 +65,11 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink tag={RRNavLink} to="/board">Our Board</NavLink>
               </NavItem>
-              {/* <NavItem>
-                <NavLink tag={RRNavLink} to="/donate">Donate</NavLink>
-              </NavItem> */}
               <NavItem>
                 <NavLink tag={RRNavLink} to="/calendar">Calendar</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMC5JV7U8BDNU&source=url");}} >Donate</NavLink>
               </NavItem>
             </Nav>
             {/* <Nav className="ml-auto" navbar>
