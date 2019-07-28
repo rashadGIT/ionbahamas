@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import payPal from '../imgs/payPal.jpg';
 import { Button, NavLink } from 'reactstrap';
 import {Link , Link as RRNavLink } from "react-router-dom";
-import pleaseRead from '../imgs/pleaseRead.txt'
+import pleaseRead from '../imgs/pleaseRead.gif'
 
 class member extends Component {
   constructor(props){
