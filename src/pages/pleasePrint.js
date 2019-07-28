@@ -38,7 +38,7 @@ class member extends Component {
               <center>
               <img src={pleaseRead} alt="" width="300"/>
               </center>
-              <h3>Thank you, for you purchase.</h3>
+              <h3>Thank you, for your purchase.</h3>
               <h3>An email from PayPal "<b>service@paypal.com</b>" will be sent to your inbox.</h3>
               <h3>Please print or screenshot this email and present it at Gala Dinner entrance for entry.</h3> 
               <br />
