@@ -129,7 +129,7 @@ const events = [
             <h5 style={{paddingRight : 60}}>{(this.state.event) ? this.state.event.title : null}</h5>
             <div>When : {(this.state.event) ? this.state.event.startDate.toLocaleDateString("en-US", options) : null}</div>
             <div>Time : {(this.state.event) ? this.state.event.startTime : null} - {(this.state.event) ? this.state.event.endTime : null}</div>
-            <div>Location : {(this.state.event) ? <Link onClick={() => window.open(this.state.event.mapURL)}>{this.state.event.location}</Link> :  null}</div>
+            <div>Location : {(this.state.event) ? <Link style={{display : 'inline-block'}} onClick={() => window.open(this.state.event.mapURL)}>{this.state.event.location}</Link> :  null}</div>
             <div>{(this.state.event) ? this.state.event.description : null}</div>
             <center>
               <Button color="link" onClick={(event) => {window.open(this.state.event.calendarLink);}} >&#43; Add event to Google Calendar</Button>

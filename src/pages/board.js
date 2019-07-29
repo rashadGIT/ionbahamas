@@ -121,14 +121,14 @@ class member extends Component {
         order : 5
       },
       {
-        name: "Chantell Jervis Walton", 
+        name: "Chantel Jervis Walton", 
         bio : (<div>
             <p>
               Chantel Jervis Walton is a native of northern Illinois, born to Bahamian father Cyril Jervis and Iowa native Julie V. Jervis. 
               Loving mother of three, Chantel has a passion for serving and being a resource in her community and abroad.
             </p> 
             <p>
-              She is a certified teacher in the state of Texas where she earned her Bachelor of Arts degree in Liberal Studies and has professionally taught the last 7 years. 
+              She is a certified teacher in the state of Texas where she earned her Bachelor of Arts degree in Liberal Studies from Texas Wesleyan University and has professionally taught the last 7 years. 
               In addition to teaching, Chantel is also a aspiring real estate agent. She is committed to providing resources and support for others, using her gifts, education, 
               and authentic personality to be an asset to this organization and to those that take part.
             </p></div>), 
@@ -140,10 +140,14 @@ class member extends Component {
         name: "Sean Smith", 
         bio : (
           <div>
-            <p>Sean Smith is a full time Manager at the firm Partners first for The Crowther Group. 
+            <p>Sean was raised in Grant's Town, Nassau, Bahamas. 
+              He's the co-owner of Party DJ Dallas, where they provide personalized DJ services and ensures that each event is made special.</p> 
+            <p>He's also the Partners First Program Manager with The Crowther Group, where he is responsible for the development of diversity 
+              and safety policies that impact people‘s lives by providing a workplace free of harassment and discrimination.</p>
+            {/* <p>Sean Smith is a full time Manager at the firm Partners first for The Crowther Group. 
               He has the pleasure of developing, implementing and enforcing policies that impact people’s lives. 
               People are our most important asset, and he is charged with keeping them safe and free from harassment and discrimination.</p>
-            <p>As co-owner Of Party DJ Dallas for more than twenty years Sean works hard to provide personalized service, making each event special. </p>
+            <p>As co-owner Of Party DJ Dallas for more than twenty years Sean works hard to provide personalized service, making each event special. </p> */}
           </div>), 
         img : Sean, 
         position : "Director of Fundraising/Events",
