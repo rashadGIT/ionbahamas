@@ -44,7 +44,7 @@ class home extends Component {
   render() {
     const shortcutLinks = [
       {
-        name : "Event Calender",
+        name : "Event Calendar",
         link : "/calendar"
       },
       // {
