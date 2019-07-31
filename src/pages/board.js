@@ -6,10 +6,10 @@ import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
 import Avatar from 'react-avatar';
 import Rashad from '../imgs/board/Rashad.jpg';
-import Carlisle from '../imgs/board/Carlisle.jpg';
+import Carlisle from '../imgs/board/Carlisle.jpeg';
 import Italia from '../imgs/board/Italia.jpeg'
 import Sean from '../imgs/board/Sean.jpg';
-import Chantell from '../imgs/board/Chantell.jpeg';
+import Chantel from '../imgs/board/Chantel.jpeg';
 import Maria from '../imgs/board/Maria.jpeg';
 import Lestia from '../imgs/board/Lestia.jpeg';
 import Renee from '../imgs/board/Renee.jpeg';
@@ -121,7 +121,7 @@ class member extends Component {
         order : 5
       },
       {
-        name: "Chantel Jervis Walton", 
+        name: "Chantel Jervis-Walton", 
         bio : (<div>
             <p>
               Chantel Jervis Walton is a native of northern Illinois, born to Bahamian father Cyril Jervis and Iowa native Julie V. Jervis. 
@@ -132,7 +132,7 @@ class member extends Component {
               In addition to teaching, Chantel is also a aspiring real estate agent. She is committed to providing resources and support for others, using her gifts, education, 
               and authentic personality to be an asset to this organization and to those that take part.
             </p></div>), 
-        img : Chantell, 
+        img : Chantel, 
         position : "Director of Education & Resources",
         order : 6
       },
