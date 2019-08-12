@@ -6,11 +6,11 @@ import '../css/footer.css';
 const FooterPage = () => {
     const socialMediaIcons = [
         {
-          url: 'https://www.facebook.com/ignitingournation',
+          url: 'https://www.facebook.com/ION-Bahamas-101203231240251/',
           className: 'fa-facebook-square',
         },
         {
-          url: 'https://twitter.com/BahamasIon',
+          url: 'https://twitter.com/IonBahamas',
           className: 'fa-twitter',
         },
         // {
@@ -18,7 +18,7 @@ const FooterPage = () => {
         //   className: 'fa-instagram',
         // },
         {
-            url: 'https://www.linkedin.com/in/ion-bahamas-546a12183/',
+            url: 'https://www.linkedin.com/company/ionbahamas/',
             className: 'fa-linkedin',
           },
           {
@@ -34,7 +34,7 @@ const FooterPage = () => {
             <MDBCol md="3">
               <h5 className="title">Contact Us</h5>
               <label>Email: &nbsp;</label><b><a href="mailto:info@ionbahamas.org">info@ionbahamas.org</a></b><br />
-              {/* <label>Phone: &nbsp;</label><b><a href="mailto:webmaster@example.com">(242)123-4567</a></b><br /> */}
+              <label>Phone: &nbsp;</label><b><a href="tel:469-294-5834">(469) 294-5834</a></b><br />
               <label>Mailing Address: &nbsp;</label><b>3371 FM 1562, Celeste, TX 75423</b>
             </MDBCol>
             <MDBCol md="6">

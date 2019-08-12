@@ -65,6 +65,14 @@
         top: 15%;
         max-width: 1000px;
     }
+
+    .bannerTextContainer{
+        position: absolute;
+        left: 50%;
+        top: 15%;
+        max-width: 1000px;
+    }
+
     .textTitle{
         color: white;
         font-weight: bold;
@@ -96,9 +104,30 @@
         padding : 15px;
         background: rgba(0,0,0, 0.75);
     }
+    .bannerTextDescription{
+        color: black;
+        text-align: start;
+        font-size: 20px;
+        border-width: 5px;
+        border-color: white;
+        padding : 15px;
+        background: rgba(0,0,0, 0.0);
+    }
 
     .auctionTextTitle{
         color: white;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg); 
+        -webkit-transform: skew(-20deg);
+        transform: skew(-20deg); 
+        padding: 7px;
+    }
+
+    .bannerTextTitle{
+        color: black;
         font-weight: bold;
         font-size: 40px;
         font-family: "Times New Roman", Times, serif;

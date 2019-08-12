@@ -8,8 +8,10 @@ import { Carousel } from 'react-responsive-carousel';
 import InfiniteCarousel from '../components/InfiniteCarousel';
 import Membership from '../components/MembershipBoxes';
 import img from '../imgs/gala.jpg'
+import banner from '../imgs/banner.jpg'
 import bowlAThon from '../imgs/Bowl-A-Thon.jpg'
 import Golf from '../imgs/Golf.jpg'
+import youTube from '../imgs/youTubeLogo.png';
 import {Link , Link as RRNavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
@@ -68,6 +70,26 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
+                    <div key={"into"}>
+                      <img alt="" src={banner} />
+                      <div className="bannerTextContainer">
+                        <p className="bannerTextDescription">
+                          <h1 className="bannerTextTitle"><center>
+                            <i>Introduction to ION Bahamas Video</i>
+                            </center>
+                          </h1>
+                          <center>
+                            <a href="https://youtu.be/0NXalyzcDj8" target="_blank" rel="noopener noreferrer">
+                              <div>
+                                <h3 style={{color : 'black'}}>Watch Now on YouTube</h3>
+                                <img alt="" src={youTube} style={{width:300, height: 150}}/>
+                                <h3 style={{color : 'black'}}>Like&nbsp;&bull;&nbsp;Share&nbsp;&bull;&nbsp;Subscribe</h3>
+                              </div>
+                            </a>
+                          </center>
+                        </p>
+                      </div>
+                    </div>
                     <div key={"GalaAuction"}>
                       <img alt="" src={img} />
                       <div className="auctionTextContainer">
@@ -144,6 +166,9 @@ class home extends Component {
                       {shortcutLinks.map(x => <NavLink tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JX33NTNBH52QQ")}>
                         Order Gala Dinner Tickets
+                      </NavLink>
+                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
+                        Introduction to ION Bahamas Video
                       </NavLink>
                     </div>
                   </div>
