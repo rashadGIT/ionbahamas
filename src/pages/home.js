@@ -12,6 +12,7 @@ import banner from '../imgs/banner.jpg'
 import bowlAThon from '../imgs/Bowl-A-Thon.jpg'
 import Golf from '../imgs/Golf.jpg'
 import youTube from '../imgs/youTubeLogo.png';
+import dorian from '../imgs/Dorian.png';
 import {Link , Link as RRNavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
@@ -21,6 +22,8 @@ import '../css/meeting.css';
 const bread = [
   {order : 1, title: "Home", link : "/"},
 ].sort((a,b) => a.order - b.order);
+
+const hurricaneMsg ="Hurricane Dorian Relief Efforts"
 
 class home extends Component {
   constructor(props){
@@ -70,7 +73,26 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
-                    <div key={"into"}>
+                    <div key={"Hurricane"}>
+                      <img alt="" src={dorian} />
+                      <div className="bannerTextContainer">
+                        <p className="bannerTextDescription">
+                          <h1 className="bannerTextTitle"><center>
+                            <i style={{color : 'white'}}>{hurricaneMsg}</i>
+                            </center>
+                          </h1>
+                          <center>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                              <input type="hidden" name="cmd" value="_s-xclick" />
+                              <input type="hidden" name="hosted_button_id" value="TP2UXFQ8YDP24" />
+                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                            </form>
+                          </center>
+                        </p>
+                      </div>
+                    </div>
+                    <div key={"intro"}>
                       <img alt="" src={banner} />
                       <div className="bannerTextContainer">
                         <p className="bannerTextDescription">
@@ -169,6 +191,9 @@ class home extends Component {
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                         Introduction to ION Bahamas Video
+                      </NavLink>
+                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url")}>
+                        <b>{hurricaneMsg}</b>
                       </NavLink>
                     </div>
                   </div>

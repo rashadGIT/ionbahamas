@@ -71,6 +71,9 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMC5JV7U8BDNU&source=url");}} >Donate</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url");}} ><b>Hurricane Relief Efforts</b></NavLink>
+              </NavItem>
             </Nav>
             {/* <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
