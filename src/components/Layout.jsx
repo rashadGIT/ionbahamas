@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
-import Breadcrumbs from '../components/Breadcrumbs'
 import '../css/navbar.css'
+import NavTopBar from '../components/navTopBar'
 
-function App(InnerComponent,bread) {
+function App(InnerComponent) {
   return (class extends Component{
     render(){
       return(
-          <div>
-            <NavBar />
-            {(bread) ? <div style={{paddingBottom : 100}}><Breadcrumbs crumbs={bread}/></div> : null}
+          <div key="layout">
+            <NavTopBar />
             <InnerComponent />
             <Footer />
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { Route, BrowserRouter, Switch, HashRouter } from 'react-router-dom'
+import { Route, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
 import donate from './pages/donate';
