@@ -12,6 +12,7 @@ import board from './pages/board';
 import calendar from './pages/calendar';
 import pageNotFound from './pages/pageNotFound';
 import pleasePrint from './pages/pleasePrint';
+import hope from './pages/hope';
 
 render ((
 <HashRouter basename="/">
@@ -26,6 +27,7 @@ render ((
         <Route path="/member" component={member} />
         <Route path="/calendar" component={calendar} />
         <Route path="/pleasePrint" component={pleasePrint} />
+        <Route path="/hope" component={hope} />
         <Route component={pageNotFound} />
     </Switch>
 </HashRouter>
