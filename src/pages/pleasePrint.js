@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Layout from '../components/Layout';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import payPal from '../imgs/payPal.jpg';
-import { Button, NavLink } from 'reactstrap';
-import {Link , Link as RRNavLink } from "react-router-dom";
+import { Button } from 'reactstrap';
+import { Link as RRNavLink } from "react-router-dom";
 import pleaseRead from '../imgs/pleaseRead.gif'
 
 class member extends Component {

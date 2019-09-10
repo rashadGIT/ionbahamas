@@ -7,15 +7,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem 
+  NavLink
 } from 'reactstrap';
 
 import '../css/navbar.css';
 import img from '../imgs/ioniconflame.png'
+import logo from '../imgs/logo.jpg'
 
 
 export default class Example extends React.Component {
@@ -41,6 +38,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div className="NavBar">
+        <img className="logo" src={logo} alt="" />
         <Navbar color="light" light expand="md" fixed={`top`}>
           <NavbarBrand href="/">
             <img style={{position : 'absolute', top : '0%'}}src={img} alt="" width="20" height="40" />

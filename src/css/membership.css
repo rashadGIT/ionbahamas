@@ -6,7 +6,8 @@
   }
   
 .card:hover {
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.1); 
 }
 
 .TextContainer {
@@ -54,7 +55,7 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         padding : 0px 0px 0px 10px;
     }
     .card{
-        width: 230px;
+        width: 200px;
     }
     .imgBox{
         max-height: 150px;

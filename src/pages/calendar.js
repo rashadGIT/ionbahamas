@@ -5,33 +5,19 @@ import Col from 'react-bootstrap/Col'
 import Layout from '../components/Layout';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import {
   Calendar,
-  DateLocalizer,
   momentLocalizer,
-  globalizeLocalizer,
-  move,
-  Views,
-  Navigate,
-  components,
 } from 'react-big-calendar'
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Modal from 'react-responsive-modal';
 import { Button } from 'reactstrap';
 import {Link } from "react-router-dom";
-import plus from '../imgs/Plus-icon.png'
-import { maxWidth } from '@material-ui/system';
 import '../css/calendar.css'
 import IosAddCircleOutline from 'react-ionicons/lib/IosAddCircleOutline'
-
-const bread = [
-  {order : 2, title: "Calendar", link : "/calendar"},
-  {order : 1, title: "Home", link : "/"}
-].sort((a,b) => a.order - b.order);
 
 const localizer = momentLocalizer(moment)
 
@@ -49,6 +35,19 @@ const events = [
     calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+Taste+of+Paradise+Gala+Dinner&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=3536+Grand+Ave%2C+Dallas%2C+TX+75210&dates=20190922T000000Z%2F20190922T030000Z",
     mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68",
     location : (<div>African American Museum At Fair Park</div>)
+
+  },
+  {
+    allDay: false,
+    startDate: new Date("09/09/2019"),
+    endDate: new Date().setDate(new Date("09/13/2019").getDate()),
+    startTime : "8:00am",
+    endTime : "3:00pm",
+    title: 'Bahamas Relief Donation Drop-Off',
+    description : (<div><p>Collecting Donation for Hurricane Dorain Survivors</p></div>),
+    calendarLink: null,
+    mapURL : "https://goo.gl/maps/Nb6swsFeVxZhuKG57",
+    location : (<div>1434 Patton Place Suite 106b, Carrollton, TX 75007</div>)
 
   },
   {
@@ -196,9 +195,10 @@ const events = [
                                 </Typography>
                                 <Link onClick={() => window.open(x.mapURL)}>{x.location}</Link>
                                 {x.description}
+                                {(x.calendarLink) ?
                                 <center>
                                   <Button color="link" onClick={(event) => {window.open(x.calendarLink);}} >&#43; Add event to Google Calendar</Button>
-                                </center>
+                                </center> : null}
                               </React.Fragment>
                               }
                               onClick={() => this.setState({selectedDate: x.startDate})}
@@ -260,4 +260,4 @@ const events = [
     }
 }
 
-export default Layout(donate,bread);
+export default Layout(donate);
