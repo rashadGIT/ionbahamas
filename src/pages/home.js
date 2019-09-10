@@ -182,8 +182,8 @@ class home extends Component {
                     <div className="meetingBoxTitle">Shortcut Links</div>
                     <div  className="meetingBoxDescription">
                       {shortcutLinks.map((x,i) => <NavLink key={i} tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
-                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JX33NTNBH52QQ")}>
-                        Order Gala Dinner Tickets
+                      <NavLink tag={RRNavLink} to="#" >
+                        Order Gala Dinner Tickets (Sold Out)
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                         Introduction to ION Bahamas Video
