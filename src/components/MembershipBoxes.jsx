@@ -42,8 +42,8 @@ export default class extends Component{
         <div className="membershipTitle">
           <h5>Membership Categories</h5>
         </div>
-          {membershipTypes.map(membership =>
-            <div style={{display: 'inline-block', padding: '5px'}}>
+          {membershipTypes.map((membership,i) =>
+            <div key={i} style={{display: 'inline-block', padding: '5px'}}>
               <div className="card">
                 <img 
                   className="imgBox"

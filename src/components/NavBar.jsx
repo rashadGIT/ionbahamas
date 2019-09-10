@@ -7,15 +7,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem 
+  NavLink
 } from 'reactstrap';
 
 import '../css/navbar.css';
 import img from '../imgs/ioniconflame.png'
+import logo from '../imgs/logo.jpg'
 
 
 export default class Example extends React.Component {
@@ -41,6 +38,7 @@ export default class Example extends React.Component {
   render() {
     return (
       <div className="NavBar">
+        <img className="logo" src={logo} alt="" />
         <Navbar color="light" light expand="md" fixed={`top`}>
           <NavbarBrand href="/">
             <img style={{position : 'absolute', top : '0%'}}src={img} alt="" width="20" height="40" />
@@ -70,6 +68,9 @@ export default class Example extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMC5JV7U8BDNU&source=url");}} >Donate</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url");}} ><b>Hurricane Relief Efforts</b></NavLink>
               </NavItem>
             </Nav>
             {/* <Nav className="ml-auto" navbar>

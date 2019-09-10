@@ -58,8 +58,8 @@ const FooterPage = () => {
               </ul> */}
             </MDBCol>
             <MDBCol md="3">
-              <h5 className="title">Help</h5>
-              <div style={{paddingBottom : '10px'}}>
+              {/*<h5 className="title">Help</h5>
+               <div style={{paddingBottom : '10px'}}>
                 <div className="helpDocs">
                   <a href="#">FAQs</a>
                 </div>&nbsp;&bull;&nbsp;
@@ -69,13 +69,13 @@ const FooterPage = () => {
                 <div className="helpDocs">
                   <a href="#">Documentation</a>
                 </div>&nbsp;&bull;&nbsp;
-                <div className="helpDocs">
+                 <div className="helpDocs">
                   <a href="#">Press Center</a>
                 </div>&nbsp;&bull;&nbsp;
                 <div className="helpDocs">
                   <a href="#">Code of Conduct</a>
-                </div>
-              </div>
+                </div> 
+              </div> */}
               <h5>Follow Us</h5>
               <div className="socialMedia">
                   <SocialMediaIcons
@@ -92,7 +92,7 @@ const FooterPage = () => {
           <MDBContainer fluid>
               <a href="/">Conditions of Use</a> 
               <a href="/"> Privacy Notice</a> 
-              &nbsp; &copy; 2019 - {new Date().getFullYear()} <a target="_blank" href="http://www.ionbahamas.org"> IonBahamas.org</a> or its affiliates
+              &nbsp; &copy; 2019 - {new Date().getFullYear()} <a rel="noopener noreferrer" target="_blank" href="http://www.ionbahamas.org"> IonBahamas.org</a> or its affiliates
           </MDBContainer>
         </div>
       </MDBFooter>

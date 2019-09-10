@@ -4,14 +4,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
-// import { Button, NavLink } from 'reactstrap';
-import Speech from 'speak-tts'
-// import Avatar from 'react-avatar';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 import '../css/col.css';
 import '../css/about.css';
-
-const speech = new Speech();
 
 const bread = [
   {order : 2, title: "About", link : "/about"},
@@ -188,7 +183,7 @@ class index extends Component {
           </Col>
           <Col xs={12} md={4}>
             <h3>Sponsors &amp; Supporters</h3>
-            {sponsors.map((x,i) => <div key={i} className="sponsors"><a target="_blank" href={x.link}>{x.name}</a>{(sponsors.length-1 !== i) ? <span>&nbsp;&bull;&nbsp;</span> : null}</div>)}
+            {sponsors.map((x,i) => <div key={i} className="sponsors"><a target="_blank" rel="noopener noreferrer" href={x.link}>{x.name}</a>{(sponsors.length-1 !== i) ? <span>&nbsp;&bull;&nbsp;</span> : null}</div>)}
             <hr />
             <h3>Events 2019</h3>
             <Table striped bordered hover size="sm" responsive>
