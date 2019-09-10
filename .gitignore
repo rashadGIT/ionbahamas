@@ -25,3 +25,5 @@ yarn-error.log*
 package-lock.jsonstatus
 .gitignore
 src/imgs/
+MemberShip.mwb
+MemberShip.mwb.bak

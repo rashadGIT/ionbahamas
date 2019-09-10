@@ -18,7 +18,10 @@ import '../css/carousel.css'
 import '../css/col.css';
 import '../css/meeting.css';
 
-const hurricaneMsg ="Hurricane Dorian Relief Efforts"
+const hurricaneMsg =<font>Hurricane Dorian <br />Relief Efforts</font>;
+const hurricaneMsgBox = "Hurricane Dorian Relief Efforts";
+const collegeMsg =<font>Texas College Student <br />Relief Efforts</font>;
+const collegeMsgBox = "Texas College Student Relief Efforts";
 
 class home extends Component {
   constructor(props){
@@ -70,9 +73,9 @@ class home extends Component {
                   >
                     <div key={"Hurricane"}>
                       <img alt="" src={dorian} />
-                      <div className="bannerTextContainer">
-                        <div className="bannerTextDescription">
-                          <h1 className="bannerTextTitle"><center>
+                      <div className="HurricaneTextContainer">
+                        <div className="HurricaneTextDescription">
+                          <h1 className="HurricaneTextTitle"><center>
                             <i style={{color : 'white'}}>{hurricaneMsg}</i>
                             </center>
                           </h1>
@@ -80,6 +83,20 @@ class home extends Component {
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                               <input type="hidden" name="cmd" value="_s-xclick" />
                               <input type="hidden" name="hosted_button_id" value="TP2UXFQ8YDP24" />
+                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                            </form>
+                          </center>
+                        </div>
+                        <div style={{paddingLeft : '50px'}} className="HurricaneTextDescription">
+                          <h1 className="HurricaneTextTitle"><center>
+                            <i style={{color : 'white'}}>{collegeMsg}</i>
+                            </center>
+                          </h1>
+                          <center>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                              <input type="hidden" name="cmd" value="_s-xclick" />
+                              <input type="hidden" name="hosted_button_id" value="CJDB7WWHEMGLA" />
                               <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                               <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                             </form>
@@ -189,7 +206,10 @@ class home extends Component {
                         Introduction to ION Bahamas Video
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url")}>
-                        <b>{hurricaneMsg}</b>
+                        <b>{hurricaneMsgBox}</b>
+                      </NavLink>
+                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJDB7WWHEMGLA&source=url")}>
+                        <b>{collegeMsgBox}</b>
                       </NavLink>
                     </div>
                   </div>
