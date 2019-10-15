@@ -52,10 +52,15 @@ const events = [
   },
   {
     allDay: false,
-    startDate: null,
-    endDate: null,
+    startDate: new Date("11/03/2019"),
+    endDate: new Date("11/03/2019"),
+    startTime : "3:00pm",
+    endTime : "6:00pm",
     title: 'Bowl-A-Thon',
-    description : null
+    description : (<div><p>ION Bahamas 1st Annual Bowl-A-Thon</p></div>),
+    calendarLink: null,
+    mapURL : "https://www.google.com/maps/search/?api=1&query=1950+Marketplace+Dr.+Garland+TX+75401",
+    location : (<div>1950 Marketplace Dr, Garland, TX 75041, United States</div>)
   },
   {
     allDay: false,

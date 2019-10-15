@@ -6,13 +6,14 @@ import Col from 'react-bootstrap/Col'
 import {NavLink } from 'reactstrap';
 import { Carousel } from 'react-responsive-carousel';
 import Membership from '../components/MembershipBoxes';
-import img from '../imgs/gala.jpg'
+import bowling from '../imgs/Bowling Flyer.jpg'
 import banner from '../imgs/banner.jpg'
 import bowlAThon from '../imgs/Bowl-A-Thon.jpg'
 import Golf from '../imgs/Golf.jpg'
 import youTube from '../imgs/youTubeLogo.png';
 import dorian from '../imgs/Dorian Aftermath.jpeg';
 import {Link as RRNavLink } from "react-router-dom";
+import { Button } from 'reactstrap';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
 import '../css/col.css';
@@ -71,6 +72,37 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
+                    <div key={"Bowl-A-Thon"}>
+                      <img alt="" src={bowlAThon} />
+                      <div className="carouselTextContainer">
+                          <div style={{display: 'flex'}}>
+                          <div style={{width : '350px', paddingRight : '50px'}}>
+                              <img src={bowling}/>
+                          </div>
+                          <div className="auctionTextDescription">
+                            <center>
+                              <h1 className="auctionTextTitle">
+                              <i>ION Bowl-A-Thon</i>
+                            </h1>
+                            </center>
+                            <center>
+                              <b>Strike!!</b>
+                            </center>
+                            <div>
+                              <br />
+                              <font size="4">Where: </font><b>1950 Marketplace Dr. Garland, TX 75041</b><br />
+                              <font size="4">Date : </font><b>Sunday November 3rd, 2019</b><br />
+                              <font size="4">Time : </font><b>3:00pm - 6:00pm</b><br /><br />
+                            </div>
+                            <center>
+                                <Button outline={false} style={{color: 'black'}} size="lg" color="warning"
+                                  onClick={(event) => {window.open("https://www.signupgenius.com/go/70A094EA8AC2CA4FA7-ionbahamas1");}}
+                                >Click Here to Sign Up</Button>
+                            </center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div key={"Hurricane"}>
                       <img alt="" src={dorian} />
                       <div className="HurricaneTextContainer">
@@ -124,52 +156,6 @@ class home extends Component {
                         </div>
                       </div>
                     </div>
-                    <div key={"GalaAuction"}>
-                      <img alt="" src={img} />
-                      <div className="auctionTextContainer">
-                        <div className="auctionTextDescription">
-                          <h1 className="auctionTextTitle"><center>
-                            <i>ION A Taste of Paradise Gala Dinner</i>
-                            <br /> &amp; Silent Auction
-                            </center>
-                          </h1>
-                          <center>
-                            <b>Eat, Drink &amp; Enjoy</b><br />
-                            <font size="4">Where: </font><b><a style={{color:'white'}} rel="noopener noreferrer" target="_blank" href="https://goo.gl/maps/1K96gzDvLR2TiDn68">African American Museum at Fair Park</a></b><br />
-                            <font size="4">When : </font><b>September 21, 2019 <br />7:00pm - 10:00pm</b><br /><font size="3">Tickets $40</font>
-                            <h1 style={{color: 'red'}}>Sold Out</h1>
-                            {/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                              <input type="hidden" name="cmd" value="_s-xclick" />
-                              <input type="hidden" name="hosted_button_id" value="JX33NTNBH52QQ" />
-                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                            </form> */}
-                            {/* <Link to="/about">
-                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
-                            </Link> */}
-                            <h6>Semi-Formal Attire &nbsp;&bull;&nbsp; No Tickets Sold at Door &nbsp;</h6>
-                          </center>
-                        </div>
-                      </div>
-                    </div>
-                    <div key={"Bowl-A-Thon"}>
-                      <img alt="" src={bowlAThon} />
-                      <div className="carouselTextContainer">
-                      <div className="auctionTextDescription">
-                          <h1 className="auctionTextTitle">
-                            <i>ION Bowl-A-Thon</i>
-                          </h1>
-                          <center><b>Strike!!</b></center><br />
-                            <font size="4">Where: </font><b>TBA</b><br />
-                            <font size="4">When : </font><b>TBA</b><br /><br />
-                            <center>
-                            {/* <Link to="/about">
-                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
-                            </Link> */}
-                          </center>
-                        </div>
-                      </div>
-                    </div>
                     <div key={"Golf Tournament"}>
                       <img alt="" src={Golf} />
                       <div className="carouselTextContainer">
@@ -199,8 +185,8 @@ class home extends Component {
                     <div className="meetingBoxTitle">Shortcut Links</div>
                     <div  className="meetingBoxDescription">
                       {shortcutLinks.map((x,i) => <NavLink key={i} tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
-                      <NavLink tag={RRNavLink} to="#" >
-                        Order Gala Dinner Tickets (Sold Out)
+                      <NavLink tag={RRNavLink} to="#" onClick={() => window.open('https://www.signupgenius.com/go/70A094EA8AC2CA4FA7-ionbahamas1')}>
+                      ION Bowl-A-Thon (Sign Up)
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                         Introduction to ION Bahamas Video

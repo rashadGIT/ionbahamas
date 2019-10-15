@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
 import Avatar from 'react-avatar';
 import Rashad from '../imgs/board/Rashad.jpg';
+import Edward from '../imgs/board/Edward.png';
 import Carlisle from '../imgs/board/Carlisle.jpeg';
 import Italia from '../imgs/board/Italia.jpeg'
 import Sean from '../imgs/board/Sean.jpg';
@@ -185,6 +186,25 @@ class member extends Component {
           </p>
           </div>), 
         img : Rashad, 
+        position : "Director of Technology & Logistics",
+        order : 9
+      },
+      {
+        name: "Edward Moncur", 
+        bio : (<div>
+          <p>
+            Edward Moncur was born and raised in Nassau, Bahamas. 
+            A former Constable in the Royal Bahamas Police Force, where he was awarded the Commissioner’s Commendation for bravery, he is now an IT professional with more than a decade of experience in the IT infrastructure field. 
+          </p>
+          <p>
+            He holds multiple industry certifications and continues to pursue training in the constantly evolving IT security space. 
+            Since 2014, he has served as a volunteer mentor to High School Students in Katy ISD, Katy, TX.
+          </p>
+          <p>
+            Along with his wife Tanya  and 3 children, he lives in Richmond, TX, a suburb of Houston.
+          </p>
+          </div>), 
+        img : Edward, 
         position : "Director of Technology & Logistics",
         order : 9
       }
