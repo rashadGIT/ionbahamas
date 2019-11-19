@@ -5,6 +5,7 @@ import student from '../imgs/student.jpg';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import {Link} from "react-router-dom";
 import formPDF from '../docs/membershipForm.pdf';
 import formDOC from '../docs/membershipForm.docx';
 import '../css/membership.css';
@@ -19,7 +20,8 @@ export default class extends Component{
         img : family,
         description : "This membership type is available to families consisting of husband/ wife and their children.",
         pdf : formPDF,
-        doc : formDOC
+        doc : formDOC,
+        amount : 70
 
       },
       {
@@ -27,14 +29,16 @@ export default class extends Component{
         img : individual,
         description : "This membership type is available to any individual who does not qualify for student membership.",
         pdf : formPDF,
-        doc : formDOC
+        doc : formDOC,
+        amount : 50
       },
       {
         type : "Student",
         img : student,
         description : "This membership type is available to any student enrolled in college or university.",
         pdf : formPDF,
-        doc : formDOC
+        doc : formDOC,
+        amount : 20
       }
     ]
     return(
@@ -56,14 +60,11 @@ export default class extends Component{
                   <div style={{textAlign: 'left'}}>
                     {membership.description}
                   </div><br />
-                  <div>Download Membership form!</div>
-                  <Container>
-                    <Row>
-                      <Col xs="4"><a href={membership.pdf} download>PDF</a></Col>
-                      {/* <Col xs="auto"></Col> */}
-                      <Col xs="8"><a href={membership.doc} download>Word Document</a></Col>
-                    </Row>
-                  </Container>
+                  <div>
+                    <Link to={`/member/${membership.type}`}> 
+                       ${membership.amount} annual dues
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>)}

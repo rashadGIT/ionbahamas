@@ -138,6 +138,36 @@
         padding: 7px;
     }
 
+    .HurricaneTextContainer{
+        position: absolute;
+        left: 45%;
+        top: 5%;
+        max-width: 1000px;
+        display: flex;
+    }
+
+    .HurricaneTextDescription{
+        color: black;
+        text-align: start;
+        font-size: 20px;
+        border-width: 5px;
+        border-color: white;
+        padding : 15px 0px 15px 0px;
+        background: rgba(0,0,0, 0.0);
+    }
+
+    .HurricaneTextTitle{
+        color: black;
+        font-weight: bold;
+        font-size: 35px;
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg); 
+        -webkit-transform: skew(-20deg);
+        transform: skew(-20deg); 
+        padding: 7px;
+    }
+
     .dateContainer{
         display: flex;
         padding-left: 70px; 
