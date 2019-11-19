@@ -441,7 +441,7 @@ export default class MemberForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state)
-    axios.post('https://www.ionbahamas.org:242/membership/add', this.state)
+    axios.post('https://www.ionbahamas.org/php/ionNode/index.php', this.state)
     .then(x => {
       alert("Thank you for Signing up to become an Ion Member.\nPlease be on the look out for a confirmation Email from Our Automated System.")
       window.location.replace("https://www.ionbahamas.org")         

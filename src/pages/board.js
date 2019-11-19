@@ -155,7 +155,7 @@ class member extends Component {
         order : 7
       },
       {
-        name: "Ancilleno Solomom", 
+        name: "Ancilleno Solomon", 
         bio : (
             <div>
               <p>
@@ -205,7 +205,7 @@ class member extends Component {
           </p>
           </div>), 
         img : Edward, 
-        position : "Director of Technology & Logistics",
+        position : "City Director - Houston",
         order : 9
       }
     ].sort((a, b) => a.order - b.order);

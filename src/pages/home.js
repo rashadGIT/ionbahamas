@@ -72,37 +72,6 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
-                    <div key={"Bowl-A-Thon"}>
-                      <img alt="" src={bowlAThon} />
-                      <div className="carouselTextContainer">
-                          <div style={{display: 'flex'}}>
-                          <div style={{width : '350px', paddingRight : '50px'}}>
-                              <img src={bowling}/>
-                          </div>
-                          <div className="auctionTextDescription">
-                            <center>
-                              <h1 className="auctionTextTitle">
-                              <i>ION Bowl-A-Thon</i>
-                            </h1>
-                            </center>
-                            <center>
-                              <b>Strike!!</b>
-                            </center>
-                            <div>
-                              <br />
-                              <font size="4">Where: </font><b>1950 Marketplace Dr. Garland, TX 75041</b><br />
-                              <font size="4">Date : </font><b>Sunday November 3rd, 2019</b><br />
-                              <font size="4">Time : </font><b>3:00pm - 6:00pm</b><br /><br />
-                            </div>
-                            <center>
-                                <Button outline={false} style={{color: 'black'}} size="lg" color="warning"
-                                  onClick={(event) => {window.open("https://www.signupgenius.com/go/70A094EA8AC2CA4FA7-ionbahamas1");}}
-                                >Click Here to Sign Up</Button>
-                            </center>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <div key={"Hurricane"}>
                       <img alt="" src={dorian} />
                       <div className="HurricaneTextContainer">
@@ -185,9 +154,6 @@ class home extends Component {
                     <div className="meetingBoxTitle">Shortcut Links</div>
                     <div  className="meetingBoxDescription">
                       {shortcutLinks.map((x,i) => <NavLink key={i} tag={RRNavLink} to={x.link} >{x.name}</NavLink>)}
-                      <NavLink tag={RRNavLink} to="#" onClick={() => window.open('https://www.signupgenius.com/go/70A094EA8AC2CA4FA7-ionbahamas1')}>
-                      ION Bowl-A-Thon (Sign Up)
-                      </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                         Introduction to ION Bahamas Video
                       </NavLink>

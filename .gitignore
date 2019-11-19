@@ -27,3 +27,5 @@ package-lock.jsonstatus
 src/imgs/
 MemberShip.mwb
 MemberShip.mwb.bak
+package-lock.json
+.gitignore
