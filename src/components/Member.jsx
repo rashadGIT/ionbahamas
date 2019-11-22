@@ -347,7 +347,7 @@ export default class MemberForm extends React.Component {
     this.appendData = this.appendData.bind(this);
     this.handleSecondaryMembers = this.handleSecondaryMembers.bind(this);
     this.handleRemoveSecondaryMembers = this.handleRemoveSecondaryMembers.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleFirstName(event) {
