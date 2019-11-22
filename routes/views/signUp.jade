@@ -1,0 +1,30 @@
+// project/views/email.jade
+ 
+doctype transitional
+html
+  head
+    meta(http-equiv = 'Content-Type', content = 'text/html; charset=UTF-8')
+    title= subject
+    - var img = "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+    
+    body
+      div(style={color: 'black', margin : 'auto', width: '80%', 'font-size': '50px', 'border-style': 'solid', 'border-width': '5px', 'text-align': 'center'})
+        img(src=img style={width : '100px'})
+        p Thanks for signing up, #{user.username}. 
+        p We're glad you're here.
+        p(style={'font-size' : '20px'}) You just joined a design community 5 million strong.
+        br
+        a(class='button' href='google.com') Cryptoplex Managment
+        
+      //- p
+      //-   strong Lorem ipsum dolor: 
+      //-   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      //-   br
+      //-   |Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      //- h2.h2 Lorem ipsum
+      //- p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      //- p Lorem ipsum:
+      //- ol
+      //-   li Lorem ipsum dolor
+      //-   li Lorem ipsum dolor
+      //-   li Lorem ipsum dolor

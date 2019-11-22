@@ -6,6 +6,8 @@ import HashMap from 'hashmap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {Link, Redirect } from "react-router-dom";
 import axios from 'axios';
+import PaymentForm from './PaymentForm';
+require('dotenv').config()
 
 let stateList = [
   { value: "AK", text: "Alaska" },
@@ -330,7 +332,8 @@ export default class MemberForm extends React.Component {
       secondaryMembers : new HashMap(),
       isFamily : false,
       type : this.props.type,
-      price : 0
+      price : 0,
+      loaded: false
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -409,9 +412,19 @@ export default class MemberForm extends React.Component {
     this.max = this.max + 1;
  }
 
-  componentWillMount(){
-      
-  }
+ componentWillMount() {
+  const that = this;
+  let sqPaymentScript = document.createElement("script");
+  sqPaymentScript.src = "https://js.squareup.com/v2/paymentform";
+  sqPaymentScript.type = "text/javascript";
+  sqPaymentScript.async = false;
+  sqPaymentScript.onload = () => {
+    that.setState({
+      loaded: true
+    });
+  };
+  document.getElementsByTagName("head")[0].appendChild(sqPaymentScript);
+}
 
   componentDidMount(){
     this.setState({
@@ -438,15 +451,15 @@ export default class MemberForm extends React.Component {
 
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state)
-    axios.post('https://www.ionbahamas.org/php/ionNode/index.php', this.state)
-    .then(x => {
-      alert("Thank you for Signing up to become an Ion Member.\nPlease be on the look out for a confirmation Email from Our Automated System.")
-      window.location.replace("https://www.ionbahamas.org")         
-    })
-  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   console.log(this.state)
+  //   axios.post('/email/send', this.state)
+  //   .then(x => {
+  //     alert("Thank you for Signing up to become an Ion Member.\nPlease be on the look out for a confirmation Email from Our Automated System.")
+  //     window.location.replace("https://www.ionbahamas.org")         
+  //   })
+  // }
 
   render() {
     return (
@@ -454,89 +467,117 @@ export default class MemberForm extends React.Component {
         <h1>{this.props.type} Membership - ${this.state.price}</h1>
         <Form onSubmit={this.handleSubmit}>
           <Container fluid={true}>
-            <Row>         
+            <Row>
               <Col xs={12} md={6} lg={6}>
-                <FormGroup>
-                  <Label for="First Name">First Name {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
-                  <Input value={this.state.value} type="text" name="text" id="exampleText" placeholder="First Name" maxLength={50} onChange={this.handleFirstName} />
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={6} lg={6}>
-                <FormGroup>
-                  <Label for="Last Name">Last Name</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Last Name" maxLength={50} onChange={this.handleLastName} />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-              <FormGroup>
-                <Label for="Email">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="Email" required={true} maxLength={100}  onChange={this.handleEmail}/>
-              </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <Label for="Address">Address</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Address" maxLength={100} onChange={this.handleAddress}/>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={3} lg={3}>
-                <FormGroup>
-                  <Label for="City">City</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="City" maxLength={50} onChange={this.handleCity}/>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={3} lg={3}>
-                <FormGroup>
-                  <Label for="State">State</Label>
-                  <Input value={this.state.state} type="select" name="select" id="exampleSelect" onChange={this.handleState}>
-                    {stateList.map(state => <option key={state.text}>{state.value}</option>)}
-                  </Input>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={3} lg={3}>
-                <FormGroup>
-                  <Label for="Zip">Zip/Postal Code</Label>
-                  <Input value={this.state.zip} required={true} type="text" name="number" id="exampleText" placeholder="Zip/Postal Code" onChange={this.handleZip} maxLength={5}/>
-                </FormGroup>
-              </Col>
-              <Col xs={12} md={3} lg={3}>
-                <FormGroup>
-                  <Label for="Country">Country</Label>
-                  <Input value={this.state.country} type="select" name="select" id="exampleSelect" onChange={this.handleCountry} disabled={true}>
-                    {countryList.map(country => <option key={country.name}>{country.code}</option>)}
-                  </Input>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {this.displayData}
-              </Col>
+              <div>Personal Information</div>
+              <Container fluid={true}>
+                <Row>         
+                  <Col xs={12} md={6} lg={6}>
+                    <FormGroup>
+                      <Label for="First Name">First Name {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
+                      <Input value={this.state.value} type="text" name="text" id="exampleText" placeholder="First Name" maxLength={50} onChange={this.handleFirstName} />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={12} md={6} lg={6}>
+                    <FormGroup>
+                      <Label for="Last Name">Last Name</Label>
+                      <Input type="text" name="text" id="exampleText" placeholder="Last Name" maxLength={50} onChange={this.handleLastName} />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                  <FormGroup>
+                    <Label for="Email">Email</Label>
+                    <Input type="email" name="email" id="exampleEmail" placeholder="Email" required={true} maxLength={100}  onChange={this.handleEmail}/>
+                  </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <FormGroup>
+                      <Label for="Address">Address</Label>
+                      <Input type="text" name="text" id="exampleText" placeholder="Address" maxLength={100} onChange={this.handleAddress}/>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12} md={3} lg={3}>
+                    <FormGroup>
+                      <Label for="City">City</Label>
+                      <Input type="text" name="text" id="exampleText" placeholder="City" maxLength={50} onChange={this.handleCity}/>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={12} md={3} lg={3}>
+                    <FormGroup>
+                      <Label for="State">State</Label>
+                      <Input value={this.state.state} type="select" name="select" id="exampleSelect" onChange={this.handleState}>
+                        {stateList.map(state => <option key={state.text}>{state.value}</option>)}
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={12} md={3} lg={3}>
+                    <FormGroup>
+                      <Label for="Zip">Zip/Postal Code</Label>
+                      <Input value={this.state.zip} required={true} type="text" name="number" id="exampleText" placeholder="Zip/Postal Code" onChange={this.handleZip} maxLength={5}/>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={12} md={3} lg={3}>
+                    <FormGroup>
+                      <Label for="Country">Country</Label>
+                      <Input value={this.state.country} type="select" name="select" id="exampleSelect" onChange={this.handleCountry} disabled={true}>
+                        {countryList.map(country => <option key={country.name}>{country.code}</option>)}
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    {this.displayData}
+                  </Col>
+                </Row>
+              </Container>
+              {/* <Container fluid={true}>
+                <Row>
+                  <Col xs={2} sm={2} md={2} lg={2}>
+                    {(this.state.isFamily) ? <Button color="secondary" onClick={() => this.appendData(this.max + 2)}>Add Secondary Member</Button> : null}
+                  </Col>
+                  <Col sm={12} md={2} lg={2}>
+                    <Button style={{width : "100%"}} color="primary">Submit</Button>
+                  </Col>
+                  <Col sm={12} md={2} lg={2}>
+                    <Button style={{width : "100%"}} color="danger" onClick={(event) => {
+                      event.preventDefault();
+                      window.location.replace("https://www.ionbahamas.org")
+                    }}>Cancel</Button>
+                  </Col>
+                </Row>
+              </Container> */}
+            </Col>
+            <Col>
+              <div>Credit Card Information</div>
+              <PaymentForm paymentForm={window.SqPaymentForm} price={this.state.price}/>
+            </Col>
             </Row>
           </Container>
-          <Container fluid={true}>
+          {/* <Container fluid={true}>
             <Row>
-              <Col xs={12} sm={12} md={12} lg={8}>
+              <Col xs={12} sm={12} md={12} lg={4}>
                 {(this.state.isFamily) ? <Button color="secondary" onClick={() => this.appendData(this.max + 2)}>Add Secondary Member</Button> : null}
               </Col>
-              <Col sm={12} md={12} lg={2}>
+              <Col sm={12} md={12} lg={4}>
                 <Button style={{width : "100%"}} color="primary">Submit</Button>
               </Col>
-              <Col sm={12} md={12} lg={2}>
+              <Col sm={12} md={12} lg={4}>
                 <Button style={{width : "100%"}} color="danger" onClick={(event) => {
                   event.preventDefault();
                   window.location.replace("https://www.ionbahamas.org")
                 }}>Cancel</Button>
               </Col>
             </Row>
-          </Container>
+          </Container> */}
         </Form>
+        
       </div>)
   }
 }
