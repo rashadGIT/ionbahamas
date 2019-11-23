@@ -1,5 +1,6 @@
 var sql = require('../util/db.js');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 exports.getUser = (username,password) => {
   return sql.query('SELECT * FROM users where Lower(email) = Lower(?)', [username])

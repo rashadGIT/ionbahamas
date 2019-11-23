@@ -1,5 +1,6 @@
 'use strict';
-const bcrypt         = require('bcrypt');
+// const bcrypt         = require('bcrypt');
+const bcrypt         = require('bcrypt-nodejs');
 const bcrypt_p       = require('bcrypt-promise');
 const jwt            = require('jsonwebtoken');
 const {TE, to}       = require('../services/util.service');
