@@ -61,9 +61,9 @@ export default class extends Component{
                     {membership.description}
                   </div><br />
                   <div>
-                    {/* <Link to={`/member/${membership.type}`}>  */}
+                    <Link to={`/member/${membership.type}`}> 
                        ${membership.amount} annual dues
-                    {/* </Link> */}
+                    </Link>
                   </div>
                 </div>
               </div>
