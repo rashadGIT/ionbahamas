@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col'
 import {NavLink } from 'reactstrap';
 import { Carousel } from 'react-responsive-carousel';
 import Membership from '../components/MembershipBoxes';
-import bowling from '../imgs/Bowling Flyer.jpg'
 import banner from '../imgs/banner.jpg'
 import bowlAThon from '../imgs/Bowl-A-Thon.jpg'
 import Golf from '../imgs/Golf.jpg'
