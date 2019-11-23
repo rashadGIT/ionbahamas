@@ -14,7 +14,7 @@ import pleasePrint from './pages/pleasePrint';
 import Member from './components/Member';
 
 render ((
-    <HashRouter basename="/">
+    <HashRouter basename="/:8080">
         <Switch>
             <Route exact path="/" component={home} />
             <Route path="/about" component={about} />
