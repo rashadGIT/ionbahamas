@@ -556,7 +556,7 @@ export default class MemberForm extends React.Component {
             </Col>
             <Col>
               <div>Credit Card Information</div>
-              <PaymentForm paymentForm={window.SqPaymentForm} price={this.state.price}/>
+              {/* <PaymentForm paymentForm={window.SqPaymentForm} price={this.state.price}/> */}
             </Col>
             </Row>
           </Container>
