@@ -11,7 +11,7 @@ module.exports = {
   },
   {
     name: 'test',
-    script: '../cryptoplexCronJob/ms.js',
+    script: '/home/rashadbahamas/www/cryptoplexCronJob/ms.js',
     instances: 1,
     autorestart: false,
     watch: true,
