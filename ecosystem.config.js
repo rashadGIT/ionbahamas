@@ -13,7 +13,7 @@ module.exports = {
     name: 'test',
     script: '/home/rashadbahamas/www/cryptoplexCronJob/ms.js',
     instances: 1,
-    autorestart: false,
+    autorestart: true,
     watch: true,
     max_memory_restart: '1G',
     cron_restart : '* * * * *',
