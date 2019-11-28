@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'ION.net',
-    script: './server.js',
+    script: '/home/rashadbahamas/www/ionbahamas.net/server.js',
     instances: 1,
     autorestart: true,
     watch: true,
@@ -11,7 +11,7 @@ module.exports = {
   },
   {
     name: 'CryptoplexCron',
-    script: '/home/rashadbahamas/www/cryptoplexCronJob/ms.js',
+    script: '/home/rashadbahamas/www/cryptoplexCronJob/cron.js',
     instances: 1,
     autorestart: true,
     watch: true,
