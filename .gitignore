@@ -25,6 +25,7 @@ yarn-error.log*
 package-lock.jsonstatus
 .gitignore
 src/imgs/
+js/react/node_modules/
 MemberShip.mwb
 MemberShip.mwb.bak
 package-lock.json
