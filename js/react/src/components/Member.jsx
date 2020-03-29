@@ -6,64 +6,65 @@ import HashMap from 'hashmap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import {Link, Redirect } from "react-router-dom";
 import axios from 'axios';
+import { environment as env } from '../env/env.js';
 
-let stateList = [
-  { value: "AK", text: "Alaska" },
-  { value: "AL", text: "Alabama" },
-  { value: "AR", text: "Arkansas" },
-  { value: "AS", text: "American Samoa" },
-  { value: "AZ", text: "Arizona" },
-  { value: "CA", text: "California" },
-  { value: "CO", text: "Colorado" },
-  { value: "CT", text: "Connecticut" },
-  { value: "DC", text: "District of Columbia" },
-  { value: "DE", text: "Delaware" },
-  { value: "FL", text: "Florida" },
-  { value: "GA", text: "Georgia" },
-  { value: "GU", text: "Guam" },
-  { value: "HI", text: "Hawaii" },
-  { value: "IA", text: "Iowa" },
-  { value: "ID", text: "Idaho" },
-  { value: "IL", text: "Illinois" },
-  { value: "IN", text: "Indiana" },
-  { value: "KS", text: "Kansas" },
-  { value: "KY", text: "Kentucky" },
-  { value: "LA", text: "Louisiana" },
-  { value: "MA", text: "Massachusetts" },
-  { value: "MD", text: "Maryland" },
-  { value: "ME", text: "Maine" },
-  { value: "MI", text: "Michigan" },
-  { value: "MN", text: "Minnesota" },
-  { value: "MO", text: "Missouri" },
-  { value: "MS", text: "Mississippi" },
-  { value: "MT", text: "Montana" },
-  { value: "NC", text: "North Carolina" },
-  { value: "ND", text: "North Dakota" },
-  { value: "NE", text: "Nebraska" },
-  { value: "NH", text: "New Hampshire" },
-  { value: "NJ", text: "New Jersey" },
-  { value: "NM", text: "New Mexico" },
-  { value: "NV", text: "Nevada" },
-  { value: "NY", text: "New York" },
-  { value: "OH", text: "Ohio" },
-  { value: "OK", text: "Oklahoma" },
-  { value: "OR", text: "Oregon" },
-  { value: "PA", text: "Pennsylvania" },
-  { value: "PR", text: "Puerto Rico" },
-  { value: "RI", text: "Rhode Island" },
-  { value: "SC", text: "South Carolina" },
-  { value: "SD", text: "South Dakota" },
-  { value: "TN", text: "Tennessee" },
-  { value: "TX", text: "Texas" },
-  { value: "UT", text: "Utah" },
-  { value: "VA", text: "Virginia" },
-  { value: "VI", text: "Virgin Islands" },
-  { value: "VT", text: "Vermont" },
-  { value: "WA", text: "Washington" },
-  { value: "WI", text: "Wisconsin" },
-  { value: "WV", text: "West Virginia" },
-  { value: "WY", text: "Wyoming" }
-  ]
+//let stateList = []
+  // { value: "AK", text: "Alaska" },
+  // { value: "AL", text: "Alabama" },
+  // { value: "AR", text: "Arkansas" },
+  // { value: "AS", text: "American Samoa" },
+  // { value: "AZ", text: "Arizona" },
+  // { value: "CA", text: "California" },
+  // { value: "CO", text: "Colorado" },
+  // { value: "CT", text: "Connecticut" },
+  // { value: "DC", text: "District of Columbia" },
+  // { value: "DE", text: "Delaware" },
+  // { value: "FL", text: "Florida" },
+  // { value: "GA", text: "Georgia" },
+  // { value: "GU", text: "Guam" },
+  // { value: "HI", text: "Hawaii" },
+  // { value: "IA", text: "Iowa" },
+  // { value: "ID", text: "Idaho" },
+  // { value: "IL", text: "Illinois" },
+  // { value: "IN", text: "Indiana" },
+  // { value: "KS", text: "Kansas" },
+  // { value: "KY", text: "Kentucky" },
+  // { value: "LA", text: "Louisiana" },
+  // { value: "MA", text: "Massachusetts" },
+  // { value: "MD", text: "Maryland" },
+  // { value: "ME", text: "Maine" },
+  // { value: "MI", text: "Michigan" },
+  // { value: "MN", text: "Minnesota" },
+  // { value: "MO", text: "Missouri" },
+  // { value: "MS", text: "Mississippi" },
+  // { value: "MT", text: "Montana" },
+  // { value: "NC", text: "North Carolina" },
+  // { value: "ND", text: "North Dakota" },
+  // { value: "NE", text: "Nebraska" },
+  // { value: "NH", text: "New Hampshire" },
+  // { value: "NJ", text: "New Jersey" },
+  // { value: "NM", text: "New Mexico" },
+  // { value: "NV", text: "Nevada" },
+  // { value: "NY", text: "New York" },
+  // { value: "OH", text: "Ohio" },
+  // { value: "OK", text: "Oklahoma" },
+  // { value: "OR", text: "Oregon" },
+  // { value: "PA", text: "Pennsylvania" },
+  // { value: "PR", text: "Puerto Rico" },
+  // { value: "RI", text: "Rhode Island" },
+  // { value: "SC", text: "South Carolina" },
+  // { value: "SD", text: "South Dakota" },
+  // { value: "TN", text: "Tennessee" },
+  // { value: "TX", text: "Texas" },
+  // { value: "UT", text: "Utah" },
+  // { value: "VA", text: "Virginia" },
+  // { value: "VI", text: "Virgin Islands" },
+  // { value: "VT", text: "Vermont" },
+  // { value: "WA", text: "Washington" },
+  // { value: "WI", text: "Wisconsin" },
+  // { value: "WV", text: "West Virginia" },
+  // { value: "WY", text: "Wyoming" }
+  // ]
   let countryList = [ 
     {"name": "Afghanistan", "code": "AF"}, 
     {"name": "land Islands", "code": "AX"}, 
@@ -330,7 +331,8 @@ export default class MemberForm extends React.Component {
       secondaryMembers : new HashMap(),
       isFamily : false,
       type : this.props.type,
-      price : 0
+      price : 0,
+      stateList : [] 
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -409,8 +411,14 @@ export default class MemberForm extends React.Component {
     this.max = this.max + 1;
  }
 
-  componentWillMount(){
-      
+  async componentWillMount(){
+    let stateList = await axios.get(`${env.sever}/php/public/util/getStates.php`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error)
+      return [];
+    })
+    this.setState({stateList})
   }
 
   componentDidMount(){
@@ -495,7 +503,7 @@ export default class MemberForm extends React.Component {
                 <FormGroup>
                   <Label for="State">State</Label>
                   <Input value={this.state.state} type="select" name="select" id="exampleSelect" onChange={this.handleState}>
-                    {stateList.map(state => <option key={state.text}>{state.value}</option>)}
+                    {this.state.stateList.map(state => <option key={state.text}>{state.value}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
