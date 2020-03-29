@@ -4,11 +4,9 @@ var path = require('path');
 const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 const filename = path.basename(__filename);
-const events = require('../models/events.js');
+const members = require('../util/members.js');
 
-let main = async () => {
-    return await events.getEvents()
-}
+let main = async () => await members.getMembers();
 
 main()
 .then(json => {
@@ -16,6 +14,6 @@ main()
     process.exit(0);
 })
 .catch(err => {
-    serverError.sendEmail(filename,err);
+    //serverError.sendEmail(filename,err);
     process.exit(1)
 });
