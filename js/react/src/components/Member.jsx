@@ -4,12 +4,17 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import HashMap from 'hashmap';
 import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-import {Link, Redirect } from "react-router-dom";
+//import {Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import { environment as env } from '../env/env.js';
 import Payments from './Payments';
 import { square } from '../env/square'
 let paymentForm = {};
+let count = 0;
+const maxTrySendEmail = 5;
+const error = {
+  border: '1px solid #eb516d'
+}
 
 export default class MemberForm extends React.Component {
   constructor(props) {
@@ -33,7 +38,13 @@ export default class MemberForm extends React.Component {
       price : 0,
       stateList : [],
       countryList : [],
-      loaded: false
+      loaded: false,
+      err : [],
+      primaryPhone : '',
+      secondaryPhone : '',
+      membershipTypeId : 1,
+      membershipInfo : {},
+      emailSent : true
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -48,7 +59,24 @@ export default class MemberForm extends React.Component {
     this.handleSecondaryMembers = this.handleSecondaryMembers.bind(this);
     this.handleRemoveSecondaryMembers = this.handleRemoveSecondaryMembers.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePrimaryPhone = this.handlePrimaryPhone.bind(this);
+    this.handleSecondaryPhone = this.handleSecondaryPhone.bind(this);
   }
+
+  handlePrimaryPhone(event){
+    let primaryPhone = event.target.value;
+    if(!isNaN(primaryPhone)){
+      this.setState({primaryPhone});
+    }
+  }
+
+  handleSecondaryPhone(event){
+    let secondaryPhone = event.target.value;
+    if(!isNaN(secondaryPhone)){
+      this.setState({secondaryPhone});
+    }
+  }
+
 
   handleFirstName(event) {
     this.setState({fName: event.target.value});
@@ -131,6 +159,7 @@ export default class MemberForm extends React.Component {
                     type="text"
                     name="text"
                     id="exampleText"
+                    style={this.state.err.includes(`secfName${num}`) ? error : {}}
                     placeholder={`Member ${num} First Name`}
                     maxLength={20}
                     onChange={(evt) => this.handleSecondaryMembers(evt,num,"fName")}
@@ -141,6 +170,7 @@ export default class MemberForm extends React.Component {
                     type="text"
                     name="text"
                     id="exampleText"
+                    style={this.state.err.includes(`seclName${num}`) ? error : {}}
                     placeholder={`Member ${num} Last Name`}
                     maxLength={20}
                     onChange={(evt) => this.handleSecondaryMembers(evt,num,"lName")}
@@ -155,13 +185,7 @@ export default class MemberForm extends React.Component {
   }
 
   async cardNonceResponseReceived(errors, nonce, cardData){
-    if (errors) {
-        console.error('Encountered errors:');
-        errors.forEach((error) => console.error('  ' + error.message));
-        return;
-    }
-
-    alert(`The generated nonce is:\n${nonce}`);
+    //alert(`The generated nonce is:\n${nonce}`);
     //TODO: Replace alert with code in step 2.1
     var bodyFormData = new FormData();
     bodyFormData.set('amount' , this.state.price);
@@ -171,10 +195,75 @@ export default class MemberForm extends React.Component {
     'Content-Type': 'application/json'
     }})
     .then(x => x.data)
-    .catch(err => alert('Payment failed to complete!'));
+    .catch(err => {
+      alert('Payment failed to complete!')
+      return {
+        'status' : 500,
+        'title': 'Payment Failure',
+        'result': err.response.text
+     };
+    });
 
-    if(data.title.toUpperCase() === "Payment Successful".toUpperCase()){
-      console.log('Hello World')
+    if(data.status === 200){
+      var memberData = new FormData();
+      memberData.set('fName' , this.state.fName);
+      memberData.set('lName' , this.state.lName);
+      memberData.set('email' , this.state.email);
+      // memberData.set('memberInfo' , JSON.stringify(this.state));
+      memberData.set('data' , JSON.stringify(data));
+      memberData.set('type' , this.state.type);
+      memberData.set('address' , this.state.address);
+      memberData.set('city' , this.state.city);
+      memberData.set('state' , this.state.state);
+      memberData.set('zip' , this.state.zip);
+      memberData.set('country' , this.state.country);
+      memberData.set('primaryPhone' , this.state.primaryPhone);
+      memberData.set('secondaryPhone' , this.state.secondaryPhone);
+      memberData.set('isPrimary' , true);
+      memberData.set('membershipTypeId' , this.state.membershipInfo.id);
+      memberData.set('secondaryMembers' , JSON.stringify(this.state.secondaryMembers));
+
+      let insertMembers = await axios.post(`${env.sever}/php/public/members/addMembers.php`,memberData, {headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        }})
+        .then(x => x.data)
+        .catch(err => {
+          alert('Email failed to complete!')
+          return {
+            'status' : 500,
+            'title': 'Payment Failure',
+            'result': err
+         };
+        });
+      
+      memberData.set('insertedMembers' , JSON.stringify(insertMembers));
+
+      if([500].includes(insertMembers.status)){
+        return insertMembers;
+      }
+      
+      do{
+        let emailResult = await axios.post(`${env.sever}/php/public/members/sendMemberWelcomeEmail.php`,memberData, {headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          }})
+          .then(x => x.data)
+          .catch(err => {
+            alert('Email failed to complete!')
+            return {
+              'status' : 500,
+              'title': 'Payment Failure',
+              'result': err
+          };
+          });
+          
+          if(typeof emailResult.accepted !== 'undefined'){
+             this.setState({emailSent : false})
+          }
+          count++;
+          console.log(emailResult)
+      }while(this.state.emailSent && count < maxTrySendEmail)
     }
   }
 
@@ -189,7 +278,81 @@ export default class MemberForm extends React.Component {
       cvv: square.cvv,
       expirationDate: square.expirationDate,
       postalCode: square.postalCode,
-      callbacks: { cardNonceResponseReceived: (errors, nonce, cardData) => this.cardNonceResponseReceived(errors, nonce, cardData)}
+      callbacks: { cardNonceResponseReceived: async (errors, nonce, cardData) => {
+        let err = [];
+        this.setState({err})
+        
+        if(this.state.fName.trim().length === 0) err.push("fName");
+
+        if(this.state.lName.trim().length === 0) err.push("lName");
+
+        if(this.state.email.trim().length === 0) err.push("email");
+
+        if(this.state.primaryPhone.trim().length === 0) err.push("phone");
+
+        if(this.state.address.trim().length === 0) err.push("address");
+
+        if(this.state.city.trim().length === 0) err.push("city");
+
+        if(this.state.state.trim().length === 0) err.push("state");
+
+        if(this.state.zip.trim().length === 0) err.push("zip");
+
+        if(this.state.country.trim().length === 0) err.push("country");
+        
+        if(this.state.isFamily){
+          for(let i = 1; i < this.state.secondaryMembers.length; i++){
+            let hashMap = this.state.secondaryMembers[i];
+            let fName = hashMap.get("fName");
+            let lName = hashMap.get("lName");
+            if(fName === undefined || fName.trim().length === 0 ){
+              err.push(`secfName${i}`)
+            }
+            if(lName === undefined || lName.trim().length === 0){
+              err.push(`seclName${i}`)
+            }
+          }
+        }
+
+        var memberData = new FormData();
+        memberData.set('email' , this.state.email.trim());
+        memberData.set('primaryPhone' , this.state.primaryPhone.trim());
+        let alreadyAMember = await axios.post(`${env.sever}/php/public/members/getMemberByEmailOrPhone.php`,memberData, {headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          }})
+          .then(x => x.data)
+          .catch(err => {
+            return {
+              'status' : 500,
+              'title': 'Payment Failure',
+              'result': err
+           };
+          });
+        
+        if(alreadyAMember.email){
+          err.push("email");
+          alert(`${this.state.email.trim()} is already exist in our system.\nPlease try a different email.`)
+        }
+        else if(alreadyAMember.phone){
+          err.push("phone");
+          alert(`${this.state.primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`)
+        } 
+
+
+        if(err.length > 0){
+          this.setState({err})
+          return;
+        }
+        
+        if (errors) {
+          console.error('Encountered errors:');
+          errors.forEach((error) => console.error('  ' + error.message));
+          return;
+        }
+        
+        this.cardNonceResponseReceived(errors, nonce, cardData)
+      }}
     });
   }
 
@@ -207,26 +370,25 @@ export default class MemberForm extends React.Component {
       return [];
     })
 
+    let membershipInfoArray = await axios.get(`${env.sever}/php/public/members/getMemberData.php`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error)
+      return [];
+    })
+
+    let membershipInfo = membershipInfoArray.find(x => x.Type === this.props.type);
+    let price = membershipInfo.Price;
+
     this.setState({
       state : 'TX',
       country : 'US',
       isFamily : this.props.type === "Family",
       stateList,
-      countryList
+      countryList,
+      membershipInfo,
+      price
     })
-
-    switch(this.props.type.toUpperCase()) {
-      case 'FAMILY':
-        this.setState({price : 70})
-        break;
-      case 'STUDENT':
-          this.setState({price : 20})
-        break;
-      case 'INDIVIDUAL':
-          this.setState({price : 50})
-      break;
-      default:
-    }
   }
 
   handleSubmit(event) {
@@ -239,7 +401,7 @@ export default class MemberForm extends React.Component {
     // })
   }
 
-  render() {
+  render(){
     return (
       <div style={{paddingTop : '10px'}}>
         <h1>{this.props.type} Membership - ${this.state.price}</h1>
@@ -248,73 +410,168 @@ export default class MemberForm extends React.Component {
             <Row>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
-                  <Label for="First Name">First Name {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
-                  <Input value={this.state.value} type="text" name="text" id="exampleText" placeholder="First Name" maxLength={50} onChange={this.handleFirstName} />
+                  <Label for="First Name">First Name* {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
+                  <Input 
+                    value={this.state.fName} 
+                    type="text" 
+                    name="text" 
+                    id="exampleText" 
+                    style={this.state.err.includes("fName") ? error : {}}
+                    placeholder="First Name" 
+                    maxLength={50} 
+                    onChange={this.handleFirstName} />
                 </FormGroup>
               </Col>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
-                  <Label for="Last Name">Last Name</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Last Name" maxLength={50} onChange={this.handleLastName} />
+                  <Label for="Last Name">Last Name*</Label>
+                  <Input 
+                    value={this.state.lName}
+                    type="text" 
+                    name="text" 
+                    id="exampleText"
+                    style={this.state.err.includes("lName") ? error : {}} 
+                    placeholder="Last Name" 
+                    maxLength={50} 
+                    onChange={this.handleLastName} />
                 </FormGroup>
               </Col>
             </Row>
             <Row>
               <Col>
               <FormGroup>
-                <Label for="Email">Email</Label>
+                <Label for="Email">Email*</Label>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>@</InputGroupText>
                     </InputGroupAddon>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Email" required={true} maxLength={100}  onChange={this.handleEmail}/>
+                    <Input
+                      value={this.state.email}
+                      type="email" 
+                      name="email" 
+                      id="exampleEmail"
+                      style={this.state.err.includes("email") ? error : {}}
+                      placeholder="Email" 
+                      required={true} 
+                      maxLength={100}  
+                      onChange={this.handleEmail}
+                    />
                   </InputGroup>
               </FormGroup>
               </Col>
             </Row>
             <Row>
+              <Col xs={12} md={6} lg={6}>
+                <FormGroup>
+                  <Label for="Primary Phone">Primary Phone*</Label>
+                  <Input
+                    value={this.state.primaryPhone}
+                    type="text" 
+                    name="number" 
+                    id="exampleText" 
+                    style={this.state.err.includes("phone") ? error : {}}
+                    placeholder="Primary Phone" 
+                    maxLength={10} 
+                    onChange={this.handlePrimaryPhone} 
+                  />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={6} lg={6}>
+                <FormGroup>
+                  <Label for="Secondary Phone">Secondary Phone</Label>
+                  <Input
+                    value={this.state.secondaryPhone}
+                    type="text" 
+                    name="number" 
+                    id="exampleText"
+                    placeholder="Secondary Phone" 
+                    maxLength={10} 
+                    onChange={this.handleSecondaryPhone} 
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
               <Col>
                 <FormGroup>
-                  <Label for="Address">Address</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Address" maxLength={100} onChange={this.handleAddress}/>
+                  <Label for="Address">Address*</Label>
+                  <Input
+                    value={this.state.address}
+                    type="text" 
+                    name="text" 
+                    id="exampleText"
+                    style={this.state.err.includes("address") ? error : {}}
+                    placeholder="Address" 
+                    maxLength={100} 
+                    onChange={this.handleAddress}
+                  />
                 </FormGroup>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="City">City</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="City" maxLength={50} onChange={this.handleCity}/>
+                  <Label for="City">City*</Label>
+                  <Input
+                    value={this.state.city}
+                    type="text" 
+                    name="text" 
+                    id="exampleText"
+                    style={this.state.err.includes("city") ? error : {}}
+                    placeholder="City" 
+                    maxLength={50} 
+                    onChange={this.handleCity}/>
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="State">State</Label>
-                  <Input value={this.state.state} type="select" name="select" id="exampleSelect" onChange={this.handleState}>
+                  <Label for="State">State*</Label>
+                  <Input 
+                    value={this.state.state} 
+                    type="select" 
+                    name="select" 
+                    id="exampleSelect" 
+                    onChange={this.handleState}>
                     {this.state.stateList.map(state => <option key={state.text}>{state.value}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="Zip">Zip/Postal Code</Label>
-                  <Input value={this.state.zip} required={true} type="text" name="number" id="exampleText" placeholder="Zip/Postal Code" onChange={this.handleZip} maxLength={5}/>
+                  <Label for="Zip">Zip/Postal Code*</Label>
+                  <Input 
+                    value={this.state.zip} 
+                    required={true} 
+                    type="text" 
+                    name="number" 
+                    id="exampleText"
+                    style={this.state.err.includes("zip") ? error : {}}
+                    placeholder="Zip/Postal Code" 
+                    onChange={this.handleZip} 
+                    maxLength={5}
+                  />
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="Country">Country</Label>
-                  <Input value={this.state.country} type="select" name="select" id="exampleSelect" onChange={this.handleCountry} disabled={true}>
+                  <Label for="Country">Country*</Label>
+                  <Input 
+                    value={this.state.country} 
+                    type="select" 
+                    name="select" 
+                    id="exampleSelect" 
+                    onChange={this.handleCountry} 
+                    disabled={true}>
                     {this.state.countryList.map(country => <option key={country.name}>{country.code}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
             </Row>
             <Row>
-              {this.props.type.toUpperCase() === "Family".toUpperCase() &&
-              <Col xs={12} md={7} lg={7}>
-                {[...Array(5).keys()].map(i => this.secondaryMembersTextBox(i+1))}
-              </Col>
+              {this.state.isFamily &&
+                <Col xs={12} md={7} lg={7}>
+                  {[...Array(5).keys()].map(i => this.secondaryMembersTextBox(i+1))}
+                </Col>
               }
               <Col xs={12} md={5} lg={5}>
                   <Payments

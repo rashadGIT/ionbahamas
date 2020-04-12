@@ -1,6 +1,5 @@
 export const square = {
-    //applicationId : "sandbox-sq0idb-4BIn2NFF6UL8jHgLxzah4g",
-    applicationId : "sandbox-sq0idb-2tUBaC8byRFCMgZKJK0SCQ",
+    applicationId : "sandbox-sq0idb-4BIn2NFF6UL8jHgLxzah4g",
     inputStyles :  [{
         fontSize: '16px',
         lineHeight: '24px',

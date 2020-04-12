@@ -1,6 +1,33 @@
 "use strict";
 var sql = require('../util/db.js');
 
+const getMembershipData = () => {
+    return sql.query(`SELECT id, Type, Price FROM rashadba_IonTest.membershipType`)
+    .then(x => x[0])
+    .catch(err => {
+        return {
+          status : 500,
+          message : err.message,
+          type : 'internal error'
+          }
+    });
+}
+
+const getMembersByEmailOrPhone = (email,phone) => {
+    return sql.query(`select email, primary_phone from rashadba_IonTest.members where 
+    upper(Email) = upper(?) or 
+    primary_phone = ? LIMIT 1`,[email,phone])
+    .then(x => x[0])
+    .catch(err => {
+        return {
+          status : 500,
+          message : err.message,
+          type : 'internal error'
+          }
+    });
+}
+
+
 const getMembers = () => {
     return sql.query(`Select 
     members.id,
@@ -71,5 +98,7 @@ const setMember = (memberData) => {
 
 module.exports = {
     getMembers,
-    setMember
+    setMember,
+    getMembershipData,
+    getMembersByEmailOrPhone
 };

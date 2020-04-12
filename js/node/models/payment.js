@@ -40,16 +40,17 @@ const submit = async (amount,nonce) => {
    try {
      const response = await payments_api.createPayment(request_body);
      return {
+       'status' : 200,
        'title': 'Payment Successful',
        'result': response
      };
    } catch(error) {
      return {
+      'status' : 500,
        'title': 'Payment Failure',
        'result': error.response.text
      };
    }
-    return {amount,nonce};
 }
 
 const setEvents = () => {

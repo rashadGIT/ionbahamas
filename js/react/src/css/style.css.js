@@ -6,4 +6,8 @@ const button = {
     color : 'red',
     display: 'flex'
 }
-export default { button }
+
+const error = {
+    border: '1px solid #eb516d'
+}
+export default { button, error }

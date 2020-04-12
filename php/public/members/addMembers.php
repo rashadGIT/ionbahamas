@@ -1,4 +1,6 @@
 <?php
+    require '../util/header.php';
+
     if (!empty($_POST) &&
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
     isset($_POST['fName']) &&
@@ -29,7 +31,7 @@
     $membershipTypeId = $_POST['membershipTypeId'];
     $secondaryMembers = $_POST['secondaryMembers'];
         
-    $cmd = sprintf("node ../../../js/node/members/addMembers.js '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s'",$fName, $lName, $email, $address, $city, $state, $zip, $country, $primaryPhone, $secondaryPhone, $isPrimary, $membershipTypeId, $secondaryMembers);
+    $cmd = sprintf("node ../../../js/node/members/addMembers.js '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' '%s' %s %s '%s'",$fName, $lName, $email, $address, $city, $state, $zip, $country, $primaryPhone, $secondaryPhone, $isPrimary, $membershipTypeId, $secondaryMembers);
 
     echo shell_exec("$cmd 2>&1");
     }

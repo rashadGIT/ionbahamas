@@ -8,6 +8,7 @@ const members = require('../util/members.js');
 
 let main = async (fName,lName,email,address,city,state,zip,country='USA',primaryPhone, secondaryPhone=null,isPrimary=true,membershipTypeId=1,secondaryMembers=[]) => {
     if(secondaryMembers.length > 0){
+        secondaryMembers = secondaryMembers.filter(Boolean);
         return await members.addMembers({fName,lName,email,address,city,state,zip,country,primaryPhone, secondaryPhone,isPrimary,membershipTypeId,secondaryMemberOf : null, secondaryMembers})
     }
     return await members.addMember({fName,lName,email,address,city,state,zip,country,primaryPhone, secondaryPhone,isPrimary,membershipTypeId,secondaryMemberOf : null})
@@ -26,7 +27,7 @@ let isPrimary = process.argv[12];
 let membershipTypeId = process.argv[13];
 let secondaryMembers = JSON.parse(process.argv[14]);
 
-if (JSON.parse(secondaryPhone) == null) secondaryPhone = undefined;
+if (secondaryPhone.trim().length === 0 || JSON.parse(secondaryPhone) == null) secondaryPhone = undefined;
 if (secondaryMembers == null) secondaryMembers = undefined;
 
 main(fName,lName,email,address,city,state,zip,country,primaryPhone,secondaryPhone,isPrimary,membershipTypeId,secondaryMembers)
