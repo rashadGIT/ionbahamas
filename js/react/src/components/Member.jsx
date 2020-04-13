@@ -9,6 +9,7 @@ import axios from 'axios';
 import { environment as env } from '../env/env.js';
 import Payments from './Payments';
 import { square } from '../env/square'
+import Popup from '../components/Popup';
 let paymentForm = {};
 let count = 0;
 const maxTrySendEmail = 5;
@@ -44,7 +45,13 @@ export default class MemberForm extends React.Component {
       secondaryPhone : '',
       membershipTypeId : 1,
       membershipInfo : {},
-      emailSent : true
+      emailSent : true,
+      showPopup: false,
+      paymentReceived: null,
+      recordInserted : null,
+      welcomeEmailSent : null,
+      countDown : 5,
+      startCountDown : false
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -61,7 +68,14 @@ export default class MemberForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePrimaryPhone = this.handlePrimaryPhone.bind(this);
     this.handleSecondaryPhone = this.handleSecondaryPhone.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
+
+  togglePopup() {
+    this.setState({
+         showPopup: !this.state.showPopup
+    });
+     }
 
   handlePrimaryPhone(event){
     let primaryPhone = event.target.value;
@@ -150,7 +164,7 @@ export default class MemberForm extends React.Component {
         <Col>
           <FormGroup key={`Secondary Member ${num}`}>
             <Label for={`Secondary Member ${num}`}>
-              Secondary Member <b>{num}</b> Name
+              Secondary Member <b>{num}</b> Name {(num === 1) && '*'}
             </Label>
             <Container fluid={true}>
               <Row>
@@ -185,6 +199,7 @@ export default class MemberForm extends React.Component {
   }
 
   async cardNonceResponseReceived(errors, nonce, cardData){
+    this.togglePopup()
     //alert(`The generated nonce is:\n${nonce}`);
     //TODO: Replace alert with code in step 2.1
     var bodyFormData = new FormData();
@@ -205,6 +220,7 @@ export default class MemberForm extends React.Component {
     });
 
     if(data.status === 200){
+      this.setState({paymentReceived : "success"})
       var memberData = new FormData();
       memberData.set('fName' , this.state.fName);
       memberData.set('lName' , this.state.lName);
@@ -236,13 +252,18 @@ export default class MemberForm extends React.Component {
             'result': err
          };
         });
-      
+
       memberData.set('insertedMembers' , JSON.stringify(insertMembers));
 
       if([500].includes(insertMembers.status)){
+        this.setState({recordInserted : "fail"})
         return insertMembers;
       }
-      
+      else{
+        this.setState({recordInserted : "success"})
+      }
+
+
       do{
         let emailResult = await axios.post(`${env.sever}/php/public/members/sendMemberWelcomeEmail.php`,memberData, {headers: {
           'Accept': 'application/json',
@@ -257,13 +278,23 @@ export default class MemberForm extends React.Component {
               'result': err
           };
           });
-          
+
           if(typeof emailResult.accepted !== 'undefined'){
-             this.setState({emailSent : false})
+            this.setState({emailSent : false})
+            this.setState({welcomeEmailSent : "success",
+            startCountDown : true
+          })
           }
           count++;
-          console.log(emailResult)
-      }while(this.state.emailSent && count < maxTrySendEmail)
+      }while(this.state.emailSent && count < maxTrySendEmail);
+
+      if(this.state.startCountDown){
+        for(let i = this.state.countDown; i > 0; i--){
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          this.setState({countDown : i});
+        }
+        window.location.replace(`${env.sever}${env.port}`)
+      }
     }
   }
 
@@ -280,8 +311,9 @@ export default class MemberForm extends React.Component {
       postalCode: square.postalCode,
       callbacks: { cardNonceResponseReceived: async (errors, nonce, cardData) => {
         let err = [];
+        let secMems = this.state.secondaryMembers;
         this.setState({err})
-        
+
         if(this.state.fName.trim().length === 0) err.push("fName");
 
         if(this.state.lName.trim().length === 0) err.push("lName");
@@ -299,17 +331,33 @@ export default class MemberForm extends React.Component {
         if(this.state.zip.trim().length === 0) err.push("zip");
 
         if(this.state.country.trim().length === 0) err.push("country");
-        
+
         if(this.state.isFamily){
           for(let i = 1; i < this.state.secondaryMembers.length; i++){
             let hashMap = this.state.secondaryMembers[i];
+            if(typeof hashMap === 'undefined' || hashMap === null) continue;
             let fName = hashMap.get("fName");
             let lName = hashMap.get("lName");
-            if(fName === undefined || fName.trim().length === 0 ){
+
+            if(typeof fName !== 'undefined' && fName.trim().length === 0){
+              fName = undefined;
+            }
+            if(typeof lName !== 'undefined' && lName.trim().length === 0){
+              lName = undefined;
+            }
+
+            if(fName === undefined && typeof lName !== 'undefined'){
               err.push(`secfName${i}`)
             }
-            if(lName === undefined || lName.trim().length === 0){
+
+            if(lName === undefined && typeof fName !== 'undefined'){
               err.push(`seclName${i}`)
+            }
+
+            if(fName === undefined && lName === undefined){
+              let temp = this.state.secondaryMembers;
+              temp[i] = null;
+              secMems = temp;
             }
           }
         }
@@ -329,7 +377,7 @@ export default class MemberForm extends React.Component {
               'result': err
            };
           });
-        
+
         if(alreadyAMember.email){
           err.push("email");
           alert(`${this.state.email.trim()} is already exist in our system.\nPlease try a different email.`)
@@ -337,20 +385,25 @@ export default class MemberForm extends React.Component {
         else if(alreadyAMember.phone){
           err.push("phone");
           alert(`${this.state.primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`)
-        } 
+        }
+        else if(this.state.isFamily && secMems.filter(Boolean).length === 0) {
+          err.push(`secfName1`);
+          err.push(`seclName1`);
+          alert(`At least one secondary Family is required`)
 
+        }
 
         if(err.length > 0){
           this.setState({err})
           return;
         }
-        
+
         if (errors) {
           console.error('Encountered errors:');
           errors.forEach((error) => console.error('  ' + error.message));
           return;
         }
-        
+
         this.cardNonceResponseReceived(errors, nonce, cardData)
       }}
     });
@@ -411,28 +464,28 @@ export default class MemberForm extends React.Component {
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
                   <Label for="First Name">First Name* {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
-                  <Input 
-                    value={this.state.fName} 
-                    type="text" 
-                    name="text" 
-                    id="exampleText" 
+                  <Input
+                    value={this.state.fName}
+                    type="text"
+                    name="text"
+                    id="exampleText"
                     style={this.state.err.includes("fName") ? error : {}}
-                    placeholder="First Name" 
-                    maxLength={50} 
+                    placeholder="First Name"
+                    maxLength={50}
                     onChange={this.handleFirstName} />
                 </FormGroup>
               </Col>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
                   <Label for="Last Name">Last Name*</Label>
-                  <Input 
+                  <Input
                     value={this.state.lName}
-                    type="text" 
-                    name="text" 
+                    type="text"
+                    name="text"
                     id="exampleText"
-                    style={this.state.err.includes("lName") ? error : {}} 
-                    placeholder="Last Name" 
-                    maxLength={50} 
+                    style={this.state.err.includes("lName") ? error : {}}
+                    placeholder="Last Name"
+                    maxLength={50}
                     onChange={this.handleLastName} />
                 </FormGroup>
               </Col>
@@ -447,13 +500,13 @@ export default class MemberForm extends React.Component {
                     </InputGroupAddon>
                     <Input
                       value={this.state.email}
-                      type="email" 
-                      name="email" 
+                      type="email"
+                      name="email"
                       id="exampleEmail"
                       style={this.state.err.includes("email") ? error : {}}
-                      placeholder="Email" 
-                      required={true} 
-                      maxLength={100}  
+                      placeholder="Email"
+                      required={false}
+                      maxLength={100}
                       onChange={this.handleEmail}
                     />
                   </InputGroup>
@@ -466,13 +519,13 @@ export default class MemberForm extends React.Component {
                   <Label for="Primary Phone">Primary Phone*</Label>
                   <Input
                     value={this.state.primaryPhone}
-                    type="text" 
-                    name="number" 
-                    id="exampleText" 
+                    type="text"
+                    name="number"
+                    id="exampleText"
                     style={this.state.err.includes("phone") ? error : {}}
-                    placeholder="Primary Phone" 
-                    maxLength={10} 
-                    onChange={this.handlePrimaryPhone} 
+                    placeholder="Primary Phone"
+                    maxLength={10}
+                    onChange={this.handlePrimaryPhone}
                   />
                 </FormGroup>
               </Col>
@@ -481,12 +534,12 @@ export default class MemberForm extends React.Component {
                   <Label for="Secondary Phone">Secondary Phone</Label>
                   <Input
                     value={this.state.secondaryPhone}
-                    type="text" 
-                    name="number" 
+                    type="text"
+                    name="number"
                     id="exampleText"
-                    placeholder="Secondary Phone" 
-                    maxLength={10} 
-                    onChange={this.handleSecondaryPhone} 
+                    placeholder="Secondary Phone"
+                    maxLength={10}
+                    onChange={this.handleSecondaryPhone}
                   />
                 </FormGroup>
               </Col>
@@ -497,12 +550,12 @@ export default class MemberForm extends React.Component {
                   <Label for="Address">Address*</Label>
                   <Input
                     value={this.state.address}
-                    type="text" 
-                    name="text" 
+                    type="text"
+                    name="text"
                     id="exampleText"
                     style={this.state.err.includes("address") ? error : {}}
-                    placeholder="Address" 
-                    maxLength={100} 
+                    placeholder="Address"
+                    maxLength={100}
                     onChange={this.handleAddress}
                   />
                 </FormGroup>
@@ -514,23 +567,23 @@ export default class MemberForm extends React.Component {
                   <Label for="City">City*</Label>
                   <Input
                     value={this.state.city}
-                    type="text" 
-                    name="text" 
+                    type="text"
+                    name="text"
                     id="exampleText"
                     style={this.state.err.includes("city") ? error : {}}
-                    placeholder="City" 
-                    maxLength={50} 
+                    placeholder="City"
+                    maxLength={50}
                     onChange={this.handleCity}/>
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
                   <Label for="State">State*</Label>
-                  <Input 
-                    value={this.state.state} 
-                    type="select" 
-                    name="select" 
-                    id="exampleSelect" 
+                  <Input
+                    value={this.state.state}
+                    type="select"
+                    name="select"
+                    id="exampleSelect"
                     onChange={this.handleState}>
                     {this.state.stateList.map(state => <option key={state.text}>{state.value}</option>)}
                   </Input>
@@ -539,15 +592,15 @@ export default class MemberForm extends React.Component {
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
                   <Label for="Zip">Zip/Postal Code*</Label>
-                  <Input 
-                    value={this.state.zip} 
-                    required={true} 
-                    type="text" 
-                    name="number" 
+                  <Input
+                    value={this.state.zip}
+                    required={false}
+                    type="text"
+                    name="number"
                     id="exampleText"
                     style={this.state.err.includes("zip") ? error : {}}
-                    placeholder="Zip/Postal Code" 
-                    onChange={this.handleZip} 
+                    placeholder="Zip/Postal Code"
+                    onChange={this.handleZip}
                     maxLength={5}
                   />
                 </FormGroup>
@@ -555,12 +608,12 @@ export default class MemberForm extends React.Component {
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
                   <Label for="Country">Country*</Label>
-                  <Input 
-                    value={this.state.country} 
-                    type="select" 
-                    name="select" 
-                    id="exampleSelect" 
-                    onChange={this.handleCountry} 
+                  <Input
+                    value={this.state.country}
+                    type="select"
+                    name="select"
+                    id="exampleSelect"
+                    onChange={this.handleCountry}
                     disabled={true}>
                     {this.state.countryList.map(country => <option key={country.name}>{country.code}</option>)}
                   </Input>
@@ -588,6 +641,18 @@ export default class MemberForm extends React.Component {
                     >
                     Cancel
                   </button>
+                  {/*<button onClick={this.togglePopup}> Click To Launch Popup</button>*/}
+                  {this.state.showPopup &&
+                    <Popup
+                              text='Click "Close Button" to hide popup'
+                              paymentReceived={this.state.paymentReceived}
+                              recordInserted = {this.state.recordInserted}
+                              welcomeEmailSent = {this.state.welcomeEmailSent}
+                              closePopup={this.togglePopup}
+                              startCountDown={this.state.startCountDown}
+                              countDown={this.state.countDown}
+                    />
+                  }
                   {/* <Button style={{width : "100%"}} color="danger" onClick={(event) => {
                   event.preventDefault();
                   window.location.replace(`${env.sever}${env.port}`)
