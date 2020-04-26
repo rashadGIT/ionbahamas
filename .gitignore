@@ -30,3 +30,4 @@ MemberShip.mwb
 MemberShip.mwb.bak
 package-lock.json
 .gitignore
+js/node/node_modules/

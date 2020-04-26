@@ -3,313 +3,19 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import HashMap from 'hashmap';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import {Link, Redirect } from "react-router-dom";
+import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+//import {Link, Redirect } from "react-router-dom";
 import axios from 'axios';
-
-let stateList = [
-  { value: "AK", text: "Alaska" },
-  { value: "AL", text: "Alabama" },
-  { value: "AR", text: "Arkansas" },
-  { value: "AS", text: "American Samoa" },
-  { value: "AZ", text: "Arizona" },
-  { value: "CA", text: "California" },
-  { value: "CO", text: "Colorado" },
-  { value: "CT", text: "Connecticut" },
-  { value: "DC", text: "District of Columbia" },
-  { value: "DE", text: "Delaware" },
-  { value: "FL", text: "Florida" },
-  { value: "GA", text: "Georgia" },
-  { value: "GU", text: "Guam" },
-  { value: "HI", text: "Hawaii" },
-  { value: "IA", text: "Iowa" },
-  { value: "ID", text: "Idaho" },
-  { value: "IL", text: "Illinois" },
-  { value: "IN", text: "Indiana" },
-  { value: "KS", text: "Kansas" },
-  { value: "KY", text: "Kentucky" },
-  { value: "LA", text: "Louisiana" },
-  { value: "MA", text: "Massachusetts" },
-  { value: "MD", text: "Maryland" },
-  { value: "ME", text: "Maine" },
-  { value: "MI", text: "Michigan" },
-  { value: "MN", text: "Minnesota" },
-  { value: "MO", text: "Missouri" },
-  { value: "MS", text: "Mississippi" },
-  { value: "MT", text: "Montana" },
-  { value: "NC", text: "North Carolina" },
-  { value: "ND", text: "North Dakota" },
-  { value: "NE", text: "Nebraska" },
-  { value: "NH", text: "New Hampshire" },
-  { value: "NJ", text: "New Jersey" },
-  { value: "NM", text: "New Mexico" },
-  { value: "NV", text: "Nevada" },
-  { value: "NY", text: "New York" },
-  { value: "OH", text: "Ohio" },
-  { value: "OK", text: "Oklahoma" },
-  { value: "OR", text: "Oregon" },
-  { value: "PA", text: "Pennsylvania" },
-  { value: "PR", text: "Puerto Rico" },
-  { value: "RI", text: "Rhode Island" },
-  { value: "SC", text: "South Carolina" },
-  { value: "SD", text: "South Dakota" },
-  { value: "TN", text: "Tennessee" },
-  { value: "TX", text: "Texas" },
-  { value: "UT", text: "Utah" },
-  { value: "VA", text: "Virginia" },
-  { value: "VI", text: "Virgin Islands" },
-  { value: "VT", text: "Vermont" },
-  { value: "WA", text: "Washington" },
-  { value: "WI", text: "Wisconsin" },
-  { value: "WV", text: "West Virginia" },
-  { value: "WY", text: "Wyoming" }
-  ]
-  let countryList = [ 
-    {"name": "Afghanistan", "code": "AF"}, 
-    {"name": "land Islands", "code": "AX"}, 
-    {"name": "Albania", "code": "AL"}, 
-    {"name": "Algeria", "code": "DZ"}, 
-    {"name": "American Samoa", "code": "AS"}, 
-    {"name": "AndorrA", "code": "AD"}, 
-    {"name": "Angola", "code": "AO"}, 
-    {"name": "Anguilla", "code": "AI"}, 
-    {"name": "Antarctica", "code": "AQ"}, 
-    {"name": "Antigua and Barbuda", "code": "AG"}, 
-    {"name": "Argentina", "code": "AR"}, 
-    {"name": "Armenia", "code": "AM"}, 
-    {"name": "Aruba", "code": "AW"}, 
-    {"name": "Australia", "code": "AU"}, 
-    {"name": "Austria", "code": "AT"}, 
-    {"name": "Azerbaijan", "code": "AZ"}, 
-    {"name": "Bahamas", "code": "BS"}, 
-    {"name": "Bahrain", "code": "BH"}, 
-    {"name": "Bangladesh", "code": "BD"}, 
-    {"name": "Barbados", "code": "BB"}, 
-    {"name": "Belarus", "code": "BY"}, 
-    {"name": "Belgium", "code": "BE"}, 
-    {"name": "Belize", "code": "BZ"}, 
-    {"name": "Benin", "code": "BJ"}, 
-    {"name": "Bermuda", "code": "BM"}, 
-    {"name": "Bhutan", "code": "BT"}, 
-    {"name": "Bolivia", "code": "BO"}, 
-    {"name": "Bosnia and Herzegovina", "code": "BA"}, 
-    {"name": "Botswana", "code": "BW"}, 
-    {"name": "Bouvet Island", "code": "BV"}, 
-    {"name": "Brazil", "code": "BR"}, 
-    {"name": "British Indian Ocean Territory", "code": "IO"}, 
-    {"name": "Brunei Darussalam", "code": "BN"}, 
-    {"name": "Bulgaria", "code": "BG"}, 
-    {"name": "Burkina Faso", "code": "BF"}, 
-    {"name": "Burundi", "code": "BI"}, 
-    {"name": "Cambodia", "code": "KH"}, 
-    {"name": "Cameroon", "code": "CM"}, 
-    {"name": "Canada", "code": "CA"}, 
-    {"name": "Cape Verde", "code": "CV"}, 
-    {"name": "Cayman Islands", "code": "KY"}, 
-    {"name": "Central African Republic", "code": "CF"}, 
-    {"name": "Chad", "code": "TD"}, 
-    {"name": "Chile", "code": "CL"}, 
-    {"name": "China", "code": "CN"}, 
-    {"name": "Christmas Island", "code": "CX"}, 
-    {"name": "Cocos (Keeling) Islands", "code": "CC"}, 
-    {"name": "Colombia", "code": "CO"}, 
-    {"name": "Comoros", "code": "KM"}, 
-    {"name": "Congo", "code": "CG"}, 
-    {"name": "Congo, The Democratic Republic of the", "code": "CD"}, 
-    {"name": "Cook Islands", "code": "CK"}, 
-    {"name": "Costa Rica", "code": "CR"}, 
-    {"name": "Cote D\"Ivoire", "code": "CI"}, 
-    {"name": "Croatia", "code": "HR"}, 
-    {"name": "Cuba", "code": "CU"}, 
-    {"name": "Cyprus", "code": "CY"}, 
-    {"name": "Czech Republic", "code": "CZ"}, 
-    {"name": "Denmark", "code": "DK"}, 
-    {"name": "Djibouti", "code": "DJ"}, 
-    {"name": "Dominica", "code": "DM"}, 
-    {"name": "Dominican Republic", "code": "DO"}, 
-    {"name": "Ecuador", "code": "EC"}, 
-    {"name": "Egypt", "code": "EG"}, 
-    {"name": "El Salvador", "code": "SV"}, 
-    {"name": "Equatorial Guinea", "code": "GQ"}, 
-    {"name": "Eritrea", "code": "ER"}, 
-    {"name": "Estonia", "code": "EE"}, 
-    {"name": "Ethiopia", "code": "ET"}, 
-    {"name": "Falkland Islands (Malvinas)", "code": "FK"}, 
-    {"name": "Faroe Islands", "code": "FO"}, 
-    {"name": "Fiji", "code": "FJ"}, 
-    {"name": "Finland", "code": "FI"}, 
-    {"name": "France", "code": "FR"}, 
-    {"name": "French Guiana", "code": "GF"}, 
-    {"name": "French Polynesia", "code": "PF"}, 
-    {"name": "French Southern Territories", "code": "TF"}, 
-    {"name": "Gabon", "code": "GA"}, 
-    {"name": "Gambia", "code": "GM"}, 
-    {"name": "Georgia", "code": "GE"}, 
-    {"name": "Germany", "code": "DE"}, 
-    {"name": "Ghana", "code": "GH"}, 
-    {"name": "Gibraltar", "code": "GI"}, 
-    {"name": "Greece", "code": "GR"}, 
-    {"name": "Greenland", "code": "GL"}, 
-    {"name": "Grenada", "code": "GD"}, 
-    {"name": "Guadeloupe", "code": "GP"}, 
-    {"name": "Guam", "code": "GU"}, 
-    {"name": "Guatemala", "code": "GT"}, 
-    {"name": "Guernsey", "code": "GG"}, 
-    {"name": "Guinea", "code": "GN"}, 
-    {"name": "Guinea-Bissau", "code": "GW"}, 
-    {"name": "Guyana", "code": "GY"}, 
-    {"name": "Haiti", "code": "HT"}, 
-    {"name": "Heard Island and Mcdonald Islands", "code": "HM"}, 
-    {"name": "Holy See (Vatican City State)", "code": "VA"}, 
-    {"name": "Honduras", "code": "HN"}, 
-    {"name": "Hong Kong", "code": "HK"}, 
-    {"name": "Hungary", "code": "HU"}, 
-    {"name": "Iceland", "code": "IS"}, 
-    {"name": "India", "code": "IN"}, 
-    {"name": "Indonesia", "code": "ID"}, 
-    {"name": "Iran, Islamic Republic Of", "code": "IR"}, 
-    {"name": "Iraq", "code": "IQ"}, 
-    {"name": "Ireland", "code": "IE"}, 
-    {"name": "Isle of Man", "code": "IM"}, 
-    {"name": "Israel", "code": "IL"}, 
-    {"name": "Italy", "code": "IT"}, 
-    {"name": "Jamaica", "code": "JM"}, 
-    {"name": "Japan", "code": "JP"}, 
-    {"name": "Jersey", "code": "JE"}, 
-    {"name": "Jordan", "code": "JO"}, 
-    {"name": "Kazakhstan", "code": "KZ"}, 
-    {"name": "Kenya", "code": "KE"}, 
-    {"name": "Kiribati", "code": "KI"}, 
-    {"name": "Korea, Democratic People\"S Republic of", "code": "KP"}, 
-    {"name": "Korea, Republic of", "code": "KR"}, 
-    {"name": "Kuwait", "code": "KW"}, 
-    {"name": "Kyrgyzstan", "code": "KG"}, 
-    {"name": "Lao People\"S Democratic Republic", "code": "LA"}, 
-    {"name": "Latvia", "code": "LV"}, 
-    {"name": "Lebanon", "code": "LB"}, 
-    {"name": "Lesotho", "code": "LS"}, 
-    {"name": "Liberia", "code": "LR"}, 
-    {"name": "Libyan Arab Jamahiriya", "code": "LY"}, 
-    {"name": "Liechtenstein", "code": "LI"}, 
-    {"name": "Lithuania", "code": "LT"}, 
-    {"name": "Luxembourg", "code": "LU"}, 
-    {"name": "Macao", "code": "MO"}, 
-    {"name": "Macedonia, The Former Yugoslav Republic of", "code": "MK"}, 
-    {"name": "Madagascar", "code": "MG"}, 
-    {"name": "Malawi", "code": "MW"}, 
-    {"name": "Malaysia", "code": "MY"}, 
-    {"name": "Maldives", "code": "MV"}, 
-    {"name": "Mali", "code": "ML"}, 
-    {"name": "Malta", "code": "MT"}, 
-    {"name": "Marshall Islands", "code": "MH"}, 
-    {"name": "Martinique", "code": "MQ"}, 
-    {"name": "Mauritania", "code": "MR"}, 
-    {"name": "Mauritius", "code": "MU"}, 
-    {"name": "Mayotte", "code": "YT"}, 
-    {"name": "Mexico", "code": "MX"}, 
-    {"name": "Micronesia, Federated States of", "code": "FM"}, 
-    {"name": "Moldova, Republic of", "code": "MD"}, 
-    {"name": "Monaco", "code": "MC"}, 
-    {"name": "Mongolia", "code": "MN"}, 
-    {"name": "Montenegro", "code": "ME"},
-    {"name": "Montserrat", "code": "MS"},
-    {"name": "Morocco", "code": "MA"}, 
-    {"name": "Mozambique", "code": "MZ"}, 
-    {"name": "Myanmar", "code": "MM"}, 
-    {"name": "Namibia", "code": "NA"}, 
-    {"name": "Nauru", "code": "NR"}, 
-    {"name": "Nepal", "code": "NP"}, 
-    {"name": "Netherlands", "code": "NL"}, 
-    {"name": "Netherlands Antilles", "code": "AN"}, 
-    {"name": "New Caledonia", "code": "NC"}, 
-    {"name": "New Zealand", "code": "NZ"}, 
-    {"name": "Nicaragua", "code": "NI"}, 
-    {"name": "Niger", "code": "NE"}, 
-    {"name": "Nigeria", "code": "NG"}, 
-    {"name": "Niue", "code": "NU"}, 
-    {"name": "Norfolk Island", "code": "NF"}, 
-    {"name": "Northern Mariana Islands", "code": "MP"}, 
-    {"name": "Norway", "code": "NO"}, 
-    {"name": "Oman", "code": "OM"}, 
-    {"name": "Pakistan", "code": "PK"}, 
-    {"name": "Palau", "code": "PW"}, 
-    {"name": "Palestinian Territory, Occupied", "code": "PS"}, 
-    {"name": "Panama", "code": "PA"}, 
-    {"name": "Papua New Guinea", "code": "PG"}, 
-    {"name": "Paraguay", "code": "PY"}, 
-    {"name": "Peru", "code": "PE"}, 
-    {"name": "Philippines", "code": "PH"}, 
-    {"name": "Pitcairn", "code": "PN"}, 
-    {"name": "Poland", "code": "PL"}, 
-    {"name": "Portugal", "code": "PT"}, 
-    {"name": "Puerto Rico", "code": "PR"}, 
-    {"name": "Qatar", "code": "QA"}, 
-    {"name": "Reunion", "code": "RE"}, 
-    {"name": "Romania", "code": "RO"}, 
-    {"name": "Russian Federation", "code": "RU"}, 
-    {"name": "RWANDA", "code": "RW"}, 
-    {"name": "Saint Helena", "code": "SH"}, 
-    {"name": "Saint Kitts and Nevis", "code": "KN"}, 
-    {"name": "Saint Lucia", "code": "LC"}, 
-    {"name": "Saint Pierre and Miquelon", "code": "PM"}, 
-    {"name": "Saint Vincent and the Grenadines", "code": "VC"}, 
-    {"name": "Samoa", "code": "WS"}, 
-    {"name": "San Marino", "code": "SM"}, 
-    {"name": "Sao Tome and Principe", "code": "ST"}, 
-    {"name": "Saudi Arabia", "code": "SA"}, 
-    {"name": "Senegal", "code": "SN"}, 
-    {"name": "Serbia", "code": "RS"}, 
-    {"name": "Seychelles", "code": "SC"}, 
-    {"name": "Sierra Leone", "code": "SL"}, 
-    {"name": "Singapore", "code": "SG"}, 
-    {"name": "Slovakia", "code": "SK"}, 
-    {"name": "Slovenia", "code": "SI"}, 
-    {"name": "Solomon Islands", "code": "SB"}, 
-    {"name": "Somalia", "code": "SO"}, 
-    {"name": "South Africa", "code": "ZA"}, 
-    {"name": "South Georgia and the South Sandwich Islands", "code": "GS"}, 
-    {"name": "Spain", "code": "ES"}, 
-    {"name": "Sri Lanka", "code": "LK"}, 
-    {"name": "Sudan", "code": "SD"}, 
-    {"name": "Suriname", "code": "SR"}, 
-    {"name": "Svalbard and Jan Mayen", "code": "SJ"}, 
-    {"name": "Swaziland", "code": "SZ"}, 
-    {"name": "Sweden", "code": "SE"}, 
-    {"name": "Switzerland", "code": "CH"}, 
-    {"name": "Syrian Arab Republic", "code": "SY"}, 
-    {"name": "Taiwan, Province of China", "code": "TW"}, 
-    {"name": "Tajikistan", "code": "TJ"}, 
-    {"name": "Tanzania, United Republic of", "code": "TZ"}, 
-    {"name": "Thailand", "code": "TH"}, 
-    {"name": "Timor-Leste", "code": "TL"}, 
-    {"name": "Togo", "code": "TG"}, 
-    {"name": "Tokelau", "code": "TK"}, 
-    {"name": "Tonga", "code": "TO"}, 
-    {"name": "Trinidad and Tobago", "code": "TT"}, 
-    {"name": "Tunisia", "code": "TN"}, 
-    {"name": "Turkey", "code": "TR"}, 
-    {"name": "Turkmenistan", "code": "TM"}, 
-    {"name": "Turks and Caicos Islands", "code": "TC"}, 
-    {"name": "Tuvalu", "code": "TV"}, 
-    {"name": "Uganda", "code": "UG"}, 
-    {"name": "Ukraine", "code": "UA"}, 
-    {"name": "United Arab Emirates", "code": "AE"}, 
-    {"name": "United Kingdom", "code": "GB"}, 
-    {"name": "United States", "code": "US"}, 
-    {"name": "United States Minor Outlying Islands", "code": "UM"}, 
-    {"name": "Uruguay", "code": "UY"}, 
-    {"name": "Uzbekistan", "code": "UZ"}, 
-    {"name": "Vanuatu", "code": "VU"}, 
-    {"name": "Venezuela", "code": "VE"}, 
-    {"name": "Viet Nam", "code": "VN"}, 
-    {"name": "Virgin Islands, British", "code": "VG"}, 
-    {"name": "Virgin Islands, U.S.", "code": "VI"}, 
-    {"name": "Wallis and Futuna", "code": "WF"}, 
-    {"name": "Western Sahara", "code": "EH"}, 
-    {"name": "Yemen", "code": "YE"}, 
-    {"name": "Zambia", "code": "ZM"}, 
-    {"name": "Zimbabwe", "code": "ZW"} 
-    ]
+import { environment as env } from '../env/env.js';
+import Payments from './Payments';
+import { square } from '../env/square'
+import Popup from '../components/Popup';
+let paymentForm = {};
+let count = 0;
+const maxTrySendEmail = 5;
+const error = {
+  border: '1px solid #eb516d'
+}
 
 export default class MemberForm extends React.Component {
   constructor(props) {
@@ -327,10 +33,25 @@ export default class MemberForm extends React.Component {
       country : '',
       showdata : this.displayData,
       postVal : "",
-      secondaryMembers : new HashMap(),
+      secondaryMembers : [],
       isFamily : false,
       type : this.props.type,
-      price : 0
+      price : 0,
+      stateList : [],
+      countryList : [],
+      loaded: false,
+      err : [],
+      primaryPhone : '',
+      secondaryPhone : '',
+      membershipTypeId : 1,
+      membershipInfo : {},
+      emailSent : true,
+      showPopup: false,
+      paymentReceived: null,
+      recordInserted : null,
+      welcomeEmailSent : null,
+      countDown : 5,
+      startCountDown : false
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -341,11 +62,35 @@ export default class MemberForm extends React.Component {
     this.handleState = this.handleState.bind(this);
     this.handleZip = this.handleZip.bind(this);
     this.handleCountry = this.handleCountry.bind(this);
-    this.appendData = this.appendData.bind(this);
+    // this.appendData = this.appendData.bind(this);
     this.handleSecondaryMembers = this.handleSecondaryMembers.bind(this);
     this.handleRemoveSecondaryMembers = this.handleRemoveSecondaryMembers.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePrimaryPhone = this.handlePrimaryPhone.bind(this);
+    this.handleSecondaryPhone = this.handleSecondaryPhone.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
+
+  togglePopup() {
+    this.setState({
+         showPopup: !this.state.showPopup
+    });
+     }
+
+  handlePrimaryPhone(event){
+    let primaryPhone = event.target.value;
+    if(!isNaN(primaryPhone)){
+      this.setState({primaryPhone});
+    }
+  }
+
+  handleSecondaryPhone(event){
+    let secondaryPhone = event.target.value;
+    if(!isNaN(secondaryPhone)){
+      this.setState({secondaryPhone});
+    }
+  }
+
 
   handleFirstName(event) {
     this.setState({fName: event.target.value});
@@ -382,10 +127,15 @@ export default class MemberForm extends React.Component {
     this.setState({country: event.target.value});
   }
 
-  handleSecondaryMembers(event,num) {
-    this.max = Math.max(this.max,this.displayData.length)
-    this.state.secondaryMembers.set(num, event.target.value)
-    this.setState({secondaryMembers: this.state.secondaryMembers});
+  handleSecondaryMembers(event,num,whichName) {
+    let secondaryMembers = this.state.secondaryMembers;
+    if(secondaryMembers[num]){
+      secondaryMembers[num].set(whichName,event.target.value);
+    }
+    else{
+      secondaryMembers[num] = new HashMap([whichName,event.target.value])
+    }
+    this.setState({secondaryMembers});
   }
 
   handleRemoveSecondaryMembers(event,num) {
@@ -394,148 +144,538 @@ export default class MemberForm extends React.Component {
     this.setState({secondaryMembers: this.state.secondaryMembers});
   }
 
-  appendData(num) {
-    this.displayData.push(
-      <FormGroup key={`Secondary Member ${num}`}>
-        <Label for={`Secondary Member ${num}`}>Secondary Member <b>{num}</b> Name</Label>
-        {/* <Button onClick={(evt) => this.handleRemoveSecondaryMembers(evt,num)}>Remove</Button> */}
-        <Input type="text" name="text" id="exampleText" placeholder={`Member ${num} Name`} maxLength={50} onChange={(evt) => this.handleSecondaryMembers(evt,num)}/>
-      </FormGroup>
-    );
-    this.setState({
-       showdata : this.displayData,
-       postVal : ""
-    });
-    this.max = this.max + 1;
- }
-
-  componentWillMount(){
-      
+//   appendData(num) {
+//     this.displayData.push(
+//       <FormGroup key={`Secondary Member ${num}`}>
+//         <Label for={`Secondary Member ${num}`}>Secondary Member <b>{num}</b> Name</Label>
+//         {/* <Button onClick={(evt) => this.handleRemoveSecondaryMembers(evt,num)}>Remove</Button> */}
+//         <Input type="text" name="text" id="exampleText" placeholder={`Member ${num} Name`} maxLength={50} onChange={(evt) => this.handleSecondaryMembers(evt,num)}/>
+//       </FormGroup>
+//     );
+//     this.setState({
+//        showdata : this.displayData,
+//        postVal : ""
+//     });
+//     this.max = this.max + 1;
+//  }
+  secondaryMembersTextBox(num){
+    return (
+      <Row key={`Secondary Member Row ${num}`}>
+        <Col>
+          <FormGroup key={`Secondary Member ${num}`}>
+            <Label for={`Secondary Member ${num}`}>
+              Secondary Member <b>{num}</b> Name {(num === 1) && '*'}
+            </Label>
+            <Container fluid={true}>
+              <Row>
+                <Col xs={12} md={6} lg={6}>
+                  <Input
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes(`secfName${num}`) ? error : {}}
+                    placeholder={`Member ${num} First Name`}
+                    maxLength={20}
+                    onChange={(evt) => this.handleSecondaryMembers(evt,num,"fName")}
+                  />
+                </Col>
+                <Col xs={12} md={6} lg={6}>
+                  <Input
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes(`seclName${num}`) ? error : {}}
+                    placeholder={`Member ${num} Last Name`}
+                    maxLength={20}
+                    onChange={(evt) => this.handleSecondaryMembers(evt,num,"lName")}
+                  />
+                  </Col>
+                </Row>
+              </Container>
+            </FormGroup>
+          </Col>
+        </Row>
+    )
   }
 
-  componentDidMount(){
+  async cardNonceResponseReceived(errors, nonce, cardData){
+    this.togglePopup()
+    //alert(`The generated nonce is:\n${nonce}`);
+    //TODO: Replace alert with code in step 2.1
+    var bodyFormData = new FormData();
+    bodyFormData.set('amount' , this.state.price);
+    bodyFormData.set('nonce' , nonce);
+    let data = await axios.post(`${env.sever}/php/public/payment/getPayment.php`,bodyFormData, {headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+    }})
+    .then(x => x.data)
+    .catch(err => {
+      alert('Payment failed to complete!')
+      return {
+        'status' : 500,
+        'title': 'Payment Failure',
+        'result': err.response.text
+     };
+    });
+
+    if(data.status === 200){
+      this.setState({paymentReceived : "success"})
+      var memberData = new FormData();
+      memberData.set('fName' , this.state.fName);
+      memberData.set('lName' , this.state.lName);
+      memberData.set('email' , this.state.email);
+      // memberData.set('memberInfo' , JSON.stringify(this.state));
+      memberData.set('data' , JSON.stringify(data));
+      memberData.set('type' , this.state.type);
+      memberData.set('address' , this.state.address);
+      memberData.set('city' , this.state.city);
+      memberData.set('state' , this.state.state);
+      memberData.set('zip' , this.state.zip);
+      memberData.set('country' , this.state.country);
+      memberData.set('primaryPhone' , this.state.primaryPhone);
+      memberData.set('secondaryPhone' , this.state.secondaryPhone);
+      memberData.set('isPrimary' , true);
+      memberData.set('membershipTypeId' , this.state.membershipInfo.id);
+      memberData.set('secondaryMembers' , JSON.stringify(this.state.secondaryMembers));
+
+      let insertMembers = await axios.post(`${env.sever}/php/public/members/addMembers.php`,memberData, {headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        }})
+        .then(x => x.data)
+        .catch(err => {
+          alert('Email failed to complete!')
+          return {
+            'status' : 500,
+            'title': 'Payment Failure',
+            'result': err
+         };
+        });
+
+      memberData.set('insertedMembers' , JSON.stringify(insertMembers));
+
+      if([500].includes(insertMembers.status)){
+        this.setState({recordInserted : "fail"})
+        return insertMembers;
+      }
+      else{
+        this.setState({recordInserted : "success"})
+      }
+
+
+      do{
+        let emailResult = await axios.post(`${env.sever}/php/public/members/sendMemberWelcomeEmail.php`,memberData, {headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          }})
+          .then(x => x.data)
+          .catch(err => {
+            alert('Email failed to complete!')
+            return {
+              'status' : 500,
+              'title': 'Payment Failure',
+              'result': err
+          };
+          });
+
+          if(typeof emailResult.accepted !== 'undefined'){
+            this.setState({emailSent : false})
+            this.setState({welcomeEmailSent : "success",
+            startCountDown : true
+          })
+          }
+          count++;
+      }while(this.state.emailSent && count < maxTrySendEmail);
+
+      if(this.state.startCountDown){
+        for(let i = this.state.countDown; i > 0; i--){
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          this.setState({countDown : i});
+        }
+        window.location.replace(`${env.sever}${env.port}`)
+      }
+    }
+  }
+
+  componentWillMount(){
+    // eslint-disable-next-line no-undef
+    paymentForm = new SqPaymentForm({
+      applicationId: square.applicationId,
+      inputClass: square.inputClass,
+      autoBuild: square.autoBuild,
+      inputStyles: square.inputStyles,
+      cardNumber: square.cardNumber,
+      cvv: square.cvv,
+      expirationDate: square.expirationDate,
+      postalCode: square.postalCode,
+      callbacks: { cardNonceResponseReceived: async (errors, nonce, cardData) => {
+        let err = [];
+        let secMems = this.state.secondaryMembers;
+        this.setState({err})
+
+        if(this.state.fName.trim().length === 0) err.push("fName");
+
+        if(this.state.lName.trim().length === 0) err.push("lName");
+
+        if(this.state.email.trim().length === 0) err.push("email");
+
+        if(this.state.primaryPhone.trim().length === 0) err.push("phone");
+
+        if(this.state.address.trim().length === 0) err.push("address");
+
+        if(this.state.city.trim().length === 0) err.push("city");
+
+        if(this.state.state.trim().length === 0) err.push("state");
+
+        if(this.state.zip.trim().length === 0) err.push("zip");
+
+        if(this.state.country.trim().length === 0) err.push("country");
+
+        if(this.state.isFamily){
+          for(let i = 1; i < this.state.secondaryMembers.length; i++){
+            let hashMap = this.state.secondaryMembers[i];
+            if(typeof hashMap === 'undefined' || hashMap === null) continue;
+            let fName = hashMap.get("fName");
+            let lName = hashMap.get("lName");
+
+            if(typeof fName !== 'undefined' && fName.trim().length === 0){
+              fName = undefined;
+            }
+            if(typeof lName !== 'undefined' && lName.trim().length === 0){
+              lName = undefined;
+            }
+
+            if(fName === undefined && typeof lName !== 'undefined'){
+              err.push(`secfName${i}`)
+            }
+
+            if(lName === undefined && typeof fName !== 'undefined'){
+              err.push(`seclName${i}`)
+            }
+
+            if(fName === undefined && lName === undefined){
+              let temp = this.state.secondaryMembers;
+              temp[i] = null;
+              secMems = temp;
+            }
+          }
+        }
+
+        var memberData = new FormData();
+        memberData.set('email' , this.state.email.trim());
+        memberData.set('primaryPhone' , this.state.primaryPhone.trim());
+        let alreadyAMember = await axios.post(`${env.sever}/php/public/members/getMemberByEmailOrPhone.php`,memberData, {headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          }})
+          .then(x => x.data)
+          .catch(err => {
+            return {
+              'status' : 500,
+              'title': 'Payment Failure',
+              'result': err
+           };
+          });
+
+        if(alreadyAMember.email){
+          err.push("email");
+          alert(`${this.state.email.trim()} is already exist in our system.\nPlease try a different email.`)
+        }
+        else if(alreadyAMember.phone){
+          err.push("phone");
+          alert(`${this.state.primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`)
+        }
+        else if(this.state.isFamily && secMems.filter(Boolean).length === 0) {
+          err.push(`secfName1`);
+          err.push(`seclName1`);
+          alert(`At least one secondary Family is required`)
+
+        }
+
+        if(err.length > 0){
+          this.setState({err})
+          return;
+        }
+
+        if (errors) {
+          console.error('Encountered errors:');
+          errors.forEach((error) => console.error('  ' + error.message));
+          return;
+        }
+
+        this.cardNonceResponseReceived(errors, nonce, cardData)
+      }}
+    });
+  }
+
+  async componentDidMount(){
+    let stateList = await axios.get(`${env.sever}/php/public/util/getStates.php`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error)
+      return [];
+    })
+    let countryList = await axios.get(`${env.sever}/php/public/util/getCountry.php`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error)
+      return [];
+    })
+
+    let membershipInfoArray = await axios.get(`${env.sever}/php/public/members/getMemberData.php`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.log(error)
+      return [];
+    })
+
+    let membershipInfo = membershipInfoArray.find(x => x.Type === this.props.type);
+    let price = membershipInfo.Price;
+
     this.setState({
       state : 'TX',
       country : 'US',
-      isFamily : this.props.type === "Family"
+      isFamily : this.props.type === "Family",
+      stateList,
+      countryList,
+      membershipInfo,
+      price
     })
-    switch(this.props.type.toUpperCase()) {
-      case 'FAMILY':
-        this.setState({price : 70})
-        break;
-      case 'STUDENT':
-          this.setState({price : 20})
-        break;
-      case 'INDIVIDUAL':
-          this.setState({price : 50})
-      break;
-      default:
-    }
-    if(this.props.type === "Family"){
-      this.appendData(2)
-    }
-
-
   }
 
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state)
-    axios.post('https://www.ionbahamas.org/php/ionNode/index.php', this.state)
-    .then(x => {
-      alert("Thank you for Signing up to become an Ion Member.\nPlease be on the look out for a confirmation Email from Our Automated System.")
-      window.location.replace("https://www.ionbahamas.org")         
-    })
+    // axios.post(`${env.sever}/php/ionNode/index.php`, this.state)
+    // .then(x => {
+    //   alert("Thank you for Signing up to become an Ion Member.\nPlease be on the look out for a confirmation Email from Our Automated System.")
+    //   window.location.replace(`${env.sever}${env.port}`)
+    // })
   }
 
-  render() {
+  render(){
     return (
       <div style={{paddingTop : '10px'}}>
         <h1>{this.props.type} Membership - ${this.state.price}</h1>
         <Form onSubmit={this.handleSubmit}>
           <Container fluid={true}>
-            <Row>         
+            <Row>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
-                  <Label for="First Name">First Name {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
-                  <Input value={this.state.value} type="text" name="text" id="exampleText" placeholder="First Name" maxLength={50} onChange={this.handleFirstName} />
+                  <Label for="First Name">First Name* {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
+                  <Input
+                    value={this.state.fName}
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes("fName") ? error : {}}
+                    placeholder="First Name"
+                    maxLength={50}
+                    onChange={this.handleFirstName} />
                 </FormGroup>
               </Col>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
-                  <Label for="Last Name">Last Name</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Last Name" maxLength={50} onChange={this.handleLastName} />
+                  <Label for="Last Name">Last Name*</Label>
+                  <Input
+                    value={this.state.lName}
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes("lName") ? error : {}}
+                    placeholder="Last Name"
+                    maxLength={50}
+                    onChange={this.handleLastName} />
                 </FormGroup>
               </Col>
             </Row>
             <Row>
               <Col>
               <FormGroup>
-                <Label for="Email">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="Email" required={true} maxLength={100}  onChange={this.handleEmail}/>
+                <Label for="Email">Email*</Label>
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>@</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      value={this.state.email}
+                      type="email"
+                      name="email"
+                      id="exampleEmail"
+                      style={this.state.err.includes("email") ? error : {}}
+                      placeholder="Email"
+                      required={false}
+                      maxLength={100}
+                      onChange={this.handleEmail}
+                    />
+                  </InputGroup>
               </FormGroup>
               </Col>
             </Row>
             <Row>
+              <Col xs={12} md={6} lg={6}>
+                <FormGroup>
+                  <Label for="Primary Phone">Primary Phone*</Label>
+                  <Input
+                    value={this.state.primaryPhone}
+                    type="text"
+                    name="number"
+                    id="exampleText"
+                    style={this.state.err.includes("phone") ? error : {}}
+                    placeholder="Primary Phone"
+                    maxLength={10}
+                    onChange={this.handlePrimaryPhone}
+                  />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={6} lg={6}>
+                <FormGroup>
+                  <Label for="Secondary Phone">Secondary Phone</Label>
+                  <Input
+                    value={this.state.secondaryPhone}
+                    type="text"
+                    name="number"
+                    id="exampleText"
+                    placeholder="Secondary Phone"
+                    maxLength={10}
+                    onChange={this.handleSecondaryPhone}
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
               <Col>
                 <FormGroup>
-                  <Label for="Address">Address</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="Address" maxLength={100} onChange={this.handleAddress}/>
+                  <Label for="Address">Address*</Label>
+                  <Input
+                    value={this.state.address}
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes("address") ? error : {}}
+                    placeholder="Address"
+                    maxLength={100}
+                    onChange={this.handleAddress}
+                  />
                 </FormGroup>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="City">City</Label>
-                  <Input type="text" name="text" id="exampleText" placeholder="City" maxLength={50} onChange={this.handleCity}/>
+                  <Label for="City">City*</Label>
+                  <Input
+                    value={this.state.city}
+                    type="text"
+                    name="text"
+                    id="exampleText"
+                    style={this.state.err.includes("city") ? error : {}}
+                    placeholder="City"
+                    maxLength={50}
+                    onChange={this.handleCity}/>
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="State">State</Label>
-                  <Input value={this.state.state} type="select" name="select" id="exampleSelect" onChange={this.handleState}>
-                    {stateList.map(state => <option key={state.text}>{state.value}</option>)}
+                  <Label for="State">State*</Label>
+                  <Input
+                    value={this.state.state}
+                    type="select"
+                    name="select"
+                    id="exampleSelect"
+                    onChange={this.handleState}>
+                    {this.state.stateList.map(state => <option key={state.text}>{state.value}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="Zip">Zip/Postal Code</Label>
-                  <Input value={this.state.zip} required={true} type="text" name="number" id="exampleText" placeholder="Zip/Postal Code" onChange={this.handleZip} maxLength={5}/>
+                  <Label for="Zip">Zip/Postal Code*</Label>
+                  <Input
+                    value={this.state.zip}
+                    required={false}
+                    type="text"
+                    name="number"
+                    id="exampleText"
+                    style={this.state.err.includes("zip") ? error : {}}
+                    placeholder="Zip/Postal Code"
+                    onChange={this.handleZip}
+                    maxLength={5}
+                  />
                 </FormGroup>
               </Col>
               <Col xs={12} md={3} lg={3}>
                 <FormGroup>
-                  <Label for="Country">Country</Label>
-                  <Input value={this.state.country} type="select" name="select" id="exampleSelect" onChange={this.handleCountry} disabled={true}>
-                    {countryList.map(country => <option key={country.name}>{country.code}</option>)}
+                  <Label for="Country">Country*</Label>
+                  <Input
+                    value={this.state.country}
+                    type="select"
+                    name="select"
+                    id="exampleSelect"
+                    onChange={this.handleCountry}
+                    disabled={true}>
+                    {this.state.countryList.map(country => <option key={country.name}>{country.code}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
             </Row>
             <Row>
-              <Col>
-                {this.displayData}
+              {this.state.isFamily &&
+                <Col xs={12} md={7} lg={7}>
+                  {[...Array(5).keys()].map(i => this.secondaryMembersTextBox(i+1))}
+                </Col>
+              }
+              <Col xs={12} md={5} lg={5}>
+                  <Payments
+                    paymentForm = {paymentForm}
+                    amount={this.state.price}
+                  />
+                  <button
+                    id="sq-creditcard"
+                    className="button-credit-card-cancel"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      window.location.replace(`${env.sever}${env.port}`)
+                    }}
+                    >
+                    Cancel
+                  </button>
+                  {/*<button onClick={this.togglePopup}> Click To Launch Popup</button>*/}
+                  {this.state.showPopup &&
+                    <Popup
+                              text='Click "Close Button" to hide popup'
+                              paymentReceived={this.state.paymentReceived}
+                              recordInserted = {this.state.recordInserted}
+                              welcomeEmailSent = {this.state.welcomeEmailSent}
+                              closePopup={this.togglePopup}
+                              startCountDown={this.state.startCountDown}
+                              countDown={this.state.countDown}
+                    />
+                  }
+                  {/* <Button style={{width : "100%"}} color="danger" onClick={(event) => {
+                  event.preventDefault();
+                  window.location.replace(`${env.sever}${env.port}`)
+                }}>Cancel</Button> */}
               </Col>
             </Row>
           </Container>
-          <Container fluid={true}>
+          {/* <Container fluid={true}>
             <Row>
-              <Col xs={12} sm={12} md={12} lg={8}>
+              {/* <Col xs={12} sm={12} md={12} lg={8}>
                 {(this.state.isFamily) ? <Button color="secondary" onClick={() => this.appendData(this.max + 2)}>Add Secondary Member</Button> : null}
               </Col>
-              <Col sm={12} md={12} lg={2}>
+              <Col sm={12} md={12} lg={{ size: 2, offset: 8 }}>
                 <Button style={{width : "100%"}} color="primary">Submit</Button>
               </Col>
               <Col sm={12} md={12} lg={2}>
                 <Button style={{width : "100%"}} color="danger" onClick={(event) => {
                   event.preventDefault();
-                  window.location.replace("https://www.ionbahamas.org")
+                  window.location.replace(`${env.sever}${env.port}`)
                 }}>Cancel</Button>
               </Col>
             </Row>
-          </Container>
+          </Container> */}
         </Form>
       </div>)
   }
