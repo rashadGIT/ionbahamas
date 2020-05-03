@@ -31,3 +31,4 @@ MemberShip.mwb.bak
 package-lock.json
 .gitignore
 js/node/node_modules/
+js/react/src/env/env.js
