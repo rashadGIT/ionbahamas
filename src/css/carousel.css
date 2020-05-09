@@ -29,6 +29,73 @@
     top: 5%;
     max-width: 1000px;
 }
+#amznCharityBannerInner {
+    background-image: url(https://m.media-amazon.com/images/G/01/x-locale/paladin/charitycentral/banner-background-image.CB485922134.png);
+    width: 300px;
+    height: 250px;
+    position: relative;
+}
+#amznCharityBannerInner a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: #000;
+    text-decoration: none
+}
+.text {
+    position: absolute;
+    /* top: 25%; */
+    top: 30px;
+    left: 15px;
+    right: 15px;
+    bottom: 100px
+}
+.support-wrapper {
+    /* overflow: hidden; */
+    max-height: 86px
+}
+.support {
+    /* font-family: Tahoma, Geneva, sans-serif; */
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    line-height: 28px;
+    font-size: 25px;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: 0 0
+}
+.when-shop {
+    /* font-family: Arial, sans; */
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 25px;
+    color: #333;
+    text-align: center;
+    margin: 150 0 0 0;
+    padding: 20 0 0 0;
+    background: 0 0
+}
+.donates {
+    /* font-family: Arial, sans; */
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: 0 0
+}
+
+.logoInCarousel{
+    max-width : 200px;
+    max-height : 200px;
+}
+
+
 .textTitle{
     color: white;
     font-weight: bold;
