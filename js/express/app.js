@@ -12,6 +12,4 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/fire', (req, res) => res.send(myCar))
 
-//app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
-
-https.createServer(app).listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`)):
