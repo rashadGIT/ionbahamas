@@ -159,9 +159,9 @@ class home extends Component {
                           <div className="support-wrapper">
                             <div className="support" style={{'font-size': '40px', 'line-height': '1.6','margin-top': '3px', 'margin-bottom': '1.5px'}}>
                               Support <br />
-                              Igniting Our Nation Bahamas.
+                              Igniting Our Nation Bahamas.<br /> <br/>
                             </div>
-                          </div><br/>
+                          </div>
                           <p className="when-shop">When you shop at <b>smile.amazon.com,</b></p>
                           <p className="donates">Amazon donates.</p>
 		                    </div>
