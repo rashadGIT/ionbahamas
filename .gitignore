@@ -25,7 +25,11 @@ yarn-error.log*
 package-lock.jsonstatus
 .gitignore
 src/imgs/
+js/react/node_modules/
 MemberShip.mwb
 MemberShip.mwb.bak
 package-lock.json
 .gitignore
+js/node/node_modules/
+js/react/src/env/env.js
+js/express/node_modules/
