@@ -47,7 +47,7 @@ class home extends Component {
     this.setState({err : true})
   }
 
-  
+
   render() {
     const shortcutLinks = [
       {
@@ -157,22 +157,21 @@ class home extends Component {
                       <a href={smileLink} target="_blank">
                         <div className="text">
                           <div className="support-wrapper">
-                            <div className="support" style={{'font-size': '40px', 'margin-top': '1.5px', 'margin-bottom': '1.5px'}}>
+                            <div className="support" style={{'font-size': '40px', 'line-height': '1.6','margin-top': '3px', 'margin-bottom': '1.5px'}}>
                               Support <br />
-                              <span id="charity-name" style={{'margin-top' : '10px',display: 'inline-block'}}>
-                                <img className="logoInCarousel" src={logo} alt="" />
-                              </span>
+                              Igniting Our Nation Bahamas
                             </div>
                           </div>
+                          <br /> <br/>
                           <p className="when-shop">When you shop at <b>smile.amazon.com,</b></p>
                           <p className="donates">Amazon donates.</p>
 		                    </div>
                         </a>
-                      
+
                       {/* <div className="carouselTextContainer">
                         <div className="auctionTextDescription">
                         <div id="amznCharityBannerInner">
-		                      
+
                           </div>
                           <h1 className="auctionTextTitle">
                             <center><i>Support Bahamian <br />Agriculture</i></center>
