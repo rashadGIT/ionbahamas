@@ -162,8 +162,8 @@ class home extends Component {
                               Igniting Our Nation Bahamas.
                             </div>
                           </div>
-                          <p className="when-shop">When you shop at <b>smile.amazon.com,</b></p>
-                          <p className="donates">Amazon donates.</p>
+                          <div className="when-shop">When you shop at <b>smile.amazon.com,</b></div>
+                          <div className="donates">Amazon donates.</div>
 		                    </div>
                         </a>
 
