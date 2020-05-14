@@ -4,7 +4,7 @@
 }
 
 .carousel .slide img {
-    max-height: 500px;  
+    max-height: 500px;
     width: 100%;
     /* width: auto; */
 }
@@ -45,8 +45,8 @@
 }
 .text {
     position: absolute;
-    /* top: 25%; */
-    top: 30px;
+    top: 25%;
+    /*top: 30px;*/
     left: 15px;
     right: 15px;
     bottom: 100px
@@ -74,7 +74,7 @@
     line-height: 25px;
     color: #333;
     text-align: center;
-    margin: 150 0 0 0;
+    margin: 60 0 0 0;
     padding: 20 0 0 0;
     background: 0 0
 }
@@ -187,9 +187,9 @@
         font-size: 40px;
         font-family: "Times New Roman", Times, serif;
         /* background-color: coral; */
-        -ms-transform: skew(-20deg); 
+        -ms-transform: skew(-20deg);
         -webkit-transform: skew(-20deg);
-        transform: skew(-20deg); 
+        transform: skew(-20deg);
         padding: 7px;
     }
 
@@ -199,9 +199,9 @@
         font-size: 40px;
         font-family: "Times New Roman", Times, serif;
         /* background-color: coral; */
-        -ms-transform: skew(-20deg); 
+        -ms-transform: skew(-20deg);
         -webkit-transform: skew(-20deg);
-        transform: skew(-20deg); 
+        transform: skew(-20deg);
         padding: 7px;
     }
 
@@ -229,15 +229,15 @@
         font-size: 35px;
         font-family: "Times New Roman", Times, serif;
         /* background-color: coral; */
-        -ms-transform: skew(-20deg); 
+        -ms-transform: skew(-20deg);
         -webkit-transform: skew(-20deg);
-        transform: skew(-20deg); 
+        transform: skew(-20deg);
         padding: 7px;
     }
 
     .dateContainer{
         display: flex;
-        padding-left: 70px; 
+        padding-left: 70px;
     }
     .fixed{
         width : 60px;
@@ -280,7 +280,7 @@
         font-weight:bold;
         color:#333333;
         white-space:nowrap;
-        display:block; 
+        display:block;
         text-align:center;
     }
 }
