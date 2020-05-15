@@ -75,59 +75,6 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
-                    <div key={"Hurricane"}>
-                      <img alt="" src={dorian} />
-                      <div className="HurricaneTextContainer">
-                        <div className="HurricaneTextDescription">
-                          <h1 className="HurricaneTextTitle"><center>
-                            <i style={{color : 'white'}}>{hurricaneMsg}</i>
-                            </center>
-                          </h1>
-                          <center>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                              <input type="hidden" name="cmd" value="_s-xclick" />
-                              <input type="hidden" name="hosted_button_id" value="TP2UXFQ8YDP24" />
-                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                            </form>
-                          </center>
-                        </div>
-                        <div style={{paddingLeft : '50px'}} className="HurricaneTextDescription">
-                          <h1 className="HurricaneTextTitle"><center>
-                            <i style={{color : 'white'}}>{collegeMsg}</i>
-                            </center>
-                          </h1>
-                          <center>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                              <input type="hidden" name="cmd" value="_s-xclick" />
-                              <input type="hidden" name="hosted_button_id" value="CJDB7WWHEMGLA" />
-                              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                              <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                            </form>
-                          </center>
-                        </div>
-                      </div>
-                    </div>
-                    <div key={"intro"}>
-                      <img alt="" src={banner} />
-                      <div className="bannerTextContainer">
-                        <div className="bannerTextDescription">
-                          <h1 className="bannerTextTitle"><center>
-                            <i>Introduction to ION Bahamas Video</i>
-                            </center>
-                          </h1>
-                          <center>
-                            <a href="https://youtu.be/0NXalyzcDj8" target="_blank" rel="noopener noreferrer">
-                              <div>
-                                <h3 style={{color : 'black'}}>Watch Now on YouTube</h3>
-                                <img alt="" src={youTube} style={{width:300, height: 150}}/>
-                                <h3 style={{color : 'black'}}>Like&nbsp;&bull;&nbsp;Share&nbsp;&bull;&nbsp;Subscribe</h3>
-                              </div>
-                            </a>
-                          </center>
-                        </div>
-                      </div>
-                    </div>
                     <div key={"Agriculture"}>
                       <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
                       <div className="carouselTextContainer">
@@ -213,9 +160,6 @@ class home extends Component {
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open(farmPayPalLink)}>
                         Support Bahamian Agriculture
-                      </NavLink>
-                      <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url")}>
-                        <b>{hurricaneMsgBox}</b>
                       </NavLink>
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJDB7WWHEMGLA&source=url")}>
                         <b>{collegeMsgBox}</b>
