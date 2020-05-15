@@ -42,7 +42,7 @@ export default class Example extends Component {
       isOpen: !this.state.isOpen
     });
   }
-  
+
   render() {
     return (
       <div>
@@ -61,9 +61,6 @@ export default class Example extends Component {
               {links.map(createNavItem)}
               <NavItem>
                 <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMC5JV7U8BDNU&source=url");}} >Donate</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TP2UXFQ8YDP24&source=url");}} ><b>Hurricane Relief Efforts</b></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJDB7WWHEMGLA&source=url");}} ><b>Texas College Student Relief Efforts</b></NavLink>
