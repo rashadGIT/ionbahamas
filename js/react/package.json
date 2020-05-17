@@ -39,7 +39,7 @@
     "square-connect": "^3.20200325.0",
     "styled-components": "^4.3.2"
   },
-  "proxy": "http://localhost:3001/api/",
+  "proxy": "http://localhost:3001/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
