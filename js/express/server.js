@@ -1,22 +1,49 @@
-var express = require('express')
-var bodyParser=require("body-parser");
-var fs = require('fs')
-var http = require('http');
-var https = require('https')
-var util = require('./util.js')
-var app = express()
-const httpPort = 3000
+const express = require('express')
+const bodyParser=require("body-parser");
+const fs = require('fs');
+const cors = require('cors');
+const http = require('http');
+const https = require('https')
+const payment = require('./payment/payment.js')
+const members = require('./members/members.js')
+const util = require('./util/util.js')
+const app = express()
+const resolve = require('path').resolve;
+const paymentPath = resolve(`${resolve(__dirname, '..')}/express/env/ssl.env`)
+const env = require('dotenv').config({ path: paymentPath });
+const httpPort = 3001
 const httpsPort = 3500
+const httpsKeys = {
+  //key: fs.readFileSync(process.env.KEY_PATH),
+  //cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
+};
+
+/*Sets Headers*/
+app.all('*', (req, res, next) => {
+  let origin = req.get('origin');
+  res.header('Access-Control-Allow-Origin', origin);
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/util', util);
+app.use('/members', members);
+app.use('/payment', payment);
 
+/*Catches 500 errors*/
+app.use((err, req, res, next) => {
+  res.status(500).send("Opps, An Error has occurred.")
+});
+
+/*Catches 404 errors*/
+app.use((req, res, next) => res.status(404).send("Sorry can't find that!"));
+
+/*
+  These lines must always be the last 2 lines
+  Sending HTTP and HTTPS request to resuester.
+*/
 http.createServer(app).listen(httpPort);
-https.createServer({
-  key: fs.readFileSync('/home/ionbahamasnet/ssl/keys/cd563_82615_023b7e6433049e6d1e3fae2f3c33b9fe.key'),
-  cert: fs.readFileSync('/home/ionbahamasnet/ssl/certs/ionbahamas_net_cd563_82615_1620061939_a7c8589ce2a7e5b79d0a624ee5c86861.crt')
-}, app)
-.listen(httpsPort, () => {
-  console.log(`Example app listening on port ${httpsPort}! Go to https://localhost:${httpsPort}/'`)
-})
+https.createServer(httpsKeys,app).listen(httpsPort)
