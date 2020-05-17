@@ -423,7 +423,7 @@ export default class MemberForm extends React.Component {
       return [];
     })
 
-    let membershipInfoArray = await axios.get(`/members/getMembershipData`)
+    let membershipInfoArray = await axios.get(`/api/members/getMembershipData`)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error)
