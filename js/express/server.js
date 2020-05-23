@@ -35,7 +35,13 @@ app.use('/payment', payment);
 
 /*Catches 500 errors*/
 app.use((err, req, res, next) => {
-  res.status(500).send("Opps, An Error has occurred.")
+  console.log(err);
+  res.status(411).send(err)
+});
+
+/*Catches 500 errors*/
+app.use((err, req, res, next) => {
+  res.status(500).send(err)
 });
 
 /*Catches 404 errors*/

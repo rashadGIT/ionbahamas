@@ -47,11 +47,12 @@ export default class MemberForm extends React.Component {
       membershipInfo : {},
       emailSent : true,
       showPopup: false,
-      paymentReceived: null,
+      processor: null,
       recordInserted : null,
       welcomeEmailSent : null,
       countDown : 5,
-      startCountDown : false
+      startCountDown : false,
+      message : ''
     };
 
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -199,103 +200,159 @@ export default class MemberForm extends React.Component {
   }
 
   async cardNonceResponseReceived(errors, nonce, cardData){
-    this.togglePopup()
-    //alert(`The generated nonce is:\n${nonce}`);
+    this.togglePopup();
     //TODO: Replace alert with code in step 2.1
     var bodyFormData = new FormData();
     bodyFormData.set('amount' , this.state.price);
     bodyFormData.set('nonce' , nonce);
-    let data = await axios.post(`${env.sever}/php/public/payment/getPayment.php`,bodyFormData, {headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-    }})
-    .then(x => x.data)
+    let data = await axios.post(
+      `${env.proxy}/members/add`,
+      {
+        amount : this.state.price,
+        nonce : nonce,
+        fName : this.state.fName,
+        lName : this.state.lName,
+        email : this.state.email,
+        type : this.state.type,
+        address : this.state.address,
+        city : this.state.city,
+        state : this.state.state,
+        zip : this.state.zip,
+        country : this.state.country,
+        primaryPhone : this.state.primaryPhone,
+        secondaryPhone : this.state.secondaryPhone,
+        isPrimary : true,
+        membershipTypeId : this.state.membershipInfo.id,
+        secondaryMembers : JSON.stringify(this.state.secondaryMembers)
+      },
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(x => x.data)
     .catch(err => {
-      alert('Payment failed to complete!')
       return {
-        'status' : 500,
+        'status' : err.response.status,
         'title': 'Payment Failure',
-        'result': err.response.text
+        'result': err.response.data.message
      };
     });
 
-    if(data.status === 200){
-      this.setState({paymentReceived : "success"})
-      var memberData = new FormData();
-      memberData.set('fName' , this.state.fName);
-      memberData.set('lName' , this.state.lName);
-      memberData.set('email' , this.state.email);
-      // memberData.set('memberInfo' , JSON.stringify(this.state));
-      memberData.set('data' , JSON.stringify(data));
-      memberData.set('type' , this.state.type);
-      memberData.set('address' , this.state.address);
-      memberData.set('city' , this.state.city);
-      memberData.set('state' , this.state.state);
-      memberData.set('zip' , this.state.zip);
-      memberData.set('country' , this.state.country);
-      memberData.set('primaryPhone' , this.state.primaryPhone);
-      memberData.set('secondaryPhone' , this.state.secondaryPhone);
-      memberData.set('isPrimary' , true);
-      memberData.set('membershipTypeId' , this.state.membershipInfo.id);
-      memberData.set('secondaryMembers' , JSON.stringify(this.state.secondaryMembers));
-
-      let insertMembers = await axios.post(`${env.sever}/php/public/members/addMembers.php`,memberData, {headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        }})
-        .then(x => x.data)
-        .catch(err => {
-          alert('Email failed to complete!')
-          return {
-            'status' : 500,
-            'title': 'Payment Failure',
-            'result': err
-         };
-        });
-
-      memberData.set('insertedMembers' , JSON.stringify(insertMembers));
-
-      if([500].includes(insertMembers.status)){
-        this.setState({recordInserted : "fail"})
-        return insertMembers;
-      }
-      else{
-        this.setState({recordInserted : "success"})
-      }
-
-
-      do{
-        let emailResult = await axios.post(`${env.sever}/php/public/members/sendMemberWelcomeEmail.php`,memberData, {headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-          }})
-          .then(x => x.data)
-          .catch(err => {
-            alert('Email failed to complete!')
-            return {
-              'status' : 500,
-              'title': 'Payment Failure',
-              'result': err
-          };
-          });
-
-          if(typeof emailResult.accepted !== 'undefined'){
-            this.setState({emailSent : false})
-            this.setState({welcomeEmailSent : "success",
-            startCountDown : true
-          })
-          }
-          count++;
-      }while(this.state.emailSent && count < maxTrySendEmail);
-
+    if (data.status === 200){
+      this.setState({
+        processor : "success",
+        message : "Registration Process Complete!!",
+        startCountDown : true
+      });
+      await new Promise(resolve => setTimeout(resolve, 2000));
       if(this.state.startCountDown){
-        for(let i = this.state.countDown; i > 0; i--){
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          this.setState({countDown : i});
-        }
-        window.location.replace(`${env.sever}${env.port}`)
+          this.setState({
+            message : "You all set!!",
+            processor : "done"
+          })
+          for(let i = this.state.countDown; i > 0; i--){
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            //this.setState({countDown : i});
+          }
+          window.location.href = "/";
+          //window.location.replace(`${env.sever}${env.port}`)
       }
+      this.togglePopup();
     }
+    else if (data.status === 411) {
+      const regex = /'/gi;
+      let result = data.result
+      result = result.replace(regex, '');
+      let messageArray = result.split(' ');
+      let dup = messageArray[0];
+      let val = messageArray[2];
+      let field = messageArray[messageArray.length -1].split("_")[0];
+      this.setState({
+        processor : "fail",
+        message : `${dup} ${field} : ${val} alreay exist. Please enter a different ${field}.`
+      })
+    }
+
+
+    // if(data.status === 200){
+    //   this.setState({paymentReceived : "success"})
+    //   var memberData = new FormData();
+    //   memberData.set('fName' , this.state.fName);
+    //   memberData.set('lName' , this.state.lName);
+    //   memberData.set('email' , this.state.email);
+    //   // memberData.set('memberInfo' , JSON.stringify(this.state));
+    //   memberData.set('data' , JSON.stringify(data));
+    //   memberData.set('type' , this.state.type);
+    //   memberData.set('address' , this.state.address);
+    //   memberData.set('city' , this.state.city);
+    //   memberData.set('state' , this.state.state);
+    //   memberData.set('zip' , this.state.zip);
+    //   memberData.set('country' , this.state.country);
+    //   memberData.set('primaryPhone' , this.state.primaryPhone);
+    //   memberData.set('secondaryPhone' , this.state.secondaryPhone);
+    //   memberData.set('isPrimary' , true);
+    //   memberData.set('membershipTypeId' , this.state.membershipInfo.id);
+    //   memberData.set('secondaryMembers' , JSON.stringify(this.state.secondaryMembers));
+    //
+    //   let insertMembers = await axios.post(`${env.sever}/php/public/members/addMembers.php`,memberData, {headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //     }})
+    //     .then(x => x.data)
+    //     .catch(err => {
+    //       alert('Email failed to complete!')
+    //       return {
+    //         'status' : 500,
+    //         'title': 'Payment Failure',
+    //         'result': err
+    //      };
+    //     });
+    //
+    //   memberData.set('insertedMembers' , JSON.stringify(insertMembers));
+    //
+    //   if([500].includes(insertMembers.status)){
+    //     this.setState({recordInserted : "fail"})
+    //     return insertMembers;
+    //   }
+    //   else{
+    //     this.setState({recordInserted : "success"})
+    //   }
+    //
+    //
+    //   do{
+    //     let emailResult = await axios.post(`${env.sever}/php/public/members/sendMemberWelcomeEmail.php`,memberData, {headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //       }})
+    //       .then(x => x.data)
+    //       .catch(err => {
+    //         alert('Email failed to complete!')
+    //         return {
+    //           'status' : 500,
+    //           'title': 'Payment Failure',
+    //           'result': err
+    //       };
+    //       });
+    //
+    //       if(typeof emailResult.accepted !== 'undefined'){
+    //         this.setState({emailSent : false})
+    //         this.setState({welcomeEmailSent : "success",
+    //         startCountDown : true
+    //       })
+    //       }
+    //       count++;
+    //   }while(this.state.emailSent && count < maxTrySendEmail);
+    //
+    //   if(this.state.startCountDown){
+    //     for(let i = this.state.countDown; i > 0; i--){
+    //       await new Promise(resolve => setTimeout(resolve, 1000));
+    //       this.setState({countDown : i});
+    //     }
+    //     window.location.replace(`${env.sever}${env.port}`)
+    //   }
+    // }
   }
 
   componentWillMount(){
@@ -410,20 +467,20 @@ export default class MemberForm extends React.Component {
   }
 
   async componentDidMount(){
-    let stateList = await axios.get(`${env.sever}/php/public/util/getStates.php`)
+    let stateList = await axios.get(`${env.proxy}/util/getStates`)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error)
       return [];
     })
-    let countryList = await axios.get(`${env.sever}/php/public/util/getCountry.php`)
+    let countryList = await axios.get(`${env.proxy}/util/getCountry`)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error)
       return [];
     })
 
-    let membershipInfoArray = await axios.get(`/api/members/getMembershipData`)
+    let membershipInfoArray = await axios.get(`${env.proxy}/members/getMembershipData`)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error)
@@ -463,6 +520,19 @@ export default class MemberForm extends React.Component {
             <Row>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
+                <button
+                  id="sq-creditcard"
+                  className="button-credit-card-cancel"
+                  onClick={async (event) => {
+                    event.preventDefault();
+                    let clear = await axios.post(`${env.proxy}/members/clear`);
+                    if(clear.request.status===200){
+                      alert("Database has been cleared.\nReady for new data.")
+                    }
+                  }}
+                  >
+                  Clear Database
+                </button>
                   <Label for="First Name">First Name* {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
                   <Input
                     value={this.state.fName}
@@ -585,7 +655,7 @@ export default class MemberForm extends React.Component {
                     name="select"
                     id="exampleSelect"
                     onChange={this.handleState}>
-                    {this.state.stateList.map(state => <option key={state.text}>{state.value}</option>)}
+                    {this.state.stateList.map(state => <option key={state.abbreviation}>{state.abbreviation}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
@@ -614,8 +684,8 @@ export default class MemberForm extends React.Component {
                     name="select"
                     id="exampleSelect"
                     onChange={this.handleCountry}
-                    disabled={true}>
-                    {this.state.countryList.map(country => <option key={country.name}>{country.code}</option>)}
+                    disabled={false}>
+                    {this.state.countryList.map(country => <option key={country.code}>{country.code}</option>)}
                   </Input>
                 </FormGroup>
               </Col>
@@ -644,13 +714,14 @@ export default class MemberForm extends React.Component {
                   {/*<button onClick={this.togglePopup}> Click To Launch Popup</button>*/}
                   {this.state.showPopup &&
                     <Popup
-                              text='Click "Close Button" to hide popup'
-                              paymentReceived={this.state.paymentReceived}
-                              recordInserted = {this.state.recordInserted}
-                              welcomeEmailSent = {this.state.welcomeEmailSent}
-                              closePopup={this.togglePopup}
-                              startCountDown={this.state.startCountDown}
-                              countDown={this.state.countDown}
+                      text='Click "Close Button" to hide popup'
+                      processor={this.state.processor}
+                      message = {this.state.message}
+                      recordInserted = {this.state.recordInserted}
+                      welcomeEmailSent = {this.state.welcomeEmailSent}
+                      closePopup={this.togglePopup}
+                      startCountDown={this.state.startCountDown}
+                      countDown={this.state.countDown}
                     />
                   }
                   {/* <Button style={{width : "100%"}} color="danger" onClick={(event) => {
