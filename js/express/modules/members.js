@@ -8,7 +8,6 @@ const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 var sql = require('../util/db.js');
-//const members = require('./members.js');
 
 const transporter = nodemailer.createTransport({
   host: process.env.emailHost,
@@ -22,73 +21,78 @@ const transporter = nodemailer.createTransport({
   logger: false // log information in console
 });
 
-// const getMembers = async() => {
-//   return await members.getMembers();
-// }
-
-const getMemberById = async(id) => {
-  return await members.getMembers();
-}
-
-// const getMembershipData = async() => {
-//   return await  members.getMembershipData();
-// }
-
-// const getMembersByEmailOrPhone = async(email,phone) => {
-//   return await members.getMembersByEmailOrPhone(email,phone);
-// } 
+const getMemberById = async(id) => await members.getMembers();
 
 const sendWelcomeEmail = async (membersData) => {
-  let info = await transporter.sendMail({
-    from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
-    to : membersData.email,
-    subject: 'Welcome to ION Bahamas Today', // Subject line
-    html: pug.renderFile(`${parentDir}/views/welcome.jade`, {membersData}) // html body
-  });
+  let info = {};
+  let count = 1;
+  do{
+    info = await transporter.sendMail({
+      from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
+      to : membersData.email,
+      subject: 'Welcome to ION Bahamas Today', // Subject line
+      html: pug.renderFile(`${parentDir}/views/welcome.jade`, {membersData}) // html body
+    });
+    count++;
+  }while (!info.accepted.includes(membersData.email) && count < 5);
   return info;
 }
 
 const addMember = async (memberData) => {
-  return await members.setMember(memberData)
+  return await setMember(memberData)
 }
 
+  const removeMemberById = async (id) => {
+    return await deleteMember(id);
+  }
+
+  const removeMemberByPrimaryId = async (id) => {
+    return await deleteSecondaryMember(id);
+  }
+
+  const clear = async () => {
+    await deleteAllSecondaryMember();
+    return await deleteAllPrimaryMember();
+  }
+
 const addMembers = async (memberData) => {
-  let primary = await setMember(memberData);
-  if([500].includes(primary.status)){
-    return primary;
-  }
-  let listOfSecondaryMembers = []
-  if(primary.status == 200){
-    for(let i = 0; i < memberData.secondaryMembers.length; i++){
-      let secondaryMember = memberData.secondaryMembers[i];
-      let fName = secondaryMember.fName;
-      let lName = secondaryMember.lName;
-      let userInserted = await setMember({
-        fName : fName,
-        lName: lName,
-        email: null,
-        address: memberData.address,
-        city: memberData.city,
-        state: memberData.state,
-        zip: memberData.zip,
-        country: memberData.country,
-        primaryPhone: null,
-        secondaryPhone: null,
-        isPrimary: false,
-        membershipTypeId: memberData.membershipTypeId,
-        secondaryMemberOf: primary.id,
-        isActive: true})
-        if(userInserted.status == 200){
-          listOfSecondaryMembers.push({
-            id : userInserted.id,
-            name :  `${fName} ${lName}`
-          })
-        }
+    let primary = await setMember(memberData);
+    if([500,411].includes(primary.status)){
+      return primary;
     }
-  }
-  return {
-      id : primary.id, 
-      name : `${memberData.fName} ${memberData.lName}`, 
+    let listOfSecondaryMembers = []
+    if(primary.status == 200){
+      for(let i = 0; i < memberData.secondaryMembers.length; i++){
+        let secondaryMember = new HashMap(memberData.secondaryMembers[i]);
+        let fName = secondaryMember.get("fName");
+        let lName = secondaryMember.get("lName");
+        let userInserted = await setMember({
+          fName : fName,
+          lName: lName,
+          email: null,
+          address: memberData.address,
+          city: memberData.city,
+          state: memberData.state,
+          zip: memberData.zip,
+          country: memberData.country,
+          primaryPhone: null,
+          secondaryPhone: null,
+          isPrimary: false,
+          membershipTypeId: memberData.membershipTypeId,
+          secondaryMemberOf: primary.id,
+          isActive: true})
+          if(userInserted.status == 200){
+            listOfSecondaryMembers.push({
+              id : userInserted.id,
+              name :  `${fName} ${lName}`
+            })
+          }
+      }
+    }
+    return {
+      status : 200,
+      id : primary.id,
+      name : `${memberData.fName} ${memberData.lName}`,
       secondaryMembers : listOfSecondaryMembers
     }
 }
@@ -106,8 +110,8 @@ const getMembershipData = () => {
 }
 
 const getMembersByEmailOrPhone = (email,phone) => {
-  return sql.query(`select email, primary_phone from rashadba_IonTest.members where 
-  upper(Email) = upper(?) or 
+  return sql.query(`select email, primary_phone from rashadba_IonTest.members where
+  upper(Email) = upper(?) or
   primary_phone = ? LIMIT 1`,[email,phone])
   .then(x => x[0])
   .catch(err => {
@@ -121,7 +125,7 @@ const getMembersByEmailOrPhone = (email,phone) => {
 
 
 const getMembers = () => {
-  return sql.query(`Select 
+  return sql.query(`Select
   members.id,
   members.FName,
   members.LName,
@@ -137,9 +141,9 @@ const getMembers = () => {
   members.secondary_member_of,
   members.isActive,
   membershipType.Type
-  from members 
+  from members
   inner join membershipType
-  on 
+  on
   (members.membershipType_id = membershipType.id)`)
   .then(x => x[0])
   .catch(err => {
@@ -151,12 +155,31 @@ const getMembers = () => {
   });
 }
 
+const deleteAllPrimaryMember = () => {
+  let deleteSQL = "delete FROM members";
+  return sql.execute(deleteSQL);
+}
 
+const deleteAllSecondaryMember = () => {
+  let deleteSQL = "delete FROM members where IsPrimary = 0";
+  return sql.execute(deleteSQL);
+}
+
+
+const deleteMember = (id) => {
+  let deleteSQL = "delete FROM ionbaham_Test.members where id = ?";
+  return sql.execute(deleteSQL,[id]);
+}
+
+const deleteSecondaryMember = (id) => {
+  let deleteSQL = "delete FROM ionbaham_Test.members where secondary_member_of = ?";
+  return sql.execute(deleteSQL,[id]);
+}
 
 const setMember = (memberData) => {
   let insert = `INSERT INTO members
       (id, FName, LName, Email, Address, City, State, Zip, Country, primary_phone,secondary_phone,IsPrimary, membershipType_id, secondary_member_of, isActive)
-      VALUES 
+      VALUES
       (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`;
   return sql.execute(insert,[
       memberData.fName,
@@ -182,9 +205,12 @@ const setMember = (memberData) => {
       type : 'Record Inserted'
   }})
   .catch(err => {
-      console.log(err)
+      let isDuplicate = err.message.replace(/\s.*/,'').toUpperCase().trim() === "DUPLICATE";
+      let errCode = 500;
+      if(isDuplicate) errCode = 411;
+      console.log(err.message)
       return {
-      status : 500,
+      status : errCode,
       message : err.message,
       type : 'internal error'
       }
@@ -194,9 +220,12 @@ const setMember = (memberData) => {
 module.exports = {
     getMembers,
     addMember,
+    removeMemberById,
+    removeMemberByPrimaryId,
     addMembers,
     sendWelcomeEmail,
     getMemberById,
     getMembershipData,
-    getMembersByEmailOrPhone
+    getMembersByEmailOrPhone,
+    clear
 };

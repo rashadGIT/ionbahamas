@@ -11,36 +11,24 @@ class Popup extends React.Component {
             case "fail":
               icon = "fa fa-times"
               break;
+            case "done":
+              icon = "fa fa-smile"
+              break;
             default:
           }
         return icon;
     }
     render() {
-        let num = this.props.countDown;
         return (
             <div className='popup'>
                 <div className='popup_inner'>
                     <div className='MessageBox'>
                         <div>
-                            <i className={this.setIcon(this.props.paymentReceived)} />
-                            Payment Received
+                          <center>
+                            <i className={this.setIcon(this.props.processor)} />
+                          </center>
+                          <p>{this.props.message}</p>
                         </div>
-                        <div>
-                            <i className={this.setIcon(this.props.recordInserted)} />
-                            Record(s) Stores
-                        </div>
-                        <div>
-                            <i className={this.setIcon(this.props.welcomeEmailSent)} />
-                            Email Sent
-                        </div>
-                        {this.props.startCountDown &&
-                          <div>
-                            <br />
-                            <p><i className="far fa-smile"/> You all set!!</p>
-                            <p>Redirecting to homepage in {this.props.countDown}</p>
-                          </div>
-                        }
-                         {/*<button onClick={this.props.closePopup}>close me</button>*/}
                     </div>
                 </div>
             </div>

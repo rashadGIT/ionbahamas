@@ -7,6 +7,7 @@ const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 const members = require('./members.js');
+console.log(process.env.emailHost)
 const transporter = nodemailer.createTransport({
   host: process.env.emailHost,
   port: process.env.emailPort,
