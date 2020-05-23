@@ -8,6 +8,7 @@ const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 var sql = require('../util/db.js');
+var dateFormat = require('dateformat');
 
 const transporter = nodemailer.createTransport({
   host: process.env.emailHost,
@@ -26,11 +27,17 @@ const getMemberById = async(id) => await members.getMembers();
 const sendWelcomeEmail = async (membersData) => {
   let info = {};
   let count = 1;
+  var num = membersData.result.payment.total_money.amount;
+  var dollars = num / 100;
+  dollars = dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
+  membersData.result.payment.total_money.amount = dollars;
+  const myDate = new Date(membersData.result.payment.created_at);
+  membersData.result.payment.created_at = dateFormat(myDate, "dddd, mmmm dS, yyyy, h:MM:ss TT");
   do{
     info = await transporter.sendMail({
       from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
       to : membersData.email,
-      subject: 'Welcome to ION Bahamas Today', // Subject line
+      subject: `Welcome to ION Bahamas ${membersData.fName} ${membersData.lName}`, // Subject line
       html: pug.renderFile(`${parentDir}/views/welcome.jade`, {membersData}) // html body
     });
     count++;
