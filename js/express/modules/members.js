@@ -185,9 +185,9 @@ const deleteSecondaryMember = (id) => {
 
 const setMember = (memberData) => {
   let insert = `INSERT INTO members
-      (id, FName, LName, Email, Address, City, State, Zip, Country, primary_phone,secondary_phone,IsPrimary, membershipType_id, secondary_member_of, isActive)
+      (id, FName, LName, Email, Address, City, State, Zip, Country, primary_phone,secondary_phone,IsPrimary, membershipType_id, secondary_member_of, isActive,date_created)
       VALUES
-      (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`;
+      (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,NOW())`;
   return sql.execute(insert,[
       memberData.fName,
       memberData.lName,
