@@ -37,6 +37,7 @@ const sendWelcomeEmail = async (membersData) => {
     info = await transporter.sendMail({
       from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
       to : membersData.email,
+      bcc : `info@ionbahamas.org;rashad.barnett@gmail.com`,
       subject: `Welcome to ION Bahamas ${membersData.fName} ${membersData.lName}`, // Subject line
       html: pug.renderFile(`${parentDir}/views/welcome.jade`, {membersData}) // html body
     });
