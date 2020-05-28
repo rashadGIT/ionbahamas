@@ -671,7 +671,7 @@ export default class MemberForm extends React.Component {
                     name="select"
                     id="exampleSelect"
                     onChange={this.handleCountry}
-                    disabled={false}>
+                    disabled={true}>
                     {this.state.countryList.map(country => <option key={country.code}>{country.code}</option>)}
                   </Input>
                 </FormGroup>
