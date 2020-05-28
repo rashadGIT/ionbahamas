@@ -33,3 +33,10 @@ package-lock.json
 js/node/node_modules/
 js/react/src/env/env.js
 js/express/node_modules/
+
+index.php
+js/express/env/ssl.env
+js/express/server.js
+
+.htaccess
+js/react/build/

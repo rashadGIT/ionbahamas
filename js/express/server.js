@@ -14,8 +14,8 @@ const env = require('dotenv').config({ path: paymentPath });
 const httpPort = 3001
 const httpsPort = 3500
 const httpsKeys = {
-  //key: fs.readFileSync(process.env.KEY_PATH),
-  //cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
+  key: fs.readFileSync(process.env.KEY_PATH),
+  cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
 };
 
 /*Sets Headers*/
