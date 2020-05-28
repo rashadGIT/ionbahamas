@@ -520,19 +520,6 @@ export default class MemberForm extends React.Component {
             <Row>
               <Col xs={12} md={6} lg={6}>
                 <FormGroup>
-                <button
-                  id="sq-creditcard"
-                  className="button-credit-card-cancel"
-                  onClick={async (event) => {
-                    event.preventDefault();
-                    let clear = await axios.post(`${env.proxy}/members/clear`);
-                    if(clear.request.status===200){
-                      alert("Database has been cleared.\nReady for new data.")
-                    }
-                  }}
-                  >
-                  Clear Database
-                </button>
                   <Label for="First Name">First Name* {(this.state.isFamily) ? <b>(Primary Member)</b> : null}</Label>
                   <Input
                     value={this.state.fName}
