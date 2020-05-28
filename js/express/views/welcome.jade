@@ -2,7 +2,7 @@
 html(lang='en')
   head
     style.
-      a {
+      .btn {
       background-color: #2ab3f6;
       border: none;
       color: white;
@@ -29,12 +29,11 @@ html(lang='en')
       .logo {
       max-width: 40%;
       height: auto;
-      padding-bottom: 50px;
+      padding-bottom: 0px;
       }
       .title{
       color : #0000A0;
       font-size: 200%;
-      display: inline-block;
       }
       .middle{
       color : #FFC502;
@@ -66,21 +65,20 @@ html(lang='en')
       .box
         center
           img.logo(src='https://ionbahamas.org/js/react/src/imgs/logo.jpg')
+          div.title Welcome to Ion Bahamas
+        p
+          | Dear #{membersData.fName} #{membersData.lName}
+        p
+          | Welcome to the Igniting Our Nation Bahamas Non-Profit Organization. You are now an inducted ION Bahamas member. Payment for your membership enrollment has been successful.
+        p
+          | Our mission is to be of assistance to, and enhance the lives of Bahamians and friends of The Bahamas, both at home and abroad via educational and civic engagement.  Please take the time to browse our website. Should you have any additional questions we may be contacted at info@ionbahamas.org. Thank you for joining our community. We welcome you to visit us on 
+          a(href='https://www.facebook.com/ION-Bahamas-101203231240251') Facebook
+          | .
+        p Regards,
+        p
+          | Carlisle Mott
           br
-          .title Welcome to Ion Bahamas
-          br
-          .middle Igniting Our Nation
-          .bottom Bahamas
-          br
-          br
-          p Welcome to the Igniting Our Nation Bahamas Non-Profit Organization. You are now an inducted ION Bahamas member. Your payment for your membership enrollment has been successful.
-          br
-          br
-          p Our mission is to be of assistance to, and enhance the lives of Bahamians and friends of The Bahamas, both at home and abroad via educational and civic engagement.  Please take the time to browse our website. Should you have any additional questions we may be contacted at info@ionbahamas.org. Join our facebook community. Thank you for joining this community!
-          p Regards,
-          br
-          p Carlisle Mott
-          br President
+          | President
         table
           tbody
             tr
@@ -114,4 +112,4 @@ html(lang='en')
             - }
         br
         center
-          a(href=`${membersData.result.payment.receipt_url}`) Download receipt
+          a(href=`${membersData.result.payment.receipt_url}`).btn Download receipt

@@ -35,9 +35,10 @@ const getMembershipData = async() => {
 
 const getMembersByEmailOrPhone = async(email,phone) => {
   return await members.getMembersByEmailOrPhone(email,phone);
-} 
+}
 
 const sendWelcomeEmail = async (membersData) => {
+  console.log(membersData)
   let info = await transporter.sendMail({
     from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
     to : membersData.email,
@@ -86,8 +87,8 @@ const addMembers = async (memberData) => {
     }
   }
   return {
-      id : primary.id, 
-      name : `${memberData.fName} ${memberData.lName}`, 
+      id : primary.id,
+      name : `${memberData.fName} ${memberData.lName}`,
       secondaryMembers : listOfSecondaryMembers
     }
 }

@@ -14,8 +14,8 @@ const getMembershipData = () => {
 }
 
 const getMembersByEmailOrPhone = (email,phone) => {
-    return sql.query(`select email, primary_phone from rashadba_IonTest.members where
-    upper(Email) = upper(?) or
+    return sql.query(`select email, primary_phone from rashadba_IonTest.members where 
+    upper(Email) = upper(?) or 
     primary_phone = ? LIMIT 1`,[email,phone])
     .then(x => x[0])
     .catch(err => {
@@ -29,7 +29,7 @@ const getMembersByEmailOrPhone = (email,phone) => {
 
 
 const getMembers = () => {
-    return sql.query(`Select
+    return sql.query(`Select 
     members.id,
     members.FName,
     members.LName,
@@ -45,9 +45,9 @@ const getMembers = () => {
     members.secondary_member_of,
     members.isActive,
     membershipType.Type
-    from members
+    from members 
     inner join membershipType
-    on
+    on 
     (members.membershipType_id = membershipType.id)`)
     .then(x => x[0])
     .catch(err => {
@@ -62,7 +62,7 @@ const getMembers = () => {
 const setMember = (memberData) => {
     let insert = `INSERT INTO members
         (id, FName, LName, Email, Address, City, State, Zip, Country, primary_phone,secondary_phone,IsPrimary, membershipType_id, secondary_member_of, isActive)
-        VALUES
+        VALUES 
         (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`;
     return sql.execute(insert,[
         memberData.fName,
@@ -88,6 +88,7 @@ const setMember = (memberData) => {
         type : 'Record Inserted'
     }})
     .catch(err => {
+        console.log(err)
         return {
         status : 500,
         message : err.message,
@@ -96,15 +97,9 @@ const setMember = (memberData) => {
         });
 }
 
-const deleteMember = (id) => {
-  let deleteSQL = "delete FROM ionbaham_Test.members where id = ? or secondary_member_of = ?";
-  return sql.execute(deleteSQL,[id,id]);
-}
-
 module.exports = {
     getMembers,
     setMember,
     getMembershipData,
-    getMembersByEmailOrPhone,
-    deleteMember
+    getMembersByEmailOrPhone
 };
