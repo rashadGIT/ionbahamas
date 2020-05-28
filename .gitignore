@@ -40,3 +40,8 @@ js/express/server.js
 
 .htaccess
 js/react/build/
+
+.easyssl_backup/
+backup/
+error_log
+sitemap.xml
