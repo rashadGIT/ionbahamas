@@ -16,8 +16,8 @@ const appenv = require('dotenv').config({ path: application });
 const httpPort = process.env.HTTP_PORT
 const httpsPort = process.env.HTTPS_PORT
 const httpsKeys = {
-  //key: fs.readFileSync(process.env.KEY_PATH),
-  //cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
+  key: fs.readFileSync(process.env.KEY_PATH),
+  cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
 };
 
 /*Sets Headers*/
