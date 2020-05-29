@@ -40,3 +40,5 @@ js/express/server.js
 
 .htaccess
 js/react/build/
+js/express/env/app.env
+js/express/env/ssl.env
