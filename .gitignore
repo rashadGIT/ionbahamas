@@ -45,3 +45,5 @@ js/react/build/
 backup/
 error_log
 sitemap.xml
+js/express/env/app.env
+js/express/env/ssl.env

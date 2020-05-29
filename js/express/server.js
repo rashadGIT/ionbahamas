@@ -10,12 +10,14 @@ const util = require('./util/util.js')
 const app = express()
 const resolve = require('path').resolve;
 const paymentPath = resolve(`${resolve(__dirname, '..')}/express/env/ssl.env`)
+const application = resolve(`${resolve(__dirname, '..')}/express/env/app.env`)
 const env = require('dotenv').config({ path: paymentPath });
-const httpPort = 3001
-const httpsPort = 3500
+const appenv = require('dotenv').config({ path: application });
+const httpPort = process.env.HTTP_PORT
+const httpsPort = process.env.HTTPS_PORT
 const httpsKeys = {
-  key: fs.readFileSync(process.env.KEY_PATH),
-  cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
+  //key: fs.readFileSync(process.env.KEY_PATH),
+  //cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
 };
 
 /*Sets Headers*/
