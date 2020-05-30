@@ -47,3 +47,4 @@ error_log
 sitemap.xml
 js/express/env/app.env
 js/express/env/ssl.env
+js/react/src/env/square.js
