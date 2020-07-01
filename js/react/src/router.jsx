@@ -6,6 +6,7 @@ import about from './pages/about';
 import donate from './pages/donate';
 import mission from './pages/mission';
 import testimonials from './pages/testimonials';
+import scholarship from './pages/scholarship';
 import volunteer from './pages/volunteer';
 import board from './pages/board';
 import calendar from './pages/calendar';
@@ -20,6 +21,7 @@ render ((
             <Route path="/about" component={about} />
             <Route path="/donate" component={donate} />
             <Route path="/mission" component={mission} />
+            <Route path="/scholarship" component={scholarship} />
             <Route path="/testimonials" component={testimonials} />
             <Route path="/volunteer" component={volunteer} />
             <Route path="/board" component={board} />
