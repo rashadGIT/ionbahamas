@@ -7,7 +7,7 @@ const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 const members = require('./members.js');
-console.log(process.env.emailHost)
+
 const transporter = nodemailer.createTransport({
   host: process.env.emailHost,
   port: process.env.emailPort,
@@ -30,6 +30,18 @@ const sendWelcomeEmail = async (membersData) => {
     return info;
 }
 
+const sendScholarshipEmail = async (membersData) => {
+    let info = await transporter.sendMail({
+        from: `${process.env.emailSender} <${process.env.emailUsername}>`, // sender address
+        to : membersData.email,
+        subject: 'Welcome to ION Bahamas Today', // Subject line
+        html: pug.renderFile(`${parentDir}/views/welcome.jade`, {membersData}) // html body
+    });
+    return info;
+}
+
 module.exports = {
-    sendWelcomeEmail
+    sendWelcomeEmail,
+    sendScholarshipEmail,
+    transporter
 };

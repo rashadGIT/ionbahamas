@@ -17,7 +17,8 @@ const links = [
   { href: '/', text: 'Home' },
   { href: '/about', text: 'About Us' },
   { href: '/board', text: 'Our Board' },
-  { href: '/calendar', text: 'Calendar' }
+  { href: '/calendar', text: 'Calendar' },
+  { href: '/scholarship', text: 'Apply For Scholarship'}
 ];
 
 const createNavItem = ({ href, text, className }) => (
