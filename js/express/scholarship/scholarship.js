@@ -7,6 +7,6 @@ const parentDir = resolve(__dirname, '..');
 const filename = path.basename(__filename);
 const scholarship = require('../modules/scholarship.js');
 
-app.get('/submit', async (req, res) => res.send(await scholarship.submit(req.body)))
+app.post('/submit', async (req, res) => res.send(await scholarship.submit(req.body)))
 
 module.exports = app;

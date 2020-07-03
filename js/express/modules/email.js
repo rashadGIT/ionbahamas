@@ -9,16 +9,18 @@ require('dotenv').config({ path: `${parentDir}/env/email.env` });
 const members = require('./members.js');
 
 const transporter = nodemailer.createTransport({
-  host: process.env.emailHost,
-  port: process.env.emailPort,
-  secure: true, // true for 465, false for other ports
-  auth: {
-      user: process.env.emailUsername, // generated ethereal user
-      pass: process.env.emailPassword // generated ethereal password
-  },
-  debug: false, // show debug output
-  logger: false // log information in console
-});
+    host: process.env.emailHost,
+    port: process.env.emailPort,
+    secure: true, // true for 465, false for other ports
+    auth: {
+        user: process.env.emailUsername, // generated ethereal user
+        pass: process.env.emailPassword // generated ethereal password
+    },
+    tls: { rejectUnauthorized: false },
+    requireTLS: false, 
+    debug: false, // show debug output
+    logger: false // log information in console
+  });
 
 const sendWelcomeEmail = async (membersData) => {
     let info = await transporter.sendMail({

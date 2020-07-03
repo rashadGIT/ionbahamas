@@ -9,20 +9,8 @@ const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 var sql = require('../util/db.js');
 var dateFormat = require('dateformat');
-
-const transporter = nodemailer.createTransport({
-  host: process.env.emailHost,
-  port: process.env.emailPort,
-  secure: true, // true for 465, false for other ports
-  auth: {
-      user: process.env.emailUsername, // generated ethereal user
-      pass: process.env.emailPassword // generated ethereal password
-  },
-  tls: { rejectUnauthorized: false },
-  requireTLS: false, 
-  debug: false, // show debug output
-  logger: false // log information in console
-});
+var email = require(`./email.js`);
+const transporter = email.transporter;
 
 const getMemberById = async(id) => await members.getMembers();
 

@@ -14,12 +14,10 @@ const paymentPath = resolve(`${resolve(__dirname, '..')}/express/env/ssl.env`)
 const application = resolve(`${resolve(__dirname, '..')}/express/env/app.env`)
 const env = require('dotenv').config({ path: paymentPath });
 const appenv = require('dotenv').config({ path: application });
+const ssl = require('./ssl/ssl.js')
 const httpPort = process.env.HTTP_PORT
 const httpsPort = process.env.HTTPS_PORT
-const httpsKeys = {
-  //key: fs.readFileSync(process.env.KEY_PATH),
-  //cert: fs.readFileSync(process.env.CERTIFICATE_PATH)
-};
+const httpsKeys = ssl;
 
 /*Sets Headers*/
 app.all('*', (req, res, next) => {
