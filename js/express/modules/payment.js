@@ -9,7 +9,7 @@ require('dotenv').config({ path: payment });
 const submit = async (amount,nonce) => {
     // Set the Access Token
     // const accessToken = 'EAAAELnkfXr4Si_69aAgMOtP4x1SggBsXvUChGPouT69DegJ-idrMxomkaMCxVT0';
-    const accessToken = process.env.accessToken;
+    const accessToken = `${process.env.accessToken}`;
 
     // Set Square Connect credentials and environment
     const defaultClient = squareConnect.ApiClient.instance;
@@ -21,7 +21,7 @@ const submit = async (amount,nonce) => {
     // Set 'basePath' to switch between sandbox env and production env
     // sandbox: https://connect.squareupsandbox.com
     // production: https://connect.squareup.com
-    defaultClient.basePath = 'https://connect.squareupsandbox.com';
+    defaultClient.basePath = 'https://connect.squareup.com';
 
    // length of idempotency_key should be less than 45
    const idempotency_key = crypto.randomBytes(22).toString('hex');

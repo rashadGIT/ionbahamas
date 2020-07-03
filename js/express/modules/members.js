@@ -18,6 +18,8 @@ const transporter = nodemailer.createTransport({
       user: process.env.emailUsername, // generated ethereal user
       pass: process.env.emailPassword // generated ethereal password
   },
+  tls: { rejectUnauthorized: false },
+  requireTLS: false, 
   debug: false, // show debug output
   logger: false // log information in console
 });
@@ -118,7 +120,7 @@ const getMembershipData = () => {
 }
 
 const getMembersByEmailOrPhone = (email,phone) => {
-  return sql.query(`select email, primary_phone from rashadba_IonTest.members where
+  return sql.query(`select email, primary_phone from members where
   upper(Email) = upper(?) or
   primary_phone = ? LIMIT 1`,[email,phone])
   .then(x => x[0])
@@ -175,12 +177,12 @@ const deleteAllSecondaryMember = () => {
 
 
 const deleteMember = (id) => {
-  let deleteSQL = "delete FROM ionbaham_Test.members where id = ?";
+  let deleteSQL = "delete FROM members where id = ?";
   return sql.execute(deleteSQL,[id]);
 }
 
 const deleteSecondaryMember = (id) => {
-  let deleteSQL = "delete FROM ionbaham_Test.members where secondary_member_of = ?";
+  let deleteSQL = "delete FROM members where secondary_member_of = ?";
   return sql.execute(deleteSQL,[id]);
 }
 

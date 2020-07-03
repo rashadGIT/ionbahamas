@@ -48,3 +48,17 @@ sitemap.xml
 js/express/env/app.env
 js/express/env/ssl.env
 js/react/src/env/square.js
+
+js/express/env/db.env
+js/express/env/payment.env
+js/react/src/env/square.js
+js/react/src/logo.svg
+js/react/src/imgs/
+js/react/src/docs/
+js/express/env/
+js/react/public/
+js/react/src/env/
+js/react/src/serviceWorker.js
+js/react/src/App.test.js
+
+
