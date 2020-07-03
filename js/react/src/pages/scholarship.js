@@ -39,7 +39,6 @@ class index extends Component {
       alert(`Your application has been submitted.`);
       window.location.href = "/";
     }
-
     event.preventDefault();
   }
 
