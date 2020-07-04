@@ -30,7 +30,7 @@ class index extends Component {
   }
 
   async handleSubmit(event) {
-    let data = await axios.post(`${env.sever}${env.proxy}/scholarship/submit`,{
+    let data = await axios.post(`${env.proxy}/scholarship/submit`,{
       email : this.state.email,
       name : this.state.name,
       vidLink : this.state.vidLink
