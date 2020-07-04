@@ -74,7 +74,7 @@ class index extends Component {
             &bull;Community involvement
           </p>
           <p className="upperCase">
-            If you could change the world with yous degree:<br />
+            If you could change the world with your degree:<br />
             1. What would you do?<br />
             2. How would you do it?
           </p>
