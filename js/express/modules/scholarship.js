@@ -22,7 +22,6 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 const submit = async (scholarInfo) => {
   let info = {};
   let count = 1;
-  console.log(scholarInfo)
   do{
     try{
       info = await transporter.sendMail({
