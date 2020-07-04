@@ -49,7 +49,7 @@ js/express/env/app.env
 js/express/env/ssl.env
 js/react/src/env/square.js
 
-js/express/env/db.env
+js/express/env/
 js/express/env/payment.env
 js/react/src/env/square.js
 js/react/src/logo.svg
@@ -60,5 +60,5 @@ js/react/public/
 js/react/src/env/
 js/react/src/serviceWorker.js
 js/react/src/App.test.js
-
-
+js/react/public/index.html
+js/express/ssl/ssl.js
