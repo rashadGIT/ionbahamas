@@ -161,9 +161,9 @@ class home extends Component {
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open(farmPayPalLink)}>
                         Support Bahamian Agriculture
                       </NavLink>
-                      <NavLink tag={RRNavLink} to="/scholarship">
+                      {/* <NavLink tag={RRNavLink} to="/scholarship">
                         Apply For Scholarship
-                      </NavLink>
+                      </NavLink> */}
                       <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJDB7WWHEMGLA&source=url")}>
                         <b>{collegeMsgBox}</b>
                       </NavLink>
