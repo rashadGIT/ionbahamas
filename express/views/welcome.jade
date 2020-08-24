@@ -1,0 +1,115 @@
+- var secondaryMembers = membersData.secondaryMembers;
+html(lang='en')
+  head
+    style.
+      .btn {
+      background-color: #2ab3f6;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 15px;
+      font-size: 16px;
+      }
+      .boarder{
+      max-width: 600px;
+      padding: 1rem;
+      position: relative;
+      background: linear-gradient(to bottom, #28b3f6, #2ab3f6, #708ae8);
+      padding: 20px;
+      }
+      .box{
+      background: #FFFFFF;
+      color: black;
+      padding: 2rem;
+      }
+      .logo {
+      max-width: 40%;
+      height: auto;
+      padding-bottom: 0px;
+      }
+      .title{
+      color : #0000A0;
+      font-size: 200%;
+      }
+      .middle{
+      color : #FFC502;
+      font-size: 150%;
+      }
+      .bottom{
+      color : #000000;
+      font-size: 120%;
+      display: inline-block;
+      }
+      table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      }
+      td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      }
+      tr:nth-child(even) {
+      background-color: #dddddd;
+      }
+      tr:nth-child(odd) {
+      background-color: #ffffff;
+      }
+  body
+    .boarder
+      .box
+        center
+          img.logo(src='https://ionbahamas.org/js/react/src/imgs/logo.jpg')
+          div.title Welcome to Ion Bahamas
+        p
+          | Dear #{membersData.fName} #{membersData.lName}
+        p
+          | Welcome to the Igniting Our Nation Bahamas Non-Profit Organization. You are now an inducted ION Bahamas member. Payment for your membership enrollment has been successful.
+        p
+          | Our mission is to be of assistance to, and enhance the lives of Bahamians and friends of The Bahamas, both at home and abroad via educational and civic engagement.  Please take the time to browse our website. Should you have any additional questions we may be contacted at info@ionbahamas.org. Thank you for joining our community. We welcome you to visit us on 
+          a(href='https://www.facebook.com/ION-Bahamas-101203231240251') Facebook
+          | .
+        p Regards,
+        p
+          | Carlisle Mott
+          br
+          | President
+        table
+          tbody
+            tr
+              th Order Details
+              th Product
+              th Status
+            tr
+              td
+                div Date : #{membersData.result.payment.created_at}
+                div Amount : #{membersData.result.payment.total_money.amount} #{membersData.result.payment.total_money.currency}
+                div Card Type : #{membersData.result.payment.card_details.card.card_type}
+                div Last 4 : #{membersData.result.payment.card_details.card.last_4}
+              td 1-Year(s) Membership
+              td #{membersData.result.payment.status}
+        br
+        table
+          tbody
+            tr
+              th id
+              th #{membersData.type} Member(s)
+              th Type
+              tr
+                td #{membersData.primaryId}
+                td #{membersData.fName} #{membersData.lName}
+                td Primary
+            - for (var i = 0; i < secondaryMembers.length ; i++) {
+              tr
+                td #{secondaryMembers[i].id}
+                td #{secondaryMembers[i].name}
+                td Secondary
+            - }
+        br
+        center
+          a(href=`${membersData.result.payment.receipt_url}`).btn Download receipt
