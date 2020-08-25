@@ -12,6 +12,7 @@ import board from './pages/board';
 import calendar from './pages/calendar';
 import pageNotFound from './pages/pageNotFound';
 import pleasePrint from './pages/pleasePrint';
+import newMemberList from './pages/newMembers';
 import Member from './components/Member';
 
 render ((
@@ -28,6 +29,7 @@ render ((
             <Route path="/member/:type" render={({match}) => <Member type={match.params.type}/>} />
             <Route path="/calendar" component={calendar} />
             <Route path="/pleasePrint" component={pleasePrint} />
+            <Route path="/signUps" component={newMemberList} />
             <Route component={pageNotFound} />
         </Switch>
     </HashRouter>
