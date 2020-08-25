@@ -122,6 +122,8 @@ const getMembersByEmailOrPhone = (email,phone) => {
 }
 
 const getMemberSignUpBetween = (start,end) =>{
+  console.log(start)
+  console.log(end)
   return sql.query(`SELECT m.Fname, m.Lname, mt.Type, mt.Price, 
     DATE_FORMAT(m.date_created,"%W %M %D, %Y %l:%i:%s %p") record_created FROM members as m
     inner join membershipType as mt
