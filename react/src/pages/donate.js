@@ -1,85 +1,149 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import '../css/donate.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Button, FormGroup, Label, Input,} from 'reactstrap';
+import { Link as RRNavLink } from "react-router-dom";
+import pleaseRead from '../imgs/pleaseRead.gif'
+import axios from 'axios';
+import { environment as env } from '../env/env.js';
+import Calendar from 'react-calendar';
+import {causes} from '../module/causes'
+import Card from '../components/card'
+import { format } from "date-fns";
+import Donate from '../components/Donate';
+import { square } from '../env/square'
+let paymentForm = {};
 
 const bread = [
   {order : 2, title: "Donate", link : "/donate"},
   {order : 1, title: "Home", link : "/"}
 ].sort((a,b) => a.order - b.order);
 
-class donate extends Component {
+class donations extends Component {
   constructor(props){
     super(props);
     this.state={
+      date: new Date(),
+      range : null,
+      start : "",
+      end : "",
+      members : [],
       loading : true,
-      err : false
+      err : false,
+      amount : 0
     }
+    this.setAmount = this.setAmount.bind(this)
   }
+
+  setAmount = (evt) => {
+    let text = evt.target.value
+    if(text.length === 0) text = 0;
+    this.setState({amount : text})
+  }
+
+  async cardNonceResponseReceived(errors, nonce, cardData){
+    this.togglePopup();
+    var bodyFormData = new FormData();
+    bodyFormData.set('amount' , this.state.amount);
+    bodyFormData.set('nonce' , nonce);
+  }
+
 
   componentWillMount(){
-
+    // eslint-disable-next-line no-undef
+    paymentForm = new SqPaymentForm({
+      applicationId: square.applicationId,
+      inputClass: square.inputClass,
+      autoBuild: square.autoBuild,
+      inputStyles: square.inputStyles,
+      cardNumber: square.cardNumber,
+      cvv: square.cvv,
+      expirationDate: square.expirationDate,
+      postalCode: square.postalCode,
+      callbacks: { cardNonceResponseReceived: async (errors, nonce, cardData) => {
+        this.cardNonceResponseReceived(errors, nonce, cardData)
+      }}
+    });
   }
 
-  componentDidMount(){
+  componentDidMount (){
 
   }
   componentDidCatch(error, errorInfo){
     this.setState({err : true})
   }
 
+  onChange = date => this.setState({ date })
+
+  dateFormat = (date) => format(date, "yyyy-MM-dd");
   
+  getRange = async range => {
+    let start = this.dateFormat(range[0]);
+    let end = this.dateFormat(range[range.length - 1]);
+    let data = await axios.post(`${env.proxy}/members/getMemberSignUpBetween`,{
+      start : start,
+      end : end
+    })
+    console.log(data.data)
+    this.setState({ range, start, end, members : data.data})
+  }
+
+  
+
   render() {
     return (
-      <div>
-        <Container fluid={true} style={{paddingTop : '10px'}}>
-          <Row noGutters={false} center="xs" >
-            <Col xs={12} lg={6} md={{ span: 6, offset: 0 }}>
-            {/* <img 
-              className="supportImg"
-              width="100%"
-              alt="" 
-              src='https://d3ayyz93zozlya.cloudfront.net/uploaded-images/articlemainimage/microvolunteering-making-a-difference-in-a-matter-of-minutes-588a3926ecd2b.jpeg' />
-            <h1>Your donations make a difference</h1>
-            <center>
-              <a 
-                href="/about"
-                style={{border: 'none'}} >
-                  <img 
-                    alt="Make your payments with PayPal. It is free, secure, effective."
-                    src={"https://jaschoolsupport.org/wp-content/uploads/2018/02/paypal-credit-card-images1.jpg"} />
-              </a>
-            </center> */}
-            <p>
-              If you would like to send a check , please send to:
-              <br />
-              <h5><b>123 Main St <br />Dallas TX, 12345
-              </b><br /></h5>
-                Our programs — and the kids they support — cannot succeed without your generosity. Every donation, no matter how small or how large, can make a difference. Most of our funding comes from individuals like you; those who understand how an education increases a child’s opportunities.
-              </p>
-              <h4>Short on cash; Donate your time.</h4>
-              <p>
-                SignUp to become a <a href="/about">Volunteer</a>
-              </p>
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick" />
-                <input type="hidden" name="hosted_button_id" value="QMC5JV7U8BDNU" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-              </form>
-
-                </Col>
-                <Col xs={12} lg={6} md={{ span: 6, offset: 0 }}>
-            <h1>What you are supporting.</h1>
-            {[1,2,3,4,5].map(x => <h3>Support {x}</h3>)}
+        <Container fluid={true} style={{padding : '50px 25px 0px 25px'}}>
+          <Row>
+            <Col>
+              <Row>
+                <Col xs={12} md={12} lg={12}>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type="checkbox" />{' '}
+                        Make me anonymous
+                      </Label>
+                    </FormGroup>
                 </Col>
               </Row>
-            </Container>
-      </div>
+              <Row>
+                <Col xs={12} md={6} lg={6}>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                  </FormGroup>
+                </Col>
+                <Col xs={12} md={6} lg={6}>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              </Col>
+              <Col>
+                <FormGroup>
+                    <Label for="exampleEmail">Donation</Label>
+                    <Input type="text" name="email" id="exampleEmail" placeholder="with a placeholder" onChange={this.setAmount}/>
+                    <Donate
+                      paymentForm = {paymentForm}
+                      amount={this.state.amount}
+                      />
+                </FormGroup>
+              </Col>
+          </Row>
+        </Container>
     );
   }
 }
 
-export default Layout(donate,bread);
+export default Layout(donations,bread);
