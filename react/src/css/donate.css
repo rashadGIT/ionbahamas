@@ -1,3 +1,17 @@
+.container-flex-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly ;
+}
+.grow { 
+    transition: all .2s ease-in-out;
+    display : inline-block;
+  }
+.grow:hover { 
+    transform: scale(1.1); 
+    cursor: pointer;
+}
 .supportImg{
     display: none;
 }

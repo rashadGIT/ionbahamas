@@ -3,7 +3,8 @@ import {render} from 'react-dom';
 import { Route, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
-import donate from './pages/donate';
+import donations from './pages/donations';
+import donate from './pages/donate'
 import mission from './pages/mission';
 import testimonials from './pages/testimonials';
 // import scholarship from './pages/scholarship';
@@ -30,6 +31,8 @@ render ((
             <Route path="/calendar" component={calendar} />
             <Route path="/pleasePrint" component={pleasePrint} />
             <Route path="/signUps" component={newMemberList} />
+            <Route path="/donate/:type" component={donate} />
+            <Route path="/donations" component={donations} />
             <Route component={pageNotFound} />
         </Switch>
     </HashRouter>

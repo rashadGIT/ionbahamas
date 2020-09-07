@@ -11,6 +11,8 @@ import formDOC from '../docs/membershipForm.docx';
 import '../css/membership.css';
 import axios from 'axios';
 import { environment as env } from '../env/env.js';
+import {StyleRoot} from 'radium';
+import {styles} from '../module/styles'
 
 let membershipTypes = [{
   type : "Family",
@@ -79,13 +81,14 @@ export default class extends Component{
     //let val = this.getInfo("Family")
     // console.log(val)
     return(
-      <div className="membership">
+      <StyleRoot className="membership">
         <div className="membershipTitle">
           <h5>Membership Categories</h5>
         </div>
+        <div style={styles.slideInLeft}>
           {membershipTypes.map((membership,i) =>{
             let val = this.getInfo(membership.type)
-            if(val != undefined) {
+            if(val !== undefined) {
               membership.amount = val.Price
               }
              return <div key={i} style={{display: 'inline-block', padding: '5px'}}>
@@ -109,9 +112,10 @@ export default class extends Component{
                 </div>
               </div>
             </div>})}
+            </div>
             <br />
             <b>Email completed membership forms to <a href="mailto:info@ionbahamas.org?subject=Membership Form">info@ionbahamas.org</a></b>
-    </div>
+    </StyleRoot>
     )
   }
 }
