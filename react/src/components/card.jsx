@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import {Link as RRNavLink } from "react-router-dom";
+import {BrowserRouter as Router, Link as RRNavLink } from "react-router-dom";
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -35,14 +35,14 @@ export default (props) =>
           </CardSubtitle>
           <br />
             <CardText>{props.description}</CardText>
-            <center>
+            {/* <center>
                 <Button 
                     color="danger"
                     tag={RRNavLink}
                     to={`/donate/${props.type}`}
                     >Donate !!
                 </Button>
-            </center>
+            </center> */}
         </CardBody>
       </Card>
     </div>

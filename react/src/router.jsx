@@ -31,7 +31,7 @@ render ((
             <Route path="/calendar" component={calendar} />
             <Route path="/pleasePrint" component={pleasePrint} />
             <Route path="/signUps" component={newMemberList} />
-            <Route path="/donate" component={donate} />
+            <Route path="/donate/:type" component={donate} />
             <Route path="/donations" component={donations} />
             <Route component={pageNotFound} />
         </Switch>
