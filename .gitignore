@@ -36,7 +36,7 @@ express/node_modules/
 
 index.php
 express/env/ssl.env
-express/server.js
+#express/server.js
 
 .htaccess
 react/build/
