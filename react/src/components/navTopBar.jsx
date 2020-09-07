@@ -61,11 +61,11 @@ export default class Example extends Component {
             <Nav className="ml-auto" navbar>
               {links.map(createNavItem)}
               <NavItem>
-                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMC5JV7U8BDNU&source=url");}} >Donate</NavLink>
+                <NavLink tag={RRNavLink} to="/donations">Donate</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={RRNavLink} to="#" onClick={(event) => {window.open("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJDB7WWHEMGLA&source=url");}} ><b>Texas College Student Relief Efforts</b></NavLink>
-              </NavItem>
+              {/* <NavItem>
+                <NavLink tag={RRNavLink} to="/donate/StudentRelief"><b>Texas College Student Relief Efforts</b></NavLink>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </Navbar>
