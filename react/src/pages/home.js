@@ -86,15 +86,15 @@ class home extends Component {
                             <b>Join Us in the fight against food <br />insecurity in the Bahamas</b>
                           </center><br />
                           <center>
-                          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                          {/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_s-xclick" />
                             <input type="hidden" name="hosted_button_id" value="PBJXGQZCLPDDS" />
                             <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                             <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                          </form>
-                            {/* <Link to="/about">
-                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Purchase Tickets</Button>
-                            </Link> */}
+                          </form> */}
+                            <RRNavLink to="/donate/Agriculture">
+                              <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate</Button>
+                            </RRNavLink>
                           </center>
                         </div>
                       </div>
@@ -173,19 +173,22 @@ class home extends Component {
               </Col>
               <Col xs={12} lg={6} md={{ span:6, offset: 0 }}>
                 <div className="meetingBox">
-                  <div className="meetingBoxTitle">Hurricane Dorian Relief Efforts</div>
+                  <div className="meetingBoxTitle">Disaster Relief Efforts</div>
                   <div  className="meetingBoxDescription">
                     <p>As we’re all aware by now, Hurricane Dorian, a severe category 5 storm, has inflicted catastrophic damage on the northern Bahamas. Many are left in its wake without shelter and basic needs and we know that the road to recovery will be a long and difficult one.</p>
                     <p>ION Bahamas will facilitate a monetary donation drive, with 100% of proceeds directly benefiting survivors of Dorian’s wrath.</p>
                     <p>Please follow the following link to our website and hit the Hurricane Dorian Relief Efforts button to donate.</p>
                     <p>We appreciate any help you can provide. We are our brothers’ keepers.</p>
                     <center>
-                      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                      {/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                         <input type="hidden" name="cmd" value="_s-xclick" />
                         <input type="hidden" name="hosted_button_id" value="TP2UXFQ8YDP24" />
                         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
                         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-                      </form>
+                      </form> */}
+                      <RRNavLink to="/donate/DisasterRelief">
+                        <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate to Disaster Relief Fund</Button>
+                      </RRNavLink>
                     </center>
                   </div>
                 </div>

@@ -1,6 +1,9 @@
 import React from 'react';
 import SquareConnect from 'square-connect'
 import '../css/mysqpaymentform.css'
+import { it } from 'date-fns/esm/locale';
+
+const regex = RegExp('^(\\d+.\\d{0,2})$');
 
 export default class Donate extends React.Component {
 
@@ -28,6 +31,16 @@ export default class Donate extends React.Component {
     this.props.paymentForm.requestCardNonce();
   }
 
+  getDollar(amount){
+    if(amount.length === 0 || isNaN(amount)){
+      amount = 0.00
+    }
+    return Number(amount).toLocaleString("US", {
+      style: "currency",
+      currency: "USD"
+    });
+  }
+
   render() {
       return (
           <div>
@@ -36,7 +49,7 @@ export default class Donate extends React.Component {
               <div className="third" id="sq-expiration-date"></div>
               <div className="third" id="sq-cvv"></div>
               <div className="third" id="sq-postal-code"></div>
-              <button id="sq-creditcard" className="button-credit-card" onClick={this.onGetCardNonce}>Pay ${this.props.amount}</button>
+              <button id="sq-creditcard" className="button-credit-card" onClick={this.onGetCardNonce}>Pay {this.getDollar(this.props.amount)}</button>
           </div>
         )
     }

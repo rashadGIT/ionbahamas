@@ -14,7 +14,7 @@ export const causes = [
     {
         type : "Agriculture",
         title : "Bahamian Agriculture Fund",
-        subTitle : "For our general activities",
+        subTitle : "Fight against food insecurity",
         description : "Helping farmers in The Bahamas feed their local communities.",
         template : "generalDonation.jade",
         img : require('../imgs/tractor.jpg'),
@@ -23,10 +23,19 @@ export const causes = [
     {
         type : "StudentRelief",
         title : "Student Relief Fund",
-        subTitle : "For our general activities",
-        description : "Help students continue their college education.",
+        subTitle : "Supporting Excellence",
+        description : "Helping students continue their college education.",
         template : "generalDonation.jade",
         img : require('../imgs/student.jpg'),
+        suggestedDonations : [20, 50, 100].filter(distinct).sort(sort)
+    },
+    {
+        type : "DisasterRelief",
+        title : "Disaster Relief Fund",
+        subTitle : "People Helping People",
+        description : "Helping communities most affected natural disasters.",
+        template : "generalDonation.jade",
+        img : require('../imgs/Dorian Aftermath.jpeg'),
         suggestedDonations : [20, 50, 100].filter(distinct).sort(sort)
     }
 

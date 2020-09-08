@@ -49,6 +49,7 @@ express/env/app.env
 express/env/ssl.env
 react/src/env/square.js
 
+express/docs/
 express/env/
 express/env/payment.env
 react/src/env/square.js

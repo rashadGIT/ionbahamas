@@ -145,7 +145,7 @@ class donations extends Component {
     if(data.status === 200){
         this.setState({message : "Success"})
         await delay(3000);
-        window.location.href = "/donations";
+        window.location.href = "/#/donations";
     }
     this.togglePopup()
   }
@@ -176,11 +176,18 @@ class donations extends Component {
         if(this.state.lName.trim().length === 0) err.push("lName");
         if(this.state.email.trim().length === 0) err.push("email");
         if(this.state.amount === 0) err.push("amount");
+        
 
         if(!regex.test(this.state.amount)){
           err.push("amount");
           alert(`${this.state.amount} is an  invalid amount.`);
         }
+
+        if(parseInt(this.state.amount) > 50000){
+          alert(`Thank you for your generosity.\nIf you would like to Donate an amount Greater than $50,000 please contact our board director.`)
+          return;
+        }
+
 
         if(err.length > 0){
           this.setState({err})
@@ -314,7 +321,13 @@ class donations extends Component {
                     </Row>
                   </FormGroup>
                   <FormGroup>
-                      {this.state.showOptionBox && <Input style={textBox.donate} type="text" name="donate" id="donateExample" onChange={this.setAmount} value={this.state.amount}/>}
+                      {this.state.showOptionBox && <Input 
+                        style={textBox.donate} 
+                        type="text" 
+                        name="donate" 
+                        maxLength="8"
+                        id="donateExample" 
+                        onChange={this.setAmount} value={this.state.amount}/>}
                       <Donate
                         paymentForm = {paymentForm}
                         amount={this.state.amount}
