@@ -16,18 +16,21 @@ main = async (membersData) => {
     d.setMonth(d.getMonth() - 1)
     let lastMonth = dateFormat(d, "mmmm yyyy");
     let monthlyDonations = await donations.getDonationsThisMonth();
+    if(monthlyDonations.length === 0) exit();
+    let total = monthlyDonations.map(x => x.Amount).reduce((a,b) => a + b).toLocaleString("en-US", {style:"currency", currency:"USD"})
     monthlyDonations = monthlyDonations.map(x => {
         x.Amount = x.Amount.toLocaleString("en-US", {style:"currency", currency:"USD"})
         x.date_donated = new Date(x.date_donated).toLocaleString("en-US", {timeZone: "America/Chicago"})
         return x;
     })
+
     do {
         try{
             info = await transporter.sendMail({
             from: `${process.env.emailSender} <${process.env.emailUsername}>`,
             to : `${process.env.emailBCC}`,
             subject: `Donation report for ${lastMonth}`, // Subject line
-            html: pug.renderFile(`${resolve(__dirname, '..')}/views/donationReport.jade`, {lastMonth,monthlyDonations}),
+            html: pug.renderFile(`${resolve(__dirname, '..')}/views/donationReport.jade`, {lastMonth,monthlyDonations,total}),
             });
         } catch(error) {
             console.log(error)
