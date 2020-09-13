@@ -32,7 +32,7 @@ html(lang='en')
       }
       .title{
       color : #0000A0;
-      font-size: 150%;
+      font-size: 180%;
       }
       .middle{
       color : #FFC502;
@@ -64,7 +64,8 @@ html(lang='en')
       .box
         center
           img.logo(src='https://ionbahamas.org/js/react/src/imgs/logo.jpg')
-          div.title Monthly Report #{lastMonth}
+          div.title Monthly Donations Report #{lastMonth}
+        br
         table
           tbody
             tr
@@ -75,9 +76,11 @@ html(lang='en')
               th Date Donated
             - for (var i = 0; i < monthlyDonations.length ; i++) {
               tr
-                td #{monthlyDonations[i].FName} #{monthlyDonations[i].vName}
+                td #{monthlyDonations[i].FName} #{monthlyDonations[i].LName}
                 td #{monthlyDonations[i].Email}
                 td #{monthlyDonations[i].Amount}
                 td #{monthlyDonations[i].Cause}
                 td #{monthlyDonations[i].date_donated}
             - }
+        h2
+          | Total : #{total}
