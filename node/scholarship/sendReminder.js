@@ -1,9 +1,9 @@
 var path = require('path');
 const resolve = path.resolve;
-const payment = resolve(`${resolve(__dirname, '../..')}/js/express/env/email.env`)
+const payment = resolve(`${resolve(__dirname, '../..')}/express/env/email.env`)
 require('dotenv').config({ path: payment });
 const pug = require('pug');
-var email = require(`${resolve(__dirname, '../..')}/js/express/modules/email.js`);
+var email = require(`${resolve(__dirname, '../..')}/express/modules/email.js`);
 const transporter = email.transporter;
 let renewMembers = [
     // {
@@ -46,11 +46,11 @@ main = async (membersData) => {
             to : `${membersData.email}`,
             bcc : `${process.env.emailBCC}`,
             subject: `ION Bahamas 2020/2021 Scholarship recipient - ${membersData.Name}`, // Subject line
-            html: pug.renderFile(`${resolve(__dirname, '../..')}/js/express/views/congratsScholarship.jade`, {membersData}),
+            html: pug.renderFile(`${resolve(__dirname, '../..')}/express/views/congratsScholarship.jade`, {membersData}),
             attachments: [
                 {
                   filename: 'ION Media Release Form.pdf',
-                  path: `${resolve(__dirname, '../..')}/js/express/docs/ION Media Release Form.pdf`,
+                  path: `${resolve(__dirname, '../..')}/express/docs/ION Media Release Form.pdf`,
                   cid: 'uniq-mailtrap.jade' 
                 }
             ]

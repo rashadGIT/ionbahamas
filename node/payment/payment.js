@@ -4,7 +4,7 @@ var path = require('path');
 const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 const filename = path.basename(__filename);
-const payment = require('../models/payment.js');
+const payment = require('../modules/payment.js');
 
 let main = async (amount,nonce) => {
     return await payment.submit(amount,nonce)
