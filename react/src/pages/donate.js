@@ -270,6 +270,7 @@ class donations extends Component {
                         type="text" 
                         name="fName" 
                         id="fName" 
+                        maxLength="20"
                         onChange={this.handleFName} value={this.state.fName}
                       />
                     </FormGroup>
@@ -283,7 +284,8 @@ class donations extends Component {
                         style={textBox.donate} 
                         type="text" 
                         name="lName" 
-                        id="lName" 
+                        id="lName"
+                        maxLength="20"
                         onChange={this.handleLName} value={this.state.lName} 
                       />
                     </FormGroup>
@@ -293,7 +295,13 @@ class donations extends Component {
                   <Col>
                     <FormGroup>
                       <Label for="exampleEmail" style={textBox.title}>Email</Label>
-                      <Input style={textBox.donate} type="email" name="email" id="exampleEmail" onChange={this.handleEmail} value={this.state.email} />
+                      <Input 
+                        style={textBox.donate} 
+                        type="email" 
+                        name="email" 
+                        id="exampleEmail"
+                        maxLength="50" 
+                        onChange={this.handleEmail} value={this.state.email} />
                     </FormGroup>
                   </Col>
                 </Row>

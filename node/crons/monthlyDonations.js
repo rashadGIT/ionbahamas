@@ -20,21 +20,20 @@ main = async (membersData) => {
         x.date_donated = new Date(x.date_donated).toLocaleString("en-US", {timeZone: "America/Chicago"})
         return x;
     })
-    
-    do {
-        try{
-            info = await transporter.sendMail({
-            from: `${process.env.emailSender} <${process.env.emailUsername}>`,
-            to : `${process.env.emailBCC}`,
-            subject: `Donation report for ${lastMonth}`, // Subject line
-            html: pug.renderFile(`${resolve(__dirname, '..')}/views/test.jade`, {monthlyDonations}),
-            });
-        } catch(error) {
-            console.log(error)
-            await delay(5000);
-        }
-    count++;
-    } while ((typeof info.accepted === 'undefined' || !info.accepted.includes(membersData.email)) && count < 5);
+    console.log(monthlyDonations)
+    // do {
+    //     try{
+    //         info = await transporter.sendMail({
+    //         from: `${process.env.emailSender} <${process.env.emailUsername}>`,
+    //         to : `${process.env.emailBCC}`,
+    //         subject: `Donation report for ${lastMonth}`, // Subject line
+    //         html: pug.renderFile(`${resolve(__dirname, '..')}/views/donationReport.jade`, {monthlyDonations}),
+    //         });
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // count++;
+    // } while ((typeof info.accepted === 'undefined' || !info.accepted.includes(process.env.emailBCC)) && count < 5);
     exit();
 }
 
