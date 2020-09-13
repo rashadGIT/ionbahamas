@@ -9,7 +9,7 @@ var donations = require(`${resolve(__dirname, '..')}/modules/donations.js`);
 var dateFormat = require('dateformat');
 const transporter = email.transporter;
 
-main = async (membersData) => {
+main = async () => {
     let info = {};
     let count = 1;
     var d = new Date();
