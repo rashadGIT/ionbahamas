@@ -32,7 +32,7 @@ html(lang='en')
       }
       .title{
       color : #0000A0;
-      font-size: 200%;
+      font-size: 150%;
       }
       .middle{
       color : #FFC502;
@@ -64,35 +64,7 @@ html(lang='en')
       .box
         center
           img.logo(src='https://ionbahamas.org/js/react/src/imgs/logo.jpg')
-          div.title Ion Bahamas Monthly Report 
-        p
-          | Dear 
-        p
-          | Welcome to the Igniting Our Nation Bahamas Non-Profit Organization. You are now an inducted ION Bahamas member. Payment for your membership enrollment has been successful.
-        p
-          | Our mission is to be of assistance to, and enhance the lives of Bahamians and friends of The Bahamas, both at home and abroad via educational and civic engagement.  Please take the time to browse our website. Should you have any additional questions we may be contacted at info@ionbahamas.org. Thank you for joining our community. We welcome you to visit us on 
-          a(href='https://www.facebook.com/ION-Bahamas-101203231240251') Facebook
-          | .
-        p Regards,
-        p
-          | Carlisle Mott
-          br
-          | President
-        table
-          tbody
-            tr
-              th Order Details
-              th Product
-              th Status
-            tr
-              td
-                div Date : 
-                div Amount : 
-                div Card Type : 
-                div Last 4 : 
-              td 1-Year(s) Membership
-              td 
-        br
+          div.title Monthly Report #{lastMonth}
         table
           tbody
             tr
@@ -109,6 +81,3 @@ html(lang='en')
                 td #{monthlyDonations[i].Cause}
                 td #{monthlyDonations[i].date_donated}
             - }
-        br
-        center
-          a(href=`${membersData.result.payment.receipt_url}`).btn Download receipt
