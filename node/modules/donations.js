@@ -11,10 +11,10 @@ const getDonationsThisMonth = () => {
         Email,
         Amount,
         Cause,
-        date_donated
+        DATE_FORMAT(date_donated,"%W, %M %D, %Y %l:%i:%s %p") date_donated
         FROM donations
         where date_donated between
-        (DATE_FORMAT(CURRENT_DATE() - INTERVAL 1 MONTH,'%Y-%m-01')) AND CURRENT_DATE()`)
+        (DATE_FORMAT(CURRENT_DATE() - INTERVAL 1 MONTH,'%Y-%m-01')) AND DATE_FORMAT(CURRENT_DATE() - INTERVAL 0 MONTH,'%Y-%m-01')`)
     .then(x => x[0])
     .catch(err => {
         return {
