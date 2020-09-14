@@ -1,8 +1,10 @@
 "use strict";
-var sql = require('../util/db.js');
+var path = require('path');
+const resolve = path.resolve;
+const sql = require(`${resolve(__dirname, '../..')}/express/util/db.js`);
 
 const getMembershipData = () => {
-    return sql.query(`SELECT id, Type, Price FROM rashadba_IonTest.membershipType`)
+    return sql.query(`SELECT id, Type, Price FROM membershipType`)
     .then(x => x[0])
     .catch(err => {
         return {
@@ -14,7 +16,7 @@ const getMembershipData = () => {
 }
 
 const getMembersByEmailOrPhone = (email,phone) => {
-    return sql.query(`select email, primary_phone from rashadba_IonTest.members where
+    return sql.query(`select email, primary_phone from members where
     upper(Email) = upper(?) or
     primary_phone = ? LIMIT 1`,[email,phone])
     .then(x => x[0])
@@ -49,6 +51,30 @@ const getMembers = () => {
     inner join membershipType
     on
     (members.membershipType_id = membershipType.id)`)
+    .then(x => x[0])
+    .catch(err => {
+        return {
+          status : 500,
+          message : err.message,
+          type : 'internal error'
+          }
+    });
+}
+
+const getLastMonthsMembers = () => {
+    return sql.query(`SELECT 
+        m.Fname, 
+        m.Lname, 
+        mt.Type, 
+        mt.Price, 
+        DATE_FORMAT(m.date_created,"%W, %M %D, %Y %l:%i:%s %p") record_created
+        FROM members as m
+        inner join membershipType as mt
+        on m.membershipType_id = mt.id
+        where m.isPrimary and m.date_created between
+        (DATE_FORMAT(CURRENT_DATE() - INTERVAL 1 MONTH,'%Y-%m-01')) 
+        AND 
+        DATE_FORMAT(CURRENT_DATE() - INTERVAL 0 MONTH,'%Y-%m-01')`)
     .then(x => x[0])
     .catch(err => {
         return {
@@ -106,5 +132,6 @@ module.exports = {
     setMember,
     getMembershipData,
     getMembersByEmailOrPhone,
-    deleteMember
+    deleteMember,
+    getLastMonthsMembers
 };
