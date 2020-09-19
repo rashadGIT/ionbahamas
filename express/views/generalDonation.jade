@@ -1,0 +1,77 @@
+html
+  head
+    style.
+      .btn {
+      background-color: #2ab3f6;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 15px;
+      font-size: 16px;
+      }
+      .boarder{
+      max-width: 600px;
+      padding: 1rem;
+      position: relative;
+      background: linear-gradient(to bottom, #28b3f6, #2ab3f6, #708ae8);
+      padding: 20px;
+      }
+      .box{
+      background: #FFFFFF;
+      color: black;
+      padding: 2rem;
+      }
+      .logo {
+      max-width: 40%;
+      height: auto;
+      padding-bottom: 0px;
+      }
+      table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      }
+      td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      }
+      tr:nth-child(even) {
+      background-color: #dddddd;
+      }
+      tr:nth-child(odd) {
+      background-color: #ffffff;
+      }
+  body
+    .boarder
+      .box
+        center
+          img.logo(src='https://ionbahamas.org/js/react/src/imgs/logo.jpg')
+        p Dear #{donationData.fName} #{donationData.lName}
+        p
+          | On behalf of ION (Igniting Our Nation) Bahamas, we would like to thank you for your generous #{squareData.result.payment.total_money.amount} donation to our #{donationData.donation.title} fund.
+        p #{donationData.donation.description}
+        table
+          tbody
+            tr
+              th Order Details
+              th Status
+            tr
+              td
+                div Fund : #{donationData.donation.title}
+                div Date : #{squareData.result.payment.created_at}
+                div Last 4 : #{squareData.result.payment.card_details.card.last_4}
+                div Amount : #{squareData.result.payment.total_money.amount}
+              td #{squareData.result.payment.status}
+        br
+        center
+          a.btn(href=`${squareData.result.payment.receipt_url}`) Download receipt
+        p Again, Thank you!
+        p
+          | Carlisle Mott
+          br
+          | 					President
