@@ -29,6 +29,13 @@
     top: 5%;
     max-width: 1000px;
 }
+
+.carouselTextContainerThanksgiving{
+    position: absolute;
+    left: 35%;
+    top: 5%;
+    max-width: 1000px;
+}
 #amznCharityBannerInner {
     background-image: url(https://m.media-amazon.com/images/G/01/x-locale/paladin/charitycentral/banner-background-image.CB485922134.png);
     width: 300px;
@@ -171,6 +178,16 @@
         padding : 15px;
         background: rgba(0,0,0, 0.75);
     }
+
+    .auctionTextDescriptionThanksgiving{
+        color: #ad552b;
+        text-align: start;
+        font-size: 20px;
+        border-width: 5px;
+        border-color: white;
+        padding : 15px;
+        /* background: rgba(0,0,0, 0.75); */
+    }
     .bannerTextDescription{
         color: black;
         text-align: start;
@@ -183,6 +200,18 @@
 
     .auctionTextTitle{
         color: white;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg);
+        -webkit-transform: skew(-20deg);
+        transform: skew(-20deg);
+        padding: 7px;
+    }
+
+    .auctionTextTitleThanksgiving{
+        color: #ad552b;
         font-weight: bold;
         font-size: 40px;
         font-family: "Times New Roman", Times, serif;
