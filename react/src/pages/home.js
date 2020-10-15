@@ -13,6 +13,7 @@ import logo from '../imgs/logo.jpg';
 import Smiles from '../imgs/Amazon-smiles.png';
 import youTube from '../imgs/youTubeLogo.png';
 import dorian from '../imgs/Dorian Aftermath.jpeg';
+import Thanksgiving from '../imgs/thanksgiving.jpg'
 import {Link as RRNavLink } from "react-router-dom";
 import { Button } from 'reactstrap';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -75,6 +76,41 @@ class home extends Component {
                     dynamicHeight={false}
                     className="carousel"
                   >
+                    <div key={"Thanksgiving"}>
+                      <img alt="" src={Thanksgiving} />
+                      <div className="carouselTextContainerThanksgiving">
+                        <div className="auctionTextDescriptionThanksgiving">
+                          <h1 className="auctionTextTitleThanksgiving">
+                            <center><i>Thanksgiving Gift Card <br />Giveaway</i></center>
+                          </h1>
+                          <center>
+                            <b>ION Bahamas is giving away thanksgiving gift cards to 5 families!</b>
+                            <p>
+                              Gift Card Drawing : <b>FRIDAY NOVEMBER 13TH</b>
+                            </p>
+                            <div>Application closes :  <b>Thursday NOVEMBER 12TH at midnight</b></div>
+                          </center>
+                          <center>
+                          {/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick" />
+                            <input type="hidden" name="hosted_button_id" value="PBJXGQZCLPDDS" />
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                          </form> */}
+                            {/* <RRNavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://docs.google.com/forms/d/e/1FAIpQLScxDh1Y8zt2kvsifeNKt82sNhN-lETK1NQ8RbCprdSVRHb1qg/viewform?usp=sf_link")}> */}
+                              <Button 
+                                onClick={(event) => window.open("https://docs.google.com/forms/d/e/1FAIpQLScxDh1Y8zt2kvsifeNKt82sNhN-lETK1NQ8RbCprdSVRHb1qg/viewform?usp=sf_link")}
+                                outline={false} 
+                                style={{color: 'black'}} 
+                                size="lg" 
+                                color="warning">
+                                  Application Today!
+                              </Button>
+                            {/* </RRNavLink> */}
+                          </center>
+                        </div>
+                      </div>
+                    </div>
                     <div key={"Agriculture"}>
                       <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
                       <div className="carouselTextContainer">
@@ -160,6 +196,11 @@ class home extends Component {
                       </NavLink>
                       <NavLink tag={RRNavLink} to="/donate/Agriculture">
                         Support Bahamian Agriculture
+                      </NavLink>
+                      <NavLink tag={RRNavLink} to="#" 
+                        onClick={(event) => window.open("https://docs.google.com/forms/d/e/1FAIpQLScxDh1Y8zt2kvsifeNKt82sNhN-lETK1NQ8RbCprdSVRHb1qg/viewform?usp=sf_link")}
+                      >
+                        Thanksgiving Gift Card Giveaway
                       </NavLink>
                       {/* <NavLink tag={RRNavLink} to="/scholarship">
                         Apply For Scholarship
