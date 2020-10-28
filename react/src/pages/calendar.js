@@ -24,7 +24,13 @@ import { format } from "date-fns";
 const localizer = momentLocalizer(moment)
 const dateFormat = (date) => format(date, "EEE LLL do, yyyy");
 const color = (num) => (num & 1) ? '#e6e6e6' : 'white'
-const getEventDate = (event) => (!event.endDate || event.startDate.getTime() === event.endDate.getTime()) ? `${dateFormat(event.startDate)}` : `${dateFormat(event.startDate)} - ${dateFormat(event.endDate - 1)}`
+const getEventDate = (event) => {
+  if( !event.endDate || (event.startDate && event.endDate && event.startDate.getTime() === event.endDate.getTime())){ 
+    return `${dateFormat(event.startDate)}`
+  } else{
+    return `${dateFormat(event.startDate)} - ${dateFormat(event.endDate - 1)}`
+  }
+}
 const donate = () => {
 
   const [open,setOpen] = useState(false);
@@ -75,25 +81,45 @@ const donate = () => {
               <center>
               <h2 style={{paddingBottom : '5px'}}>Events {new Date().getFullYear()}</h2>
               </center>
-              <List style={{borderStyle: 'solid', borderColor :color(1)}}>
+              <List style={{
+                paddingBottom: '0px',
+                paddingTop: '0px',
+                borderStyle: 'solid', 
+                borderColor :color(1)}}>
                 {events
                 .filter(x => x.endDate >= new Date().setHours(0,0,0,0))
                 .sort((a,b) => a.startDate - b.startDate)
                 .slice(0,3)
                 .map((x,i) => {
                   return <div key={i}>
-                    <ListItem alignItems="flex-start" style={{backgroundColor : color(i), cursor: 'pointer'}} >
+                    <ListItem 
+                      alignItems="flex-start" 
+                      style={{
+                        backgroundColor : color(i), 
+                        cursor: 'pointer'
+                      }} >
                       {(x.startDate) && <div>
-                        <IosAddCircleOutline  onClick={() => {
+                        <IosAddCircleOutline  
+                        onClick={() => {
                           setOpen(!open);
                           setEvent(x);
-                        }} fontSize="40px" color="#000000" 
-                        className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
+                        }} 
+                        fontSize="40px" 
+                        color="#000000" 
+                        className="eventPlus" 
+                        style={{
+                          color : 'balck', 
+                          position: 'absolute', 
+                          left : 20, 
+                          top: '50%', 
+                          msTransform: 'translateY(-50%)', 
+                          'transform': 'translateY(-50%)'
+                        }}
                         />
                       </div>}
                       <ListItemText
                         className="listItemText"
-                        primary={x.title}
+                        primary={`${x.title} ${x.cancelled ? "(Cancelled)" : ""}`}
                         secondary={
                           <React.Fragment>
                             <Typography
@@ -104,9 +130,15 @@ const donate = () => {
                               <div>Date : {getEventDate(x)}</div>
                               <div>Time : {x.startTime} - {x.endTime}</div>
                             </Typography>
-                            <Link onClick={() => window.open(x.mapURL)}>{x.location}</Link>
-                            <br />
-                            {x.description}
+                            {(x.mapURL !== null && x.location !== null) && 
+                              <Link style={{paddingBottom : '10px'}} onClick={() => window.open(x.mapURL)}>{x.location}</Link>
+                            
+                            }
+                            <div>{x.description}</div>
+                            {x.virtualEventLink && 
+                              <Link style={{paddingBottom : '10px'}} onClick={() => window.open(x.virtualEventLink)}>ZOOM LINK</Link>
+                            
+                            }
                             {x.calendarLink &&
                             <center>
                               <Button color="link" onClick={(event) => {window.open(x.calendarLink);}} >&#43; Add event to Google Calendar</Button>
@@ -119,56 +151,6 @@ const donate = () => {
                     </div>
                   })}
               </List>
-              <br />
-              
-              <h4>Upcoming Events</h4>
-                
-              <List style={{borderStyle: 'solid', borderColor :color(1)}}>
-                {upComingEvents
-                  .sort((a,b) => a.startDate - b.startDate)
-                  .slice(0,3)
-                  .map((x,i) => {
-                    return <div key={i}>
-                      <ListItem alignItems="flex-start" style={{backgroundColor : color(i)}} >
-                        {x.startDate && 
-                          <IosAddCircleOutline
-                            onClick={() => {
-                              setOpen(!open);
-                              setEvent(x);
-                            }} 
-                            fontSize="40px" 
-                            color="#000000" 
-                            className="eventPlus" 
-                            style={{
-                              color : 'balck', 
-                              position: 'absolute', 
-                              left : 20, 
-                              top: '50%', 
-                              msTransform: 'translateY(-50%)'
-                            }}
-                          />
-                        }
-                        <ListItemText
-                          className="listItemText"
-                          primary={x.title}
-                          secondary={
-                            <React.Fragment>
-                              <Typography
-                                component="span"
-                                variant="body2"
-                                color="textPrimary"
-                              >
-                                {x.startDate && dateFormat(x.startDate)}
-                              </Typography>
-                              <br />{x.description}
-                            </React.Fragment>
-                            }
-                          onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
-                        />
-                      </ListItem>
-                      </div>
-                    })}
-                </List>
             </div>
           </Col>
         </Row>
