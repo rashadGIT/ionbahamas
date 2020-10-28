@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState }from 'react';
 import {render} from 'react-dom';
+import ReactDOM from "react-dom";
 import { Route, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
@@ -16,7 +17,7 @@ import pleasePrint from './pages/pleasePrint';
 import newMemberList from './pages/newMembers';
 import Member from './components/Member';
 
-render ((
+ReactDOM.render(
     <HashRouter basename="/">
         <Switch>
             <Route exact path="/" component={home} />
@@ -35,5 +36,5 @@ render ((
             <Route path="/donations" component={donations} />
             <Route component={pageNotFound} />
         </Switch>
-    </HashRouter>
-),document.getElementById("root"));
+    </HashRouter>, 
+document.getElementById('root'));

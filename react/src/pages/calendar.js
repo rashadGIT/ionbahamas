@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -18,251 +18,163 @@ import { Button } from 'reactstrap';
 import {Link } from "react-router-dom";
 import '../css/calendar.css'
 import IosAddCircleOutline from 'react-ionicons/lib/IosAddCircleOutline'
+import {events, upComingEvents } from '../module/events'
+import { format } from "date-fns";
 
 const localizer = momentLocalizer(moment)
+const dateFormat = (date) => format(date, "EEE LLL do, yyyy");
+const color = (num) => (num & 1) ? '#e6e6e6' : 'white'
+const getEventDate = (event) => (!event.endDate || event.startDate.getTime() === event.endDate.getTime()) ? `${dateFormat(event.startDate)}` : `${dateFormat(event.startDate)} - ${dateFormat(event.endDate - 1)}`
+const donate = () => {
 
-const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-
-const events = [
-  {
-    allDay: false,
-    startDate: new Date("09/21/2019"),
-    endDate: new Date("09/21/2019"),
-    startTime : "7:00pm",
-    endTime : "10:00pm",
-    title: 'A Taste of Paradise Fundraising Gala Dinner & Silent Auction',
-    description : (<div><p>(Featuring a Uniquely Bahamian Mini Fashion Show)</p></div>),
-    calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+Taste+of+Paradise+Gala+Dinner&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=3536+Grand+Ave%2C+Dallas%2C+TX+75210&dates=20190922T000000Z%2F20190922T030000Z",
-    mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68",
-    location : (<div>African American Museum At Fair Park</div>)
-
-  },
-  {
-    allDay: false,
-    startDate: new Date("09/09/2019"),
-    endDate: new Date().setDate(new Date("09/13/2019").getDate()),
-    startTime : "8:00am",
-    endTime : "3:00pm",
-    title: 'Bahamas Relief Donation Drop-Off',
-    description : (<div><p>Collecting Donation for Hurricane Dorain Survivors</p></div>),
-    calendarLink: null,
-    mapURL : "https://goo.gl/maps/Nb6swsFeVxZhuKG57",
-    location : (<div>1434 Patton Place Suite 106b, Carrollton, TX 75007</div>)
-
-  },
-  {
-    allDay: false,
-    startDate: new Date("11/03/2019"),
-    endDate: new Date("11/03/2019"),
-    startTime : "3:00pm",
-    endTime : "6:00pm",
-    title: 'Bowl-A-Thon',
-    description : (<div><p>ION Bahamas 1st Annual Bowl-A-Thon</p></div>),
-    calendarLink: null,
-    mapURL : "https://www.google.com/maps/search/?api=1&query=1950+Marketplace+Dr.+Garland+TX+75401",
-    location : (<div>1950 Marketplace Dr, Garland, TX 75041, United States</div>)
-  },
-  {
-    allDay: false,
-    startDate: null,
-    endDate: null,
-    title: 'Golf Tournament',
-    description : null
-  },
+  const [open,setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [event, setEvent] = useState(events[0]);
   
-  ].filter(x => {
-      if(x.startDate === null) return true;
-      return x.startDate > new Date(Date.now() - (1000 * 60 * 60 * 24 * 30))
-    })
-  .sort((a,b) => a.startDate - b.startDate)
-  ;
-
-  
-  class donate extends Component {
-    constructor(props){
-      super(props);
-      this.state={
-        loading : true,
-        err : false,
-        selectedDate : new Date(),
-        date: new Date(),
-        width: 500,
-        open: false,
-        event : null
-      }
-    }
-
-    componentWillMount(){
-
-    }
-
-    componentDidMount(){
-      window.addEventListener("resize", () => {
-        this.setState({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      });
-
-    }
-    componentDidCatch(error, errorInfo){
-      this.setState({err : true})
-    }
-
-    color = (num) => {
-      if(num & 1) {
-        return '#e6e6e6'
-      }
-      else {
-        return  'white'
-      }
-    }
-
-    onOpenModal = () => {
-      this.setState({ open: true });
-    };
-   
-    onCloseModal = () => {
-      this.setState({ open: false });
-    };
-
-    render() {
-      return (
-        <div>
-          <Modal open={this.state.open} onClose={this.onCloseModal} center>
-            <h5 style={{paddingRight : 60}}>{(this.state.event) ? this.state.event.title : null}</h5>
-            <div>When : {(this.state.event) ? this.state.event.startDate.toLocaleDateString("en-US", options) : null}</div>
-            <div>Time : {(this.state.event) ? this.state.event.startTime : null} - {(this.state.event) ? this.state.event.endTime : null}</div>
-            <div>Location : {(this.state.event) ? <Link style={{display : 'inline-block'}} onClick={() => window.open(this.state.event.mapURL)}>{this.state.event.location}</Link> :  null}</div>
-            <div>{(this.state.event) ? this.state.event.description : null}</div>
-            <center>
-              <Button color="link" onClick={(event) => {window.open(this.state.event.calendarLink);}} >&#43; Add event to Google Calendar</Button>
-            </center>
-          </Modal>
-          <Container fluid={true}>
-            <Row>
-              <Col xs={{size :6, order : 2 }} md={{size :6 , order : 1}} className="bigCalendar">
-                <div style={{padding : '20px 0px 0px 20px'}}>
-                  <Calendar
-                    style={{height : 600}}
-                    localizer={localizer}
-                    events={events}
-                    culture='en-GB'
-                    views={['month']}
-                    startAccessor="startDate"
-                    endAccessor="endDate"
-                    onSelectEvent={x => this.setState({ 
-                        open : !this.state.open,
-                        event : x
-                      })}
-                    onNavigate={(date) => this.setState({ selectedDate: date })}
-                    toolbar={true}
-                    // step={60}
-                    // onView={() => {}}
-                    date={this.state.selectedDate}
-                    // onNavigate={date => this.setState({ date })}
-                  />
-                </div>
-              </Col>
-              <Col xs={{size :6 , order: 1 }} md={{size: 6 , order : 2}}>
-                <div style={{padding : '0px 0px 0px 0px'}}>
-                  <center>
-                    <h2>Events 2019</h2>
-                  </center>
-                  <List style={{borderStyle: 'solid', borderColor :this.color(1)}}>
-                    {events
-                    .filter(x => x.endDate >= new Date().setHours(0,0,0,0))
-                    .sort((a,b) => a.startDate - b.startDate)
-                    .map((x,i) => {
-                      return <div key={i}>
-                        <ListItem alignItems="flex-start" style={{backgroundColor : this.color(i), cursor: 'pointer'}} >
-                          {(x.startDate) ? <div>
-                            <IosAddCircleOutline  onClick={() => 
-                            this.setState({ 
-                              open : !this.state.open,
-                              event : x
-                            })} fontSize="40px" color="#000000" 
-                            className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
-                            />
-                          </div> : null}
-                          <ListItemText
-                            className="listItemText"
-                            primary={x.title}
-                            secondary={
-                              <React.Fragment>
-                                <Typography
-                                  component="span"
-                                  variant="body2"
-                                  color="textPrimary"
-                                >
-                                  <div>Date : {x.startDate.toLocaleDateString("en-US", options)}</div>
-                                  <div>Time : {x.startTime} - {x.endTime}</div>
-                                </Typography>
-                                <Link onClick={() => window.open(x.mapURL)}>{x.location}</Link>
-                                {x.description}
-                                {(x.calendarLink) ?
-                                <center>
-                                  <Button color="link" onClick={(event) => {window.open(x.calendarLink);}} >&#43; Add event to Google Calendar</Button>
-                                </center> : null}
-                              </React.Fragment>
-                              }
-                              onClick={() => this.setState({selectedDate: x.startDate})}
+    useEffect(() => {
+    },[]);
+  return (
+    <div>
+      <Modal open={open} onClose={() => setOpen(!open)} center>
+        <h5 style={{paddingRight : 60}}>{event.title}</h5>
+        <div>When : {getEventDate(event)}</div>
+        <div>Time : {`${event.startTime} - ${event.endTime}`}</div>
+        <div>Location : {event.location}</div>
+        <div>{event.description}</div>
+        <center>
+          <Button color="link" onClick={() => window.open(event.calendarLink)} >&#43; Add event to Google Calendar</Button>
+        </center>
+      </Modal>
+      <Container fluid={true}>
+        <Row>
+          <Col xs={{size :6, order : 2 }} md={{size :6 , order : 1}} className="bigCalendar">
+            <div style={{padding : '20px 0px 0px 20px'}}>
+              <Calendar
+                style={{height : 600}}
+                localizer={localizer}
+                events={events}
+                culture='en-GB'
+                views={['month']}
+                startAccessor="startDate"
+                endAccessor="endDate"
+                onSelectEvent={event => {
+                    setEvent(event)
+                    setOpen(!open);
+                }}
+                onNavigate={(date) => setSelectedDate(date)}
+                toolbar={true}
+                // step={60}
+                // onView={() => {}}
+                date={selectedDate}
+                // onNavigate={date => this.setState({ date })}
+              />
+            </div>
+          </Col>
+          <Col xs={{size :6 , order: 1 }} md={{size: 6 , order : 2}}>
+            <div style={{padding : '15px 0px 0px 0px'}}>
+              <center>
+              <h2 style={{paddingBottom : '5px'}}>Events {new Date().getFullYear()}</h2>
+              </center>
+              <List style={{borderStyle: 'solid', borderColor :color(1)}}>
+                {events
+                .filter(x => x.endDate >= new Date().setHours(0,0,0,0))
+                .sort((a,b) => a.startDate - b.startDate)
+                .slice(0,3)
+                .map((x,i) => {
+                  return <div key={i}>
+                    <ListItem alignItems="flex-start" style={{backgroundColor : color(i), cursor: 'pointer'}} >
+                      {(x.startDate) && <div>
+                        <IosAddCircleOutline  onClick={() => {
+                          setOpen(!open);
+                          setEvent(x);
+                        }} fontSize="40px" color="#000000" 
+                        className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
+                        />
+                      </div>}
+                      <ListItemText
+                        className="listItemText"
+                        primary={x.title}
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              component="span"
+                              variant="body2"
+                              color="textPrimary"
+                            >
+                              <div>Date : {getEventDate(x)}</div>
+                              <div>Time : {x.startTime} - {x.endTime}</div>
+                            </Typography>
+                            <Link onClick={() => window.open(x.mapURL)}>{x.location}</Link>
+                            <br />
+                            {x.description}
+                            {x.calendarLink &&
+                            <center>
+                              <Button color="link" onClick={(event) => {window.open(x.calendarLink);}} >&#43; Add event to Google Calendar</Button>
+                            </center>}
+                          </React.Fragment>
+                          }
+                          onClick={() => setSelectedDate(x.startDate)}
+                      />
+                    </ListItem>
+                    </div>
+                  })}
+              </List>
+              <br />
+              
+              <h4>Upcoming Events</h4>
+                
+              <List style={{borderStyle: 'solid', borderColor :color(1)}}>
+                {upComingEvents
+                  .sort((a,b) => a.startDate - b.startDate)
+                  .slice(0,3)
+                  .map((x,i) => {
+                    return <div key={i}>
+                      <ListItem alignItems="flex-start" style={{backgroundColor : color(i)}} >
+                        {x.startDate && 
+                          <IosAddCircleOutline
+                            onClick={() => {
+                              setOpen(!open);
+                              setEvent(x);
+                            }} 
+                            fontSize="40px" 
+                            color="#000000" 
+                            className="eventPlus" 
+                            style={{
+                              color : 'balck', 
+                              position: 'absolute', 
+                              left : 20, 
+                              top: '50%', 
+                              msTransform: 'translateY(-50%)'
+                            }}
                           />
-                        </ListItem>
-                        </div>
-                      })}
-                  </List>
-                  <br />
-                  
-                  <h4>Upcoming Events</h4>
-                    
-                  <List style={{borderStyle: 'solid', borderColor :this.color(1)}}>
-                    {events
-                      .filter(x => x.startDate === null)
-                      .sort((a,b) => {
-                        if(a.startDate) return -1;
-                        return a.startDate - b.startDate;
-                      })
-                      .map((x,i) => {
-                        return <div key={i}>
-                          <ListItem alignItems="flex-start" style={{backgroundColor : this.color(i)}} >
-                            {(x.startDate) ? <div>
-                              <IosAddCircleOutline  onClick={() => 
-                              this.setState({ 
-                                open : !this.state.open,
-                                event : x
-                              })} fontSize="40px" color="#000000" 
-                              className="eventPlus" style={{color : 'balck', position: 'absolute', left : 20, top: '50%', msTransform: 'translateY(-50%)', 'transform': 'translateY(-50%)'}}
-                              />
-                            </div> : null}
-                            <ListItemText
-                              className="listItemText"
-                              primary={x.title}
-                              secondary={
-                                <React.Fragment>
-                                  <Typography
-                                    component="span"
-                                    variant="body2"
-                                    color="textPrimary"
-                                  >
-                                    {(x.startDate) ? x.startDate.toLocaleDateString("en-US", options) : x.startDate}
-                                  </Typography>
-                                  {x.description}
-                                </React.Fragment>
-                                }
-                                onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
-                            />
-                          </ListItem>
-                          </div>
-                        })}
-                    </List>
-                </div>
-              </Col>
-            </Row>
-            </Container>
-          </div>
+                        }
+                        <ListItemText
+                          className="listItemText"
+                          primary={x.title}
+                          secondary={
+                            <React.Fragment>
+                              <Typography
+                                component="span"
+                                variant="body2"
+                                color="textPrimary"
+                              >
+                                {x.startDate && dateFormat(x.startDate)}
+                              </Typography>
+                              <br />{x.description}
+                            </React.Fragment>
+                            }
+                          onClick={() => {if(x.startDate) this.setState({selectedDate: x.startDate})}}
+                        />
+                      </ListItem>
+                      </div>
+                    })}
+                </List>
+            </div>
+          </Col>
+        </Row>
+        </Container> 
+      </div>
       );
-    }
 }
 
 export default Layout(donate);
