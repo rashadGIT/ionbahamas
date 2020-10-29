@@ -112,7 +112,8 @@ let events = list
           if(x.startDate === null) return false;
           return x.startDate > new Date(Date.now() - (1000 * 60 * 60 * 24 * 30))
       })
-        .sort((a,b) => a.startDate - b.startDate)
+      .sort((a,b) => a.startDate - b.startDate)
+      .slice(0,5)
 
 let upComingEvents = list
 .filter(x => {

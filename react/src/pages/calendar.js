@@ -31,17 +31,18 @@ const getEventDate = (event) => {
     return `${dateFormat(event.startDate)} - ${dateFormat(event.endDate - 1)}`
   }
 }
-const donate = () => {
+const donate = (props) => {
 
   const [open,setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [event, setEvent] = useState(events[0]);
   
-    useEffect(() => {
-    },[]);
+  useEffect(() => {
+  },[]);
+
   return (
     <div>
-      <Modal open={open} onClose={() => setOpen(!open)} center>
+      {event && <Modal open={open} onClose={() => setOpen(!open)} center>
         <h5 style={{paddingRight : 60}}>{event.title}</h5>
         <div>When : {getEventDate(event)}</div>
         <div>Time : {`${event.startTime} - ${event.endTime}`}</div>
@@ -51,9 +52,14 @@ const donate = () => {
           <Button color="link" onClick={() => window.open(event.calendarLink)} >&#43; Add event to Google Calendar</Button>
         </center>
       </Modal>
+      }
       <Container fluid={true}>
         <Row>
-          <Col xs={{size :6, order : 2 }} md={{size :6 , order : 1}} className="bigCalendar">
+          <Col 
+            xs={{size :6, order : 2 }} 
+            md={{size :6 , order : 1}} 
+            className="bigCalendar"
+          >
             <div style={{padding : '20px 0px 0px 20px'}}>
               <Calendar
                 style={{height : 600}}
@@ -79,7 +85,7 @@ const donate = () => {
           <Col xs={{size :6 , order: 1 }} md={{size: 6 , order : 2}}>
             <div style={{padding : '15px 0px 0px 0px'}}>
               <center>
-              <h2 style={{paddingBottom : '5px'}}>Events {new Date().getFullYear()}</h2>
+              <h2 style={{paddingBottom : '5px'}}>Upcoming Events</h2>
               </center>
               <List style={{
                 paddingBottom: '0px',
@@ -89,7 +95,6 @@ const donate = () => {
                 {events
                 .filter(x => x.endDate >= new Date().setHours(0,0,0,0))
                 .sort((a,b) => a.startDate - b.startDate)
-                .slice(0,3)
                 .map((x,i) => {
                   return <div key={i}>
                     <ListItem 
