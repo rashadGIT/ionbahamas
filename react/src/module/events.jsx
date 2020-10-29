@@ -1,7 +1,6 @@
 import moment from 'moment';
-const distinct = (value, index, self) => self.indexOf(value) === index;
-const sort = (a,b) => a + b;
-const zeroPad = (num, places) => String(num).padStart(places, '0')
+import { zeroPad } from '../module/util'
+
 const getGeneralMeetings = () =>{
   let array = [];
   for(let y = 0; y <= 2; y++){
