@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from "react-dom";
 import { Route, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
@@ -7,7 +7,6 @@ import donations from './pages/donations';
 import donate from './pages/donate'
 import mission from './pages/mission';
 import testimonials from './pages/testimonials';
-// import scholarship from './pages/scholarship';
 import volunteer from './pages/volunteer';
 import board from './pages/board';
 import calendar from './pages/calendar';
@@ -16,14 +15,13 @@ import pleasePrint from './pages/pleasePrint';
 import newMemberList from './pages/newMembers';
 import Member from './components/Member';
 
-render ((
+ReactDOM.render(
     <HashRouter basename="/">
         <Switch>
             <Route exact path="/" component={home} />
             <Route path="/about" component={about} />
             <Route path="/donate" component={donate} />
             <Route path="/mission" component={mission} />
-            {/* <Route path="/scholarship" component={scholarship} /> */}
             <Route path="/testimonials" component={testimonials} />
             <Route path="/volunteer" component={volunteer} />
             <Route path="/board" component={board} />
@@ -35,5 +33,5 @@ render ((
             <Route path="/donations" component={donations} />
             <Route component={pageNotFound} />
         </Switch>
-    </HashRouter>
-),document.getElementById("root"));
+    </HashRouter>, 
+document.getElementById('root'));

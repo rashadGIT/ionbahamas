@@ -35,6 +35,15 @@ export const causes = [
         subTitle : "People Helping People",
         description : "Helping communities most affected natural disasters.",
         template : "generalDonation.jade",
+        img : require('../imgs/diasterRelief.jpg'),
+        suggestedDonations : [20, 50, 100].filter(distinct).sort(sort)
+    },
+    {
+        type : "DorianRelief",
+        title : "Dorian Relief Fund",
+        subTitle : "Together, We can Rebuild",
+        description : "Helping those still being effected by the aftermath of Hurricane Dorian.",
+        template : "generalDonation.jade",
         img : require('../imgs/Dorian Aftermath.jpeg'),
         suggestedDonations : [20, 50, 100].filter(distinct).sort(sort)
     }

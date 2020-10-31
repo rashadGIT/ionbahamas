@@ -113,8 +113,6 @@ export default class extends Component{
               </div>
             </div>})}
             </div>
-            <br />
-            <b>Email completed membership forms to <a href="mailto:info@ionbahamas.org?subject=Membership Form">info@ionbahamas.org</a></b>
     </StyleRoot>
     )
   }

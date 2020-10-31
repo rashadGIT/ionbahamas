@@ -4,7 +4,7 @@ import '../css/navbar.css'
 import NavTopBar from '../components/navTopBar'
 import ScrollUpButton from "react-scroll-up-button";
 
-function App(InnerComponent) {
+const Layout = (InnerComponent) => {
   return (class extends Component{
     render(){
       return(
@@ -18,4 +18,4 @@ function App(InnerComponent) {
     }
   });
 }
-export default App;
+export default Layout;
