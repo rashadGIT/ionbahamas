@@ -13,25 +13,33 @@ import calendar from './pages/calendar';
 import pageNotFound from './pages/pageNotFound';
 import pleasePrint from './pages/pleasePrint';
 import newMemberList from './pages/newMembers';
-import Member from './components/Member';
+import member from './pages/member';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import { allReducers } from './reducer/reducer'
+
+let store = createStore(allReducers)
 
 ReactDOM.render(
     <HashRouter basename="/">
-        <Switch>
-            <Route exact path="/" component={home} />
-            <Route path="/about" component={about} />
-            <Route path="/donate" component={donate} />
-            <Route path="/mission" component={mission} />
-            <Route path="/testimonials" component={testimonials} />
-            <Route path="/volunteer" component={volunteer} />
-            <Route path="/board" component={board} />
-            <Route path="/member/:type" render={({match}) => <Member type={match.params.type}/>} />
-            <Route path="/calendar" component={calendar} />
-            <Route path="/pleasePrint" component={pleasePrint} />
-            <Route path="/signUps" component={newMemberList} />
-            <Route path="/donate/:type" component={donate} />
-            <Route path="/donations" component={donations} />
-            <Route component={pageNotFound} />
-        </Switch>
+        <Provider store={store}>
+            <Switch>
+                <Route exact path="/" component={home} />
+                <Route path="/about" component={about} />
+                <Route path="/donate" component={donate} />
+                <Route path="/mission" component={mission} />
+                <Route path="/testimonials" component={testimonials} />
+                <Route path="/volunteer" component={volunteer} />
+                <Route path="/board" component={board} />
+                {/* <Route path="/member/:type" render={({match}) => <Member type={match.params.type}/>} /> */}
+                <Route path="/member/:type" component={member} />
+                <Route path="/calendar" component={calendar} />
+                <Route path="/pleasePrint" component={pleasePrint} />
+                <Route path="/signUps" component={newMemberList} />
+                <Route path="/donate/:type" component={donate} />
+                <Route path="/donations" component={donations} />
+                <Route component={pageNotFound} />
+            </Switch>
+        </Provider>
     </HashRouter>, 
 document.getElementById('root'));

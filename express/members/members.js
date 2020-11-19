@@ -23,6 +23,13 @@ app.post('/clear', async (req, res, next) => {
   res.status(200).send(await members.clear());
 })
 
+app.post('/getMemberByEmailOrPhone', async (req, res, next) => {
+  const body = req.body;
+  const email = body.email;
+  const primaryPhone = body.primaryPhone;
+  res.status(200).send(await members.getMemberByEmailOrPhone(primaryPhone, email))
+})
+
 app.post('/getMemberSignUpBetween', async (req,res,next)=>{
   const body = req.body;
   const start = body.start;

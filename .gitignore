@@ -64,3 +64,4 @@ react/src/App.test.js
 react/public/index.html
 express/ssl/ssl.js
 express/ssl/
+react/debug.log

@@ -21,10 +21,9 @@ const MembershipBox = (props) => {
                     <br />
                     <div>
                         <Link 
-                        to={{
-                            pathname: `/member/${props.type}`,
-                            data: [{kite : ""}] // your data array of objects
-                          }}
+                            to={{
+                                pathname: `/member/${props.type}`
+                            }}
                         // to={`/member/${props.type}`}
                         >
                             ${props.amount} annual dues
