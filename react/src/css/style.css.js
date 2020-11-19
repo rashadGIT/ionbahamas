@@ -22,13 +22,18 @@ const popupBox = {
     }
   };
   const defaultIcon = {
-    padding : '20px',
-    fontSize: '150px'
+    padding : '15px',
+    fontSize: '130px'
   }
   const failIcon = {
       fontSize : defaultIcon.fontSize,
       color : 'red',
   }
 
+  const successIcon = {
+    fontSize : defaultIcon.fontSize,
+    color : 'green',
+}
 
-export { button, error, popupBox, failIcon, defaultIcon}
+
+export { button, error, popupBox, failIcon, defaultIcon, successIcon}

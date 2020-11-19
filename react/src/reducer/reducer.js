@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { square } from '../env/square'
-import { popupBox, defaultIcon } from '../css/style.css.js'
+import { popupBox, defaultIcon, failIcon } from '../css/style.css.js'
 
 const paymentProcessor = (state = {}, action) => {
   // eslint-disable-next-line no-undef
@@ -22,7 +22,7 @@ const paymentProcessor = (state = {}, action) => {
                   title : "Invalid Card",
                   message : errors.map(e => e.message).join("\\n"),
                   isError : true,
-                  icon : {symbol : "fa fa-cog fa-spin", style : defaultIcon}
+                  icon : {symbol : "fa fa-times", style : failIcon}
                 })
                 return;
             }

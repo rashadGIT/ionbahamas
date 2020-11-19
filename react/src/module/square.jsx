@@ -2,7 +2,7 @@ import React, { useEffect, useState, useLayoutEffect } from 'react';
 import useAxios from 'axios-hooks'
 import axios from 'axios';
 import { environment as env } from '../env/env.js';
-import { failIcon } from '../css/style.css.js'
+import { failIcon, successIcon } from '../css/style.css.js'
 import { useSelector, useDispatch } from 'react-redux'
 
 const membershipCardNonceResponseReceived = async (errors, nonce, cardData, formData) => {
@@ -49,7 +49,7 @@ const membershipCardNonceResponseReceived = async (errors, nonce, cardData, form
         let messageArray = result.split(' ');
         let dup = messageArray[0];
         let val = messageArray[2];
-        let field = messageArray[messageArray.length -1].split("_")[0];
+        let field = messageArray[messageArray.length - 1].split("_")[0];
         return {
             data : insert,
             status : insert.status,
@@ -60,12 +60,23 @@ const membershipCardNonceResponseReceived = async (errors, nonce, cardData, form
             cardInfo : cardData,
             isProcessing : false
         }
+    }else if (insert.status === 500){
+      return {
+        data : insert,
+        status : insert.status,
+        isError : true,
+        icon : {symbol : "fa fa-times", style : failIcon},
+        title : insert.title,
+        message : `Opps, an error has occurred!!!`,
+        cardInfo : cardData,
+        isProcessing : false
+      }
     }
     return {
       data : insert,
       cardData,
-      message,
-      icon : {symbol : "fa fa-times", style : failIcon},
+      message : "Thank you\\nWelcome to ION Bahamas",
+      icon : {symbol : "fa fa-check", style : successIcon},
       isProcessing : false,
       isError : false,
     };

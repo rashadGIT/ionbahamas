@@ -92,6 +92,7 @@ export default function MemberForm(props) {
           }}
         />
       <div style={{paddingTop : '10px'}}>
+        {/* <button onClick={() => props.history.goBack()}>Back</button> */}
         <h1>{memberType} Membership - ${price}</h1>
         <Form >
           <Container fluid={true}>
@@ -330,7 +331,7 @@ export default function MemberForm(props) {
                         err.push("email");
                         alert(`${email.trim()} is already exist in our system.\nPlease try a different email.`)
                       }
-                      else if(alreadyAMember.phone && alreadyAMember.phone === primaryPhone){
+                      else if(alreadyAMember.phone && alreadyAMember.phone === parseInt(primaryPhone)){
                         err.push("phone");
                         alert(`${primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`)
                       }
