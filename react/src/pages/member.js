@@ -17,6 +17,7 @@ import { useAxiosGet, useAxiosPost } from '../hooks/axios';
 import SecondaryMembersTextBox from '../components/secondaryMembersTextBox';
 import { useSelector, useDispatch } from 'react-redux'
 import { membershipCardNonceResponseReceived } from '../module/square';
+import { isValidMember } from '../module/validator'
 // import useFetch from "../hooks/useFetch";
 // import { incrument, buildPayments } from '../action/action'
 let paymentForm = {};
@@ -32,7 +33,7 @@ export default function MemberForm(props) {
   const [ countryListResponse, refetchCountryData ] = useAxios(`${env.proxy}/util/getCountry`)
   const [memberType, setMemberType] = useState(props.match.params.type);
   // const [SqPaymentForm, setSqPaymentForm] = useState(undefined);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState(0);
   const [price, setPrice] = useState(0);
   const [isFamily, setIsFamily] = useState(false)
@@ -66,31 +67,6 @@ export default function MemberForm(props) {
  
     return (
       <div>
-        <Payments
-          id={id}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          cardNonceResponseReceived={membershipCardNonceResponseReceived}
-          // setInputError={setInputError}
-          formData={{
-            amount : price,
-            fName : fName,
-            lName : lName,
-            email : email,
-            type : memberType,
-            address : address,
-            city : city,
-            state : state,
-            zip : zip,
-            country : country,
-            primaryPhone : primaryPhone,
-            secondaryPhone : secondaryPhone,
-            isPrimary : true,
-            id : id,
-            secondaryMembers : secondaryMembers,
-            isFamily : isFamily
-          }}
-        />
       <div style={{paddingTop : '10px'}}>
         {/* <button onClick={() => props.history.goBack()}>Back</button> */}
         <h1>{memberType} Membership - ${price}</h1>
@@ -274,93 +250,31 @@ export default function MemberForm(props) {
                 </Col>
               }
               <Col xs={12} md={12} lg={12}>
-                  <button 
-                    id="sq-creditcard"
-                    className="button-credit-card"
-                    onClick={async (event) => {
-                      event.preventDefault();
-                      let err = [];
-                      if(fName.trim().length === 0) err.push("fName");
-                      if(lName.trim().length === 0) err.push("lName");
-                      if(email.trim().length === 0) err.push("email");
-                      if(primaryPhone.trim().length === 0) err.push("phone");
-                      if(address.trim().length === 0) err.push("address");
-                      if(city.trim().length === 0) err.push("city");
-                      if(state.trim().length === 0) err.push("state");
-                      if(zip.trim().length === 0) err.push("zip");
-                      if(country.trim().length === 0) err.push("country");
-                      if(isFamily){
-                        for(let key in secondaryMembers){
-                          let hashMap = secondaryMembers[key];
-                          if(typeof hashMap === 'undefined' || hashMap === null) continue;
-                          let fName = hashMap.get("fName");
-                          let lName = hashMap.get("lName");
-
-                          if(typeof fName !== 'undefined' && fName.trim().length === 0){
-                            fName = undefined;
-                          }
-                          if(typeof lName !== 'undefined' && lName.trim().length === 0){
-                            lName = undefined;
-                          }
-
-                          if(fName === undefined && typeof lName !== 'undefined'){
-                            err.push(`secfName${key}`)
-                          }
-
-                          if(lName === undefined && typeof fName !== 'undefined'){
-                            err.push(`seclName${key}`)
-                          }
-
-                          if(fName === undefined && lName === undefined){
-                              secondaryMembers[key] = null;
-                          }
-                        }
-                      }
-
-                      let alreadyAMember = await axios.post(`${env.sever}/members/getMemberByEmailOrPhone`,{email,primaryPhone})
-                      .then(x => {
-                        if(x.data){ return x.data}
-                        return x;
-                      })
-                      .catch(err => {
-                        console.log(err.message)
-                        return err
-                      });
-
-                      if(alreadyAMember.email && alreadyAMember.email === email.toUpperCase()){
-                        err.push("email");
-                        alert(`${email.trim()} is already exist in our system.\nPlease try a different email.`)
-                      }
-                      else if(alreadyAMember.phone && alreadyAMember.phone === parseInt(primaryPhone)){
-                        err.push("phone");
-                        alert(`${primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`)
-                      }
-                      
-                      if(isFamily && secondaryMembers.filter(Boolean).length === 0) {
-                        err.push(`secfName1`);
-                        err.push(`seclName1`);
-                        alert(`At least one secondary Family is required`)
-
-                      }
-
-                      if(err.length > 0){
-                        setInputError(err)
-                        return;
-                      }
-
-                      setIsOpen(true) 
-                      return;
-                  }}>Submit</button>
-                  <button
-                    id="sq-creditcard"
-                    className="button-credit-card-cancel"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      window.location.replace(`${env.sever}${env.port}`)
-                    }}
-                    >
-                    Cancel
-                  </button>
+                <Payments
+                  id={id}
+                  btnText={"Pay With Card"}
+                  cardNonceResponseReceived={membershipCardNonceResponseReceived}
+                  validator={isValidMember}
+                  setInputError={setInputError}
+                  formData={{
+                    amount : price,
+                    fName : fName,
+                    lName : lName,
+                    email : email,
+                    type : memberType,
+                    address : address,
+                    city : city,
+                    state : state,
+                    zip : zip,
+                    country : country,
+                    primaryPhone : primaryPhone,
+                    secondaryPhone : secondaryPhone,
+                    isPrimary : true,
+                    id : id,
+                    secondaryMembers : secondaryMembers,
+                    isFamily : isFamily
+                  }}
+                />
               </Col>
             </Row>
           </Container>

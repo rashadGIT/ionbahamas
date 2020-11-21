@@ -19,13 +19,13 @@ export default function Payments (props) {
   const [icon, setIcon] = useState({symbol : "fa fa-cog fa-spin", style : defaultIcon})
   const [isProcessing, setIsProcessing] = useState(false);
   const [isOpenAnimation, setIsOpenAnimation] = useState(false);
-  const [id, setID] = useState(props.formData.id);
-  const counter = useSelector(state => state.counter)
+  const [formData, setFormData] = useState(props.formData);
+  const [isOpen, setIsOpen] = useState(props.isOpen ? props.isOpen : false);
+  const [btnText, setBtnText] = useState(props.btnText !== undefined ? props.btnText : "Submit")
   const SqPaymentForm = useSelector(state => state.paymentProcessor)
   const [response, setResponse] = useState({})
   const dispatch = useDispatch();
   const history = useHistory();
-  
 
   useEffect(async () => {
     if(response.isError === true){
@@ -37,17 +37,17 @@ export default function Payments (props) {
       setIcon(response.icon)
       setMessage(response.message)
       await delay(5000);
-      setMessage("Confirmation email sent to\\n" + props.formData.email)
+      setMessage("Confirmation email sent to\\n" + formData.email)
       await delay(5000)
       history.push("/");
     }
-    console.log(props)
   },[response])
 
   useEffect(() => {
     Modal.setAppElement('body');
-    dispatch(buildPayments(props.cardNonceResponseReceived,props.formData,setResponse))
-  },[props.isOpen])
+    setFormData(props.formData)
+    dispatch(buildPayments(props.cardNonceResponseReceived,formData,setResponse))
+  },[props.isOpen, props.formData])
 
   async function onGetCardNonce(event){
     event.preventDefault();
@@ -59,51 +59,60 @@ export default function Payments (props) {
   }
 
   return (
-      <Modal
-        isOpen={props.isOpen}
-        // isOpen={true}
-        onAfterOpen={() => SqPaymentForm.build()}
-        style={popupBox}
-        contentLabel="Example Modal"
-      >
-        <h4>{title}</h4>
-        {
-          isOpenAnimation && 
-          <center>
-            <i style={icon.style} className={icon.symbol} /><br />
-            <b>{message.split("\\n").map(x => <span>{x}<br/></span>)}</b>
-          </center>
-        }
-        {
-
-        }
-        {/* {response && <div>{response}</div>} */}
-        {/* <div>{message.split("\\n").map(x => <span>{x}<br/></span>)}</div> */}
-      
-        {/* <div id="form-container"></div>     */}
-        {/* {console.log(response)} */}
-        <hr />
-        <div id="sq-card"></div>
-
+      <div>
         <button 
-          id="sq-creditcard" 
-          className="button-credit-card" 
-          onClick={onGetCardNonce}>
-            Pay ${props.formData.amount}
+          id="sq-creditcard"
+          className="button-credit-card"
+          onClick={async (event) => { 
+            let [ errs, errMessage ] = await props.validator(event, formData)
+            if(errs.length > 0){
+              props.setInputError(errs)
+              if(errMessage.length > 0 )alert(errMessage)
+              return;
+            }
+            setIsOpen(true) 
+            return;
+          }}>
+            {btnText}
         </button>
-        <button
-          disabled={isProcessing}
-          className="button-credit-card-cancel"
-          color="danger" 
-          onClick={() => {
-            setTitle(defaultTitle)
-            setIsOpenAnimation(false)
-            setResponse({})
-            SqPaymentForm.destroy()
-            props.setIsOpen(false)
-            }}>
-            Cancel
-        </button> 
-      </Modal>
+        <Modal
+          isOpen={isOpen}
+          onAfterOpen={() => SqPaymentForm.build()}
+          style={popupBox}
+          contentLabel="Example Modal"
+        >
+          <h4>{title}</h4>
+          {
+            isOpenAnimation && 
+            <center>
+              <i style={icon.style} className={icon.symbol} /><br />
+              <b>{message.split("\\n").map((x,i) => <span key={`Reason ${i}`}>{x}<br/></span>)}</b>
+            </center>
+          }
+
+          <hr />
+          <div id="sq-card"></div>
+
+          <button 
+            id="sq-creditcard" 
+            className="button-credit-card" 
+            onClick={onGetCardNonce}>
+              Pay ${formData.amount}
+          </button>
+          <button
+            disabled={isProcessing}
+            className="button-credit-card-cancel"
+            color="danger" 
+            onClick={() => {
+              setTitle(defaultTitle)
+              setIsOpenAnimation(false)
+              setResponse({})
+              SqPaymentForm.destroy()
+              props.setIsOpen(false)
+              }}>
+              Cancel
+          </button> 
+        </Modal>
+      </div>
     )
 }

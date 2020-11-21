@@ -6,7 +6,6 @@ import { failIcon, successIcon } from '../css/style.css.js'
 import { useSelector, useDispatch } from 'react-redux'
 
 const membershipCardNonceResponseReceived = async (errors, nonce, cardData, formData) => {
-    let message = "";
     
     let insert = await axios.post(`${env.proxy}/members/add`,
       {
@@ -41,7 +40,6 @@ const membershipCardNonceResponseReceived = async (errors, nonce, cardData, form
         'result': err.response.data.message
      };
     });
-    console.log(insert)
     if (insert.status === 411){
         const regex = /'/gi;
         let result = insert.result
