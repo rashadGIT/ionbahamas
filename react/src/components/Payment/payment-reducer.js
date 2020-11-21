@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { square } from '../env/square'
-import { popupBox, defaultIcon, failIcon } from '../css/style.css.js'
+import { square } from '../../env/square'
+import { popupBox, defaultIcon, failIcon } from '../../css/style.css.js'
 
-const paymentProcessor = (state = {}, action) => {
+const PaymentReducers = (state = {}, action) => {
   // eslint-disable-next-line no-undef
-  let processor = new SqPaymentForm({
+  return new SqPaymentForm({
     applicationId: square.applicationId,
     autoBuild: square.autoBuild,
     card : square.card,
@@ -14,7 +14,6 @@ const paymentProcessor = (state = {}, action) => {
         unsupportedBrowserDetected: () => {},
         cardNonceResponseReceived: async (errors, nonce, cardData) => {
             if(errors){
-              // console.log(errors.map(x => x.message.replaceAll('/\\.\\s+/gm', '\\n')))
                 action.callback({
                   cardData,
                   data : {status : 411},
@@ -29,13 +28,9 @@ const paymentProcessor = (state = {}, action) => {
             action.callback(await action.payload(errors, nonce, cardData,action.formData))
         }
     }
-})
-  return processor;
+  })
 }
 
-const allReducers = combineReducers({
-  paymentProcessor
-})
 export {
-  allReducers,
+  PaymentReducers,
 }

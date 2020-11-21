@@ -9,7 +9,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroup
 import axios from 'axios';
 import { environment as env } from '../env/env.js';
 import useAxios from 'axios-hooks'
-import Payments from '../components/Payments';
+import Payments from '../components/Payment/Payments';
 import { square } from '../env/square'
 import Popup from '../components/Popup';
 import { useAxiosGet, useAxiosPost } from '../hooks/axios';

@@ -16,9 +16,9 @@ import newMemberList from './pages/newMembers';
 import member from './pages/member';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
-import { allReducers } from './reducer/reducer'
+import { PaymentReducers } from './components/Payment/payment-reducer'
 
-let store = createStore(allReducers)
+let store = createStore(PaymentReducers)
 
 ReactDOM.render(
     <HashRouter basename="/">

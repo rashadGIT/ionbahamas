@@ -1,14 +1,14 @@
 import React,{ Component, useEffect, useState, useLayoutEffect } from 'react';
-import '../css/mysqpaymentform.css'
-import { useSquare } from '../hooks/square';
-import { delay } from '../module/util'
-import { environment as env } from '../env/env.js';
-import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import '../../css/mysqpaymentform.css'
+// import { useSquare } from '../../hooks/square';
+import { delay } from '../../module/util'
+// import { environment as env } from '../../env/env.js';
+// import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { popupBox, defaultIcon, failIcon, successIcon } from '../css/style.css.js'
-import { buildPayments } from '../action/action'
-import { membershipCardNonceResponseReceived } from '../module/square';
+import { popupBox, defaultIcon, failIcon, successIcon } from '../../css/style.css.js'
+import { buildPayments } from './payment-action'
+// import { membershipCardNonceResponseReceived } from '../../module/square';
 import { useHistory } from "react-router-dom";
 
 export default function Payments (props) {
@@ -22,7 +22,7 @@ export default function Payments (props) {
   const [formData, setFormData] = useState(props.formData);
   const [isOpen, setIsOpen] = useState(props.isOpen ? props.isOpen : false);
   const [btnText, setBtnText] = useState(props.btnText !== undefined ? props.btnText : "Submit")
-  const SqPaymentForm = useSelector(state => state.paymentProcessor)
+  const SqPaymentForm = useSelector(state => state)
   const [response, setResponse] = useState({})
   const dispatch = useDispatch();
   const history = useHistory();
