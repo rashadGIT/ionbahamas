@@ -1,29 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {NavLink } from 'reactstrap';
 import { Carousel } from 'react-responsive-carousel';
-import Membership from '../components/MembershipBoxes';
 import Thanksgiving from '../imgs/thanksgiving.jpg'
 import {Link as RRNavLink } from "react-router-dom";
 import { Button } from 'reactstrap';
 import { shortcutLinks } from '../module/shortcuts'
+import { environment as env } from '../env/env.js';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
 import '../css/col.css';
 import '../css/meeting.css';
+import useAxios from 'axios-hooks'
+import { membershipTypes } from '../module/membershipTypes';
+import {StyleRoot} from 'radium';
+import MembershipBox from '../components/MembershipBox'
+import {styles} from '../module/styles'
 
 const collegeMsgBox = "Texas College Student Relief Efforts";
 const smileLink = "https://smile.amazon.com/ch/84-2453440";
 
 const home = () => {
+  const [{ data, loading, error, response }, refetch] = useAxios(`${env.proxy}/members/getMembershipData`)
+  const [memberType, setMemberType] = useState({});
+
   useEffect(() => {
     document.title = "ION Bahamas";
   },[]);
 
-  return <div>
+  useEffect(() => {
+    document.title = "ION Bahamas";
+    if(data !== undefined){
+      for(let val in membershipTypes){
+        membershipTypes[val].amount = data[membershipTypes[val].type].price;
+      }
+      setMemberType(membershipTypes);
+    }
+  },[data]);
+
+  return <Layout>
+  <StyleRoot>
             <div className="highlights">
               <Carousel
                 showArrows={true}
@@ -38,7 +57,7 @@ const home = () => {
                 dynamicHeight={false}
                 className="carousel"
               >
-                <div key={"Thanksgiving"}>
+                {/* <div key={"Thanksgiving"}>
                   <img alt="" src={Thanksgiving} />
                   <div className="carouselTextContainerThanksgiving">
                     <div className="auctionTextDescriptionThanksgiving">
@@ -64,7 +83,7 @@ const home = () => {
                       </center>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div key={"Agriculture"}>
                   <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
                   <div className="carouselTextContainer">
@@ -76,7 +95,13 @@ const home = () => {
                         <b>Join Us in the fight against food <br />insecurity in the Bahamas</b>
                       </center><br />
                       <center>
-                        <RRNavLink to="/donate/Agriculture">
+                        <RRNavLink 
+                          to={{
+                            pathname: `/donate/Agriculture`
+                        }}
+                        
+                        // to="/donate/Agriculture"
+                        >
                           <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate</Button>
                         </RRNavLink>
                       </center>
@@ -88,7 +113,7 @@ const home = () => {
                   <a href={smileLink} target="_blank" rel="noopener noreferrer" >
                     <div className="text">
                       <div className="support-wrapper">
-                        <div className="support" style={{'font-size': '40px', 'line-height': '1.6','margin-top': '3px', 'margin-bottom': '1.5px'}}>
+                        <div className="support" style={{fontSize: '40px', lineHeight: '1.6',marginTop: '3px', marginBottom: '1.5px'}}>
                           Support <br />
                           Igniting Our Nation Bahamas
                         </div>
@@ -149,12 +174,28 @@ const home = () => {
                     </div>
                   </div>
                 </Col>
-                <Col xs={12} lg={10} md={{ span: 12, offset: 0 }}>
-                  <Membership />
+                <Col xs={12} lg={12} md={12}>
+                  <div className="membership">
+                    <div className="membershipTitle">
+                      <center>
+                        <h4>Membership Categories</h4>
+                      </center>
+                    </div>
+                    <div style={styles.slideInLeft}>
+                      {Object.keys(memberType).map((i) => 
+                        <MembershipBox
+                          key={membershipTypes[i].type}
+                          type={membershipTypes[i].type}
+                          img={membershipTypes[i].img}
+                          description={membershipTypes[i].description}
+                          amount={membershipTypes[i].amount}
+                        />)}
+                    </div>
+                  </div>
                 </Col>
               </Row>
             </Container>
-          </div>
+          </StyleRoot>
+        </Layout>
 }
-
-export default Layout(home);
+export default home;

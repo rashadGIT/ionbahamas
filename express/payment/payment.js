@@ -38,9 +38,15 @@ app.post('/donate', async (req, res) => {
         }
     }
   }
-  if(complete.payment.status === 200 && complete.record.status === 200 && complete.email.status === 200){
+  if( (complete.payment && complete.payment.status === 200) && 
+      (complete.record && complete.record.status === 200) &&
+      (complete.email && complete.email.status === 200)
+    ){
     complete.status = 200;
+  }else{
+    complete.status = 411;
   }
+
   res.send(complete)
 })
 

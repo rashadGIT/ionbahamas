@@ -4,13 +4,12 @@ export const textBox = {
         fontSize : '25px'
     },
     checkBox :{
-        marginTop : '13px',
         width: '25px',
         height: '25px'
     },
     checkBoxLabel :{
-        fontSize : '35px',
-        padding : '15px'
+        fontSize : '25px',
+        paddingLeft : '10px',
     },
     title : {
         fontSize : '30px'

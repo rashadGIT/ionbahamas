@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -41,7 +41,7 @@ const donate = (props) => {
   },[]);
 
   return (
-    <div>
+    <Layout>
       {event && <Modal open={open} onClose={() => setOpen(!open)} center>
         <h5 style={{paddingRight : 60}}>{event.title}</h5>
         <div>When : {getEventDate(event)}</div>
@@ -160,8 +160,8 @@ const donate = (props) => {
           </Col>
         </Row>
         </Container> 
-      </div>
+      </Layout>
       );
 }
-
-export default Layout(donate);
+export default donate;
+// export default Layout(donate);

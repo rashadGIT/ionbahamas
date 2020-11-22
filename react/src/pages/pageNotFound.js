@@ -34,5 +34,5 @@ class member extends Component {
     );
   }
 }
-
-export default Layout(member);
+export default member;
+// export default Layout(member);

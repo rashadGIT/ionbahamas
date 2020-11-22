@@ -21,7 +21,7 @@ import {
 } from 'react-ui-cards'
 
 export default (props) => 
-    <div className="grow" style={{marginTop : '15px', minWidth : "300px", width : '25%', padding : '15px'}}>
+    <div key={props.type} className="grow" style={{marginTop : '15px', minWidth : "300px", width : '25%', padding : '15px'}}>
       <Card 
         style={{minWidth : "300px", color:'inherit', textDecoration: 'none'}}
         tag={RRNavLink}

@@ -10,11 +10,24 @@ const members = require('../modules/members.js');
 const HashMap = require('hashmap');
 
 app.get('/getMembershipData', async (req, res, next) => {
-  res.status(200).send(await members.getMembershipData());
+  let val = await members.getMembershipData()
+  let membersTypes = {};
+  for(let idx in val){
+    let value = val[idx];
+    membersTypes[value.Type] = { price : value.Price, id : value.id }
+  }
+  res.status(200).send(membersTypes);
 })
 
 app.post('/clear', async (req, res, next) => {
   res.status(200).send(await members.clear());
+})
+
+app.post('/getMemberByEmailOrPhone', async (req, res, next) => {
+  const body = req.body;
+  const email = body.email;
+  const primaryPhone = body.primaryPhone;
+  res.status(200).send(await members.getMemberByEmailOrPhone(primaryPhone, email))
 })
 
 app.post('/getMemberSignUpBetween', async (req,res,next)=>{

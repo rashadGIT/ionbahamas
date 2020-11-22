@@ -21,7 +21,7 @@ export default class Donate extends React.Component {
   }
 
   componentDidMount(){
-     this.state.paymentForm.build();
+    //  this.state.paymentForm.build();
   }
 
   onGetCardNonce(event){
