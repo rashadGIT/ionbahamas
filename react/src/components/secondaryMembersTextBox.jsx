@@ -12,6 +12,10 @@ export default function secondaryMembersTextBox(props){
   const [name,setName] = useState([])
   const [inputErr,setInputError] = useState(props.inputErr)
     
+  useEffect(()=> {
+    setInputError(props.inputErr)
+  },[props.inputErr])
+
   useEffect(()=>{
     const [num, key,  val] = name
     if(num === undefined) return;

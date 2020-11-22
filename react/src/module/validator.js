@@ -5,7 +5,6 @@ const isValidMember = async (event, formData) => {
     event.preventDefault();
     let err = [];
     let message = "";
-    console.log(formData)
     if(formData.fName.trim().length === 0) err.push("fName");
     if(formData.lName.trim().length === 0) err.push("lName");
     if(formData.email.trim().length === 0) err.push("email");
@@ -23,18 +22,18 @@ const isValidMember = async (event, formData) => {
             let lName = hashMap.get("lName");
 
             if(typeof fName !== 'undefined' && fName.trim().length === 0){
-            fName = undefined;
+                fName = undefined;
             }
             if(typeof lName !== 'undefined' && lName.trim().length === 0){
-            lName = undefined;
+                lName = undefined;
             }
 
             if(fName === undefined && typeof lName !== 'undefined'){
-            err.push(`secfName${key}`)
+                err.push(`seclName${key}`)
             }
 
             if(lName === undefined && typeof fName !== 'undefined'){
-            err.push(`seclName${key}`)
+                err.push(`secfName${key}`)
             }
 
             if(fName === undefined && lName === undefined){

@@ -6,7 +6,7 @@ import { moneyFormat } from '../../module/util'
 
 export default function RadioButton (val) {
     return  (
-        <Col xs={6} md={3} lg={3} key={val}>
+        <Col xs={6} md={4} lg={6} key={val}>
             <FormGroup check>
                 <Label check>
                     <Input 
