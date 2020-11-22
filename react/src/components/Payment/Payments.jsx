@@ -1,14 +1,10 @@
-import React,{ Component, useEffect, useState, useLayoutEffect } from 'react';
+import React,{ useEffect, useState } from 'react';
 import '../../css/mysqpaymentform.css'
-// import { useSquare } from '../../hooks/square';
 import { delay } from '../../module/util'
-// import { environment as env } from '../../env/env.js';
-// import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { popupBox, defaultIcon, failIcon, successIcon } from '../../css/style.css.js'
 import { buildPayments } from './payment-action'
-// import { membershipCardNonceResponseReceived } from '../../module/square';
 import { useHistory } from "react-router-dom";
 
 export default function Payments (props) {
@@ -21,15 +17,19 @@ export default function Payments (props) {
   const [isOpenAnimation, setIsOpenAnimation] = useState(false);
   const [formData, setFormData] = useState(props.formData);
   const [isOpen, setIsOpen] = useState(props.isOpen ? props.isOpen : false);
-  const [btnText, setBtnText] = useState(props.btnText !== undefined ? props.btnText : "Submit")
+  const [btnText, setBtnText] = useState(null)
   const SqPaymentForm = useSelector(state => state)
   const [response, setResponse] = useState({})
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(()=> {
+    setBtnText(props.btnText !== undefined ? props.btnText : "Submit")
+  })
+
   useEffect(async () => {
     if(response.isError === true){
-      setTitle("Payment Failure")
+      setTitle(response.title)
       setIcon(response.icon)
       setMessage(response.message)
     }else if(response.isError === false){
@@ -39,7 +39,7 @@ export default function Payments (props) {
       await delay(5000);
       setMessage("Confirmation email sent to\\n" + formData.email)
       await delay(5000)
-      history.push("/");
+      history.push((response.goTo) ? response.goTo : "/");
     }
   },[response])
 

@@ -163,5 +163,5 @@ const donate = (props) => {
       </div>
       );
 }
-
-export default Layout(donate);
+export default donate;
+// export default Layout(donate);

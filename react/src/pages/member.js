@@ -1,39 +1,24 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import HashMap from 'hashmap';
-import Modal from 'react-modal';
-import { Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-//import {Link, Redirect } from "react-router-dom";
-import axios from 'axios';
+import { Form, FormGroup, Label, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { environment as env } from '../env/env.js';
 import useAxios from 'axios-hooks'
 import Payments from '../components/Payment/Payments';
-import { square } from '../env/square'
-import Popup from '../components/Popup';
-import { useAxiosGet, useAxiosPost } from '../hooks/axios';
-//import { useSquare } from '../hooks/square'
 import SecondaryMembersTextBox from '../components/secondaryMembersTextBox';
-import { useSelector, useDispatch } from 'react-redux'
 import { membershipCardNonceResponseReceived } from '../module/square';
 import { isValidMember } from '../module/validator'
-// import useFetch from "../hooks/useFetch";
-// import { incrument, buildPayments } from '../action/action'
-let paymentForm = {};
-let count = 0;
-const maxTrySendEmail = 5;
-const error = {
-  border: '1px solid #eb516d'
-}
+import { error } from '../css/style.css.js'
+
+const maxNumOfFamily = 4;
+
 
 export default function MemberForm(props) {
   const [ memberTypeResponse, refetchMemberType ] = useAxios(`${env.proxy}/members/getMembershipData`)
   const [ stateListResponse, refetchStateData ] = useAxios(`${env.proxy}/util/getStates`)
   const [ countryListResponse, refetchCountryData ] = useAxios(`${env.proxy}/util/getCountry`)
   const [memberType, setMemberType] = useState(props.match.params.type);
-  // const [SqPaymentForm, setSqPaymentForm] = useState(undefined);
-  // const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState(0);
   const [price, setPrice] = useState(0);
   const [isFamily, setIsFamily] = useState(false)
@@ -66,9 +51,8 @@ export default function MemberForm(props) {
   
  
     return (
-      <div>
+    <div>
       <div style={{paddingTop : '10px'}}>
-        {/* <button onClick={() => props.history.goBack()}>Back</button> */}
         <h1>{memberType} Membership - ${price}</h1>
         <Form >
           <Container fluid={true}>
@@ -238,8 +222,9 @@ export default function MemberForm(props) {
             <Row>
               {isFamily &&
                 <Col xs={12} md={7} lg={7}>
-                  {[...Array(4).keys()].map(i => 
+                  {[...Array(maxNumOfFamily).keys()].map(i => 
                     <SecondaryMembersTextBox
+                      key={`Family Mamber ${i}`}
                       num={i+1}
                       error={error}
                       inputErr={inputErr}
@@ -280,6 +265,5 @@ export default function MemberForm(props) {
           </Container>
         </Form>
       </div>
-      </div>)
-  // }
+    </div>)
 }

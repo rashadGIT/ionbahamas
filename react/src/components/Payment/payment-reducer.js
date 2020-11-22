@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux';
 import { square } from '../../env/square'
-import { popupBox, defaultIcon, failIcon } from '../../css/style.css.js'
+import { failIcon } from '../../css/style.css.js'
 
 const PaymentReducers = (state = {}, action) => {
   // eslint-disable-next-line no-undef

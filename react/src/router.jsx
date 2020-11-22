@@ -26,12 +26,10 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={home} />
                 <Route path="/about" component={about} />
-                <Route path="/donate" component={donate} />
                 <Route path="/mission" component={mission} />
                 <Route path="/testimonials" component={testimonials} />
                 <Route path="/volunteer" component={volunteer} />
                 <Route path="/board" component={board} />
-                {/* <Route path="/member/:type" render={({match}) => <Member type={match.params.type}/>} /> */}
                 <Route path="/member/:type" component={member} />
                 <Route path="/calendar" component={calendar} />
                 <Route path="/pleasePrint" component={pleasePrint} />

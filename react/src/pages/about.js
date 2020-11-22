@@ -128,5 +128,5 @@ const about = (props) =>  {
     );
   // }
 }
-
-export default Layout(about);
+export default about;
+// export default Layout(about);

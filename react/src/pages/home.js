@@ -41,7 +41,8 @@ const home = () => {
     }
   },[data]);
 
-  return <StyleRoot>
+  return <Layout>
+  <StyleRoot>
             <div className="highlights">
               <Carousel
                 showArrows={true}
@@ -94,7 +95,13 @@ const home = () => {
                         <b>Join Us in the fight against food <br />insecurity in the Bahamas</b>
                       </center><br />
                       <center>
-                        <RRNavLink to="/donate/Agriculture">
+                        <RRNavLink 
+                          to={{
+                            pathname: `/donate/Agriculture`
+                        }}
+                        
+                        // to="/donate/Agriculture"
+                        >
                           <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate</Button>
                         </RRNavLink>
                       </center>
@@ -187,6 +194,6 @@ const home = () => {
               </Row>
             </Container>
           </StyleRoot>
+        </Layout>
 }
-
-export default Layout(home);
+export default home;

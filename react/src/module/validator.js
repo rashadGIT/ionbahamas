@@ -67,16 +67,40 @@ const isValidMember = async (event, formData) => {
         err.push("phone");
         message = `${formData.primaryPhone.trim()} is already exist in our system.\nPlease try a different Primary phone number.`
     }
-                      
-    if(formData.isFamily && formData.secondaryMembers.filter(Boolean).length === 0) {
+    
+    if(formData.isFamily && Object.keys(formData.secondaryMembers).length === 0) {
         err.push(`secfName1`);
         err.push(`seclName1`);
-        message = `At least one secondary Family is required`
+        message = `At least one secondary family member required to create family Membership.`
     }
 
     return [ err, message ];
 }
 
+const isValidDonation = async (event, formData) => {
+    event.preventDefault();
+    let err = [];
+    let message = "";
+    const regex = RegExp('^(\\d+.\\d{0,2})$');
+    if(formData.fName.trim().length === 0) err.push("fName");
+    if(formData.lName.trim().length === 0) err.push("lName");
+    if(formData.email.trim().length === 0) err.push("email");
+    if(formData.amount === 0) err.push("amount");
+        
+    if(!regex.test(formData.amount)){
+        err.push("amount");
+        message = `${formData.amount} is an  invalid amount.`;
+    }
+
+    if(parseInt(formData.amount) > 50000){
+        err.push(`To Much Money`)
+        message = `Thank you for your generosity.\nIf you would like to Donate an amount Greater than $50,000 please contact our board director.`
+    }
+
+    return [err, message]
+}
+
 export{
-    isValidMember
+    isValidMember,
+    isValidDonation
 }
