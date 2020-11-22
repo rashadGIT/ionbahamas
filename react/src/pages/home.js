@@ -57,7 +57,7 @@ const home = () => {
                 dynamicHeight={false}
                 className="carousel"
               >
-                <div key={"Thanksgiving"}>
+                {/* <div key={"Thanksgiving"}>
                   <img alt="" src={Thanksgiving} />
                   <div className="carouselTextContainerThanksgiving">
                     <div className="auctionTextDescriptionThanksgiving">
@@ -83,7 +83,7 @@ const home = () => {
                       </center>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div key={"Agriculture"}>
                   <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
                   <div className="carouselTextContainer">
@@ -174,10 +174,12 @@ const home = () => {
                     </div>
                   </div>
                 </Col>
-                <Col xs={12} lg={10} md={{ span: 12, offset: 0 }}>
+                <Col xs={12} lg={12} md={12}>
                   <div className="membership">
                     <div className="membershipTitle">
-                      <h5>Membership Categories</h5>
+                      <center>
+                        <h4>Membership Categories</h4>
+                      </center>
                     </div>
                     <div style={styles.slideInLeft}>
                       {Object.keys(memberType).map((i) => 

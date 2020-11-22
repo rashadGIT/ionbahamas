@@ -82,18 +82,31 @@ const isValidDonation = async (event, formData) => {
     let err = [];
     let message = "";
     const regex = RegExp('^(\\d+.\\d{0,2})$');
-    if(formData.fName.trim().length === 0) err.push("fName");
-    if(formData.lName.trim().length === 0) err.push("lName");
-    if(formData.email.trim().length === 0) err.push("email");
-    if(formData.amount === 0) err.push("amount");
+    if(formData.fName.trim().length === 0) {
+        err.push("fName");
+        message = `Please provide a First Name.`
+    }
+    if(formData.lName.trim().length === 0) {
+        err.push("lName");
+        message = `Please provide a Last Name.`
+    }
+    if(formData.email.trim().length === 0) {
+        err.push("email");
+        message = `Please provide a valid  email address.`
+    }
         
     if(!regex.test(formData.amount)){
         err.push("amount");
         message = `${formData.amount} is an  invalid amount.`;
     }
 
+    if(formData.amount.length === 0 || parseInt(formData.amount) === 0){
+        err.push("amount");
+        message = `Zero ($0.00) is not a valid amount.\nPlease select or enter an valid amount.`
+    }
+
     if(parseInt(formData.amount) > 50000){
-        err.push(`To Much Money`)
+        err.push("amount");
         message = `Thank you for your generosity.\nIf you would like to Donate an amount Greater than $50,000 please contact our board director.`
     }
 

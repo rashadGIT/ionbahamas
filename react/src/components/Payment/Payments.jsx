@@ -32,6 +32,7 @@ export default function Payments (props) {
       setTitle(response.title)
       setIcon(response.icon)
       setMessage(response.message)
+      setIsProcessing(false)
     }else if(response.isError === false){
       setTitle("Success")
       setIcon(response.icon)
@@ -52,6 +53,7 @@ export default function Payments (props) {
   async function onGetCardNonce(event){
     event.preventDefault();
     setTitle("Processing...")
+    setIsProcessing(true)
     setMessage(processingMsg)
     setIcon({symbol : "fa fa-cog fa-spin", style : defaultIcon})
     setIsOpenAnimation(true)
@@ -93,25 +95,26 @@ export default function Payments (props) {
           <hr />
           <div id="sq-card"></div>
 
-          <button 
-            id="sq-creditcard" 
-            className="button-credit-card" 
-            onClick={onGetCardNonce}>
-              Pay ${formData.amount}
-          </button>
-          <button
-            disabled={isProcessing}
-            className="button-credit-card-cancel"
-            color="danger" 
-            onClick={() => {
-              setTitle(defaultTitle)
-              setIsOpenAnimation(false)
-              setResponse({})
-              SqPaymentForm.destroy()
-              props.setIsOpen(false)
-              }}>
-              Cancel
-          </button> 
+          <div style={{display : isProcessing ? 'none' : null}} >
+            <button
+              id="sq-creditcard" 
+              className="button-credit-card" 
+              onClick={onGetCardNonce}>
+                Pay ${formData.amount}
+            </button>
+            <button
+              className="button-credit-card-cancel"
+              color="danger" 
+              onClick={() => {
+                setTitle(defaultTitle)
+                setIsOpenAnimation(false)
+                setResponse({})
+                SqPaymentForm.destroy()
+                props.setIsOpen(false)
+                }}>
+                Cancel
+            </button>
+          </div>
         </Modal>
       </div>
     )

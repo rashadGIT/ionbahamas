@@ -1,7 +1,7 @@
 const distinct = (value, index, self) => self.indexOf(value) === index;
 const sort = (a,b) => a + b;
 
-export const causes = [
+const causes = [
     {
         type : "General",
         title : "General Donation",
@@ -49,3 +49,10 @@ export const causes = [
     }
 
 ]
+
+const getCause = (type) =>  causes.find(x => x.type === type)
+
+export{
+    causes,
+    getCause
+}

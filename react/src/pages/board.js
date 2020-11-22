@@ -210,7 +210,7 @@ class member extends Component {
       // }
     ].sort((a, b) => a.order - b.order);
     return (
-      <div style={{width : '90%', margin: 'auto'}}>
+      <Layout style={{width : '90%', margin: 'auto'}}>
         <Container fluid={true}>
           <Row>
             <Table
@@ -251,7 +251,7 @@ class member extends Component {
             </Table>
           </Row>
         </Container>
-      </div>
+      </Layout>
     );
   }
 }

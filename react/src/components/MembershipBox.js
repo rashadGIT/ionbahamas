@@ -4,12 +4,12 @@ import '../css/membership.css';
 
 const MembershipBox = (props) => {
     return (
-         <div key={props.type} style={{display: 'inline-block', padding: '5px'}}>
+         <div key={props.type} style={{display: 'inline-block', padding: '15px 20px 0px 20px'}}>
             <div className="card">        
                 <img
                     className="imgBox"
                     src={props.img}
-                    alt="Avatar" 
+                    alt="Avatar"
                 />
                 <div className="TextContainer">
                     <label>{props.type} Membership</label>
@@ -24,7 +24,6 @@ const MembershipBox = (props) => {
                             to={{
                                 pathname: `/member/${props.type}`
                             }}
-                        // to={`/member/${props.type}`}
                         >
                             ${props.amount} annual dues
                         </Link>

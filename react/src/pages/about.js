@@ -13,7 +13,7 @@ import '../css/about.css';
 
 const about = (props) =>  {
     return (
-      <div style={{paddingTop : '20px'}}>
+      <Layout style={{paddingTop : '20px'}}>
       <h1 style={{paddingLeft : '15px'}}>About Us</h1>
       <Container fluid={true}>
         <Row noGutters={false}>
@@ -113,7 +113,7 @@ const about = (props) =>  {
                         {(evt.location !== null && evt.mapURL !== null) ?
                           <a rel="noopener noreferrer" target="_blank" href={evt.mapURL}>
                             {evt.location}
-                          </a> : <div>Location Undefined</div>
+                          </a> : <div>TBD</div>
                         }
                       </td>
                     </tr>
@@ -124,7 +124,7 @@ const about = (props) =>  {
           </Col>
         </Row>
       </Container>
-      </div>
+      </Layout>
     );
   // }
 }
