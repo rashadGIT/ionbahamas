@@ -44,7 +44,7 @@ const isValidMember = async (event, formData) => {
     let email = formData.email;
     let primaryPhone = formData.primaryPhone
 
-    let alreadyAMember = await axios.post(`${env.sever}/members/getMemberByEmailOrPhone`,
+    let alreadyAMember = await axios.post(`${env.proxy}/members/getMemberByEmailOrPhone`,
     { 
         email,
         primaryPhone
