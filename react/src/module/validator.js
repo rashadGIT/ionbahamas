@@ -5,7 +5,6 @@ const isValidMember = async (event, formData) => {
     event.preventDefault();
     let err = [];
     let message = "";
-    console.log(env.sever)
     if(formData.fName.trim().length === 0) err.push("fName");
     if(formData.lName.trim().length === 0) err.push("lName");
     if(formData.email.trim().length === 0) err.push("email");
@@ -45,7 +44,7 @@ const isValidMember = async (event, formData) => {
     let email = formData.email;
     let primaryPhone = formData.primaryPhone
 
-    let alreadyAMember = await axios.post(`${env.sever}/members/getMemberByEmailOrPhone`,
+    let alreadyAMember = await axios.post(`${env.proxy}/members/getMemberByEmailOrPhone`,
     { 
         email,
         primaryPhone
