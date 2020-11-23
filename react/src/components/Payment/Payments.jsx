@@ -48,7 +48,7 @@ export default function Payments (props) {
     Modal.setAppElement('body');
     setFormData(props.formData)
     dispatch(buildPayments(props.cardNonceResponseReceived,formData,setResponse))
-  },[props.isOpen, props.formData])
+  },[isOpen, props.formData])
 
   async function onGetCardNonce(event){
     event.preventDefault();
@@ -110,7 +110,7 @@ export default function Payments (props) {
                 setIsOpenAnimation(false)
                 setResponse({})
                 SqPaymentForm.destroy()
-                props.setIsOpen(false)
+                setIsOpen(false)
                 }}>
                 Cancel
             </button>
