@@ -19,15 +19,18 @@ const MembershipBox = (props) => {
                      {props.description}
                     </div>
                     <br />
-                    <div>
+                    {/* <div> */}
                         <Link 
+                            style={{
+                                fontSize : '15px'
+                            }}
                             to={{
                                 pathname: `/member/${props.type}`
                             }}
                         >
                             ${props.amount} annual dues
                         </Link>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         </div>

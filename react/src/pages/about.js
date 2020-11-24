@@ -14,7 +14,7 @@ import '../css/about.css';
 const about = (props) =>  {
     return (
       <Layout style={{paddingTop : '20px'}}>
-      <h1 style={{paddingLeft : '15px'}}>About Us</h1>
+      <h1 style={{paddingLeft : '15px', paddingTop : '20px'}}>About Us</h1>
       <Container fluid={true}>
         <Row noGutters={false}>
           <Col xs={12} md={8}>

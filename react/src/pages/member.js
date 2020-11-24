@@ -13,7 +13,6 @@ import { error } from '../css/style.css.js'
 
 const maxNumOfFamily = 4;
 
-
 export default function MemberForm(props) {
   const [ memberTypeResponse, refetchMemberType ] = useAxios(`${env.proxy}/members/getMembershipData`)
   const [ stateListResponse, refetchStateData ] = useAxios(`${env.proxy}/util/getStates`)

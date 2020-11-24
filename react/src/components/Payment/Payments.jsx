@@ -3,9 +3,10 @@ import '../../css/mysqpaymentform.css'
 import { delay } from '../../module/util'
 import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { popupBox, defaultIcon, failIcon, successIcon } from '../../css/style.css.js'
+import { popupBox, defaultIcon } from '../../css/style.css.js'
 import { buildPayments } from './payment-action'
 import { useHistory } from "react-router-dom";
+import { moneyFormat } from '../../module/util'
 
 export default function Payments (props) {
   const processingMsg = "Please Wait..."
@@ -100,7 +101,7 @@ export default function Payments (props) {
               id="sq-creditcard" 
               className="button-credit-card" 
               onClick={onGetCardNonce}>
-                Pay ${formData.amount}
+                Complete {moneyFormat(formData.amount)} Payment
             </button>
             <button
               className="button-credit-card-cancel"
@@ -112,7 +113,7 @@ export default function Payments (props) {
                 SqPaymentForm.destroy()
                 setIsOpen(false)
                 }}>
-                Cancel
+                Go Back
             </button>
           </div>
         </Modal>
