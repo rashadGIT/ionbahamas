@@ -4,6 +4,7 @@ import { Route, Switch, HashRouter } from 'react-router-dom'
 import home from './pages/home';
 import about from './pages/about';
 import donations from './pages/donations';
+import howTo from './pages/howTo';
 import donate from './pages/donate'
 import mission from './pages/mission';
 import testimonials from './pages/testimonials';
@@ -36,6 +37,7 @@ ReactDOM.render(
                 <Route path="/signUps" component={newMemberList} />
                 <Route path="/donate/:type" component={donate} />
                 <Route path="/donations" component={donations} />
+                <Route path="/howTo" component={howTo} />
                 <Route component={pageNotFound} />
             </Switch>
         </Provider>

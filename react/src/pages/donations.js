@@ -6,7 +6,8 @@ import '../css/donate.css';
 import {StyleRoot} from 'radium';
 import {styles} from '../module/styles'
 
-const Donations = (props) => 
+export default function Donations(props){
+  return(
   <Layout>
     <StyleRoot>
       <div 
@@ -16,6 +17,7 @@ const Donations = (props) =>
         {causes.map(Card)}
       </div>
     </StyleRoot>
-  </Layout>
-export default Donations;
+  </Layout>)
+}
+// export default Donations;
 // export default Layout(Donations);
