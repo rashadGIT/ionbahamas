@@ -40,18 +40,22 @@ const addMember = async (memberData) => {
   return await setMember(memberData)
 }
 
-  const removeMemberById = async (id) => {
-    return await deleteMember(id);
-  }
+const removeMemberById = async (id) => {
+  return await deleteMember(id);
+}
 
-  const removeMemberByPrimaryId = async (id) => {
-    return await deleteSecondaryMember(id);
-  }
+const removeMemberByPrimaryId = async (id) => {
+  return await deleteSecondaryMember(id);
+}
 
-  const clear = async () => {
-    await deleteAllSecondaryMember();
-    return await deleteAllPrimaryMember();
-  }
+const clear = async () => {
+  await deleteAllSecondaryMember();
+  return await deleteAllPrimaryMember();
+}
+
+const getMemberByEmailOrPhone = async (primaryPhone, email) => {
+  return await getByEmailOrPhone(primaryPhone, email)
+}
 
 const addMembers = async (memberData) => {
     let primary = await setMember(memberData);
@@ -105,6 +109,17 @@ const getMembershipData = () => {
         type : 'internal error'
         }
   });
+}
+
+const getByEmailOrPhone = (primaryPhone, email) => {
+  return sql.query(`SELECT upper(email) as email, primary_phone as phone FROM members where primary_phone = ? or upper(email) = upper(?)`,[primaryPhone, email])
+  .then(x => x[0][0])
+  .catch (err => {
+    return{
+      status : 500,
+      message : err.message,
+      type : 'internal error'
+  }})
 }
 
 const getMembersByEmailOrPhone = (email,phone) => {
@@ -225,11 +240,10 @@ const setMember = (memberData) => {
       let isDuplicate = err.message.replace(/\s.*/,'').toUpperCase().trim() === "DUPLICATE";
       let errCode = 500;
       if(isDuplicate) errCode = 411;
-      console.log(err.message)
       return {
-      status : errCode,
-      message : err.message,
-      type : 'internal error'
+        status : errCode,
+        message : err.message,
+        type : 'internal error'
       }
       });
 }
@@ -245,5 +259,6 @@ module.exports = {
     getMembershipData,
     getMembersByEmailOrPhone,
     clear,
-    getMemberSignUpBetween
+    getMemberSignUpBetween,
+    getMemberByEmailOrPhone
 };

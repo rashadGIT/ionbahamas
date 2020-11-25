@@ -1,21 +1,14 @@
-import React, {Component} from 'react';
-import Footer from '../components/Footer'
+import React from 'react';
+import Footer from './Footer'
 import '../css/navbar.css'
-import NavTopBar from '../components/navTopBar'
+import NavTopBar from './navTopBar'
 import ScrollUpButton from "react-scroll-up-button";
 
-function App(InnerComponent) {
-  return (class extends Component{
-    render(){
-      return(
-          <div key="layout">
-            <ScrollUpButton />
-            <NavTopBar />
-            <InnerComponent />
-            <Footer />
-          </div>
-      )
-    }
-  });
-}
-export default App;
+ export default function Layout(props){
+  return <div key="layout">
+    <ScrollUpButton />
+    <NavTopBar />
+    {props.children}
+    <Footer />
+  </div>
+  }

@@ -37,14 +37,13 @@ app.use('/scholarship', scholarship);
 
 /*Catches 500 errors*/
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(411).send(err)
+  res.status(err.status).send(err)
 });
 
 /*Catches 500 errors*/
-app.use((err, req, res, next) => {
-  res.status(500).send(err)
-});
+// app.use((err, req, res, next) => {
+//   res.status(500).send(err)
+// });
 
 /*Catches 404 errors*/
 app.use((req, res, next) => res.status(404).send("Sorry can't find that!"));

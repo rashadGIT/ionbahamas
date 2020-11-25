@@ -106,5 +106,5 @@ class index extends Component {
     );
   }
 }
-
-export default Layout(index);
+export default index;
+// export default Layout(index);
