@@ -144,13 +144,6 @@ const home = () => {
                         <NavLink tag={RRNavLink} to="/donate/Agriculture">
                           Support Bahamian Agriculture
                         </NavLink>
-                        <NavLink 
-                          tag={RRNavLink} 
-                          to="#" 
-                          onClick={(event) => window.open("https://docs.google.com/forms/d/e/1FAIpQLScxDh1Y8zt2kvsifeNKt82sNhN-lETK1NQ8RbCprdSVRHb1qg/viewform?usp=sf_link")}
-                        >
-                          Thanksgiving Gift Card Giveaway
-                        </NavLink>
                         <NavLink tag={RRNavLink} to="/donate/StudentRelief">
                           <b>{collegeMsgBox}</b>
                         </NavLink>
