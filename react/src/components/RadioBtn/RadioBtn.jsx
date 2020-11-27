@@ -5,8 +5,6 @@ import { radioBtn, radioBtnButton, radioBtnButtonSelected } from '../../css/inpu
 import { moneyFormat } from '../../module/util'
 
 export default function RadioButton (val, amount) {
-    // console.log(val === parseInt(amount))
-    // console.log(parseDecimal(amount))
     return  (
         <Col xs={6} md={4} lg={4} key={val}>
             <FormGroup check>
