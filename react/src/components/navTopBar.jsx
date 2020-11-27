@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {Link as RRNavLink } from "react-router-dom";
 import {
   Collapse,
@@ -12,13 +12,14 @@ import {
 import logo from '../imgs/logo.jpg';
 import img from '../imgs/ioniconflame.png'
 import '../css/navbar.css'
+import '../css/Header.css';
 
 const links = [
   { href: '/', text: 'Home' },
   { href: '/about', text: 'About Us' },
   { href: '/board', text: 'Our Board' },
   { href: '/calendar', text: 'Calendar' },
-  // { href: '/scholarship', text: 'Apply For Scholarship'}
+  { href: '/donations', text: 'Donate' }
 ];
 
 const createNavItem = ({ href, text, className }) => (
@@ -27,24 +28,9 @@ const createNavItem = ({ href, text, className }) => (
   </NavItem>
 );
 
-export default class Example extends Component {
-  constructor(props) {
-    super(props);
+export default function NavBar(props){
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.state = {
-      isOpen: false
-    };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-
-  render() {
     return (
       <div>
         <div className="logo-img">
@@ -54,22 +40,22 @@ export default class Example extends Component {
         </div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">
-            <img id="bannerLogo" style={{position : 'absolute', top : '0%'}} src={img} alt="" width="20" height="40" />
+          <img 
+                className='header__logo'
+                src='https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg'
+                // src={require('../imgs/ioniconflame.png')}
+                alt=''
+              />
+            {/* <img id="bannerLogo" style={{position : 'absolute', top : '0%'}} src={img} alt="" width="20" height="40" /> */}
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {links.map(createNavItem)}
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/donations">Donate</NavLink>
-              </NavItem>
-              {/* <NavItem>
-                <NavLink tag={RRNavLink} to="/donate/StudentRelief"><b>Texas College Student Relief Efforts</b></NavLink>
-              </NavItem> */}
             </Nav>
           </Collapse>
         </Navbar>
       </div>
     );
-  }
+  // }
 }

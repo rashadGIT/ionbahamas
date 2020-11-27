@@ -43,7 +43,7 @@ export default function DonationForm (props) {
     }
   },[amount])
   
-  return (<Layout>
+  return (<div>
       <div style={{padding : '50px 25px 0px 25px'}}>
         <center>
           <img 
@@ -160,6 +160,6 @@ export default function DonationForm (props) {
           </Row>
         </Container>
       </div>
-      </Layout>
+      </div>
   );
 }

@@ -18,28 +18,31 @@ import member from './pages/member';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 import { PaymentReducers } from './components/Payment/payment-reducer'
+import Layout from './components/Layout'
 
 let store = createStore(PaymentReducers)
 
 ReactDOM.render(
     <HashRouter basename="/">
         <Provider store={store}>
-            <Switch>
-                <Route exact path="/" component={home} />
-                <Route path="/about" component={about} />
-                <Route path="/mission" component={mission} />
-                <Route path="/testimonials" component={testimonials} />
-                <Route path="/volunteer" component={volunteer} />
-                <Route path="/board" component={board} />
-                <Route path="/member/:type" component={member} />
-                <Route path="/calendar" component={calendar} />
-                <Route path="/pleasePrint" component={pleasePrint} />
-                <Route path="/signUps" component={newMemberList} />
-                <Route path="/donate/:type" component={donate} />
-                <Route path="/donations" component={donations} />
-                <Route path="/howTo" component={howTo} />
-                <Route component={pageNotFound} />
-            </Switch>
+            <Layout>
+                <Switch>
+                    <Route exact path="/" component={home} />
+                    <Route path="/about" component={about} />
+                    <Route path="/mission" component={mission} />
+                    <Route path="/testimonials" component={testimonials} />
+                    <Route path="/volunteer" component={volunteer} />
+                    <Route path="/board" component={board} />
+                    <Route path="/member/:type" component={member} />
+                    <Route path="/calendar" component={calendar} />
+                    <Route path="/pleasePrint" component={pleasePrint} />
+                    <Route path="/signUps" component={newMemberList} />
+                    <Route path="/donate/:type" component={donate} />
+                    <Route path="/donations" component={donations} />
+                    <Route path="/howTo" component={howTo} />
+                    <Route component={pageNotFound} />
+                </Switch>
+            </Layout>
         </Provider>
     </HashRouter>, 
 document.getElementById('root'));

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from '../components/Layout';
 import YouTube from 'react-youtube';
 import { opts } from '../css/youTube.css.js'
+import Header from '../components/Header'
+import SideBar from '../components/Sidebar/SideBar';
+ 
  
 export default function howTo(props){ 
     return (
-        <Layout>
+        <div>
+            <Header />
+            {/* <SideBar/> */}
             <YouTube
                 videoId={"2g811Eo7K8U"}           // defaults -> null
                 // id={string}                       // defaults -> null
@@ -21,6 +26,6 @@ export default function howTo(props){
                 // onPlaybackRateChange={func}       // defaults -> noop
                 // onPlaybackQualityChange={func}    // defaults -> noop
             />
-        </Layout>
+        </div>
     )
 }

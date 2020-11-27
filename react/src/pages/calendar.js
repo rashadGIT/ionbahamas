@@ -41,7 +41,7 @@ const donate = (props) => {
   },[]);
 
   return (
-    <Layout>
+    <div>
       {event && <Modal open={open} onClose={() => setOpen(!open)} center>
         <h5 style={{paddingRight : 60}}>{event.title}</h5>
         <div>When : {getEventDate(event)}</div>
@@ -160,7 +160,7 @@ const donate = (props) => {
           </Col>
         </Row>
         </Container> 
-      </Layout>
+      </div>
       );
 }
 export default donate;

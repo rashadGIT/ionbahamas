@@ -41,7 +41,7 @@ const home = () => {
     }
   },[data]);
 
-  return <Layout>
+  return <div>
   <StyleRoot>
             <div className="highlights">
               <Carousel
@@ -196,6 +196,6 @@ const home = () => {
               </Row>
             </Container>
           </StyleRoot>
-        </Layout>
+        </div>
 }
 export default home;

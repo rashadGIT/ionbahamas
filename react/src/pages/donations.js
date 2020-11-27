@@ -8,7 +8,6 @@ import {styles} from '../module/styles'
 
 export default function Donations(props){
   return(
-  <Layout>
     <StyleRoot>
       <div 
         className="container-flex-card" 
@@ -16,8 +15,7 @@ export default function Donations(props){
       >
         {causes.map(Card)}
       </div>
-    </StyleRoot>
-  </Layout>)
+    </StyleRoot>)
 }
 // export default Donations;
 // export default Layout(Donations);
