@@ -3,7 +3,6 @@ import Col from 'react-bootstrap/Col';
 import { FormGroup, Label, Input } from 'reactstrap';
 import { radioBtn, radioBtnButton, radioBtnButtonSelected } from '../../css/input.css'
 import { moneyFormat } from '../../module/util'
-import './RadioBtn.css'
 
 export default function RadioButton (val, amount) {
     return  (
