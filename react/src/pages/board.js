@@ -155,24 +155,6 @@ class member extends Component {
         order : 7
       },
       {
-        name: "Ancilleno Solomon",
-        bio : (
-            <div>
-              <p>
-                Ancilleno Solomon is the Chef- Owner of Ice Chef Bahamas Catering and Events, based in Dallas Texas.
-                Born and raised in The Bahamas, he is a graduate of The College of The Bahamas (COB),
-                where he earned an Associate of Arts degree in Culinary Arts. After graduating COB Ancilleno went on to work for a
-                few years in the hospitality and tourism sector of the Bahamas.</p>
-              <p>
-                As a food and culture enthusiast for the Bahamas Ancilleno later moved to Texas where he is considered 'The Bahamian Food Whisperer'.
-                Ancilleno currently is employed by Hyatt Hotel as the Chef De Cuisine for banquets at the Hyatt Regency Dallas.
-              </p>
-            </div>),
-        img : Ancilleno,
-        position : "Director of Public Relations",
-        order : 8
-      },
-      {
         name: "Rashad Barnett",
         bio : (<div>
           <p>
