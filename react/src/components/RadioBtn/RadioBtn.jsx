@@ -16,7 +16,7 @@ export default function RadioButton (val, amount) {
                     key={val}
                     style={radioBtn}
                 />
-                <span style={(val === parseInt(amount)) ? radioBtnButtonSelected : radioBtnButton}>{ !isNaN(val) ? `${moneyFormat(val)}` : val }</span>
+                <span style={(moneyFormat(val) === moneyFormat(amount)) ? radioBtnButtonSelected : radioBtnButton}>{ !isNaN(val) ? `${moneyFormat(val)}` : val }</span>
                 </Label>
             </FormGroup>
         </Col>)

@@ -36,11 +36,11 @@ let scheduledMeetings = getGeneralMeetings()
 })
 .map(virtualMeeting => {
   let arr = [
-    // new Date("03/28/2021").getTime(),
+    new Date("03/28/2021").getTime(),
     // new Date("09/26/2021").getTime()
   ]
   if(arr.includes(virtualMeeting.startDate.getTime())){
-    virtualMeeting.virtualEventLink = "https://www.google.com"
+    virtualMeeting.virtualEventLink = "https://zoom.us/j/96625041771?pwd=dG1HYW1YdmpHcmo3U1lXSlNaTlR0dz09"
   }
   return virtualMeeting;
 })
