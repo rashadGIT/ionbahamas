@@ -37,7 +37,7 @@ let scheduledMeetings = getGeneralMeetings()
 .map(virtualMeeting => {
   let arr = [
     new Date("03/28/2021").getTime(),
-    // new Date("09/26/2021").getTime()
+    new Date("06/27/2021").getTime()
   ]
   if(arr.includes(virtualMeeting.startDate.getTime())){
     virtualMeeting.virtualEventLink = "https://zoom.us/j/96625041771?pwd=dG1HYW1YdmpHcmo3U1lXSlNaTlR0dz09"
@@ -57,19 +57,19 @@ let scheduledMeetings = getGeneralMeetings()
 ;
 
 let list = [
-  // {
-  //   allDay: false,
-  //   startDate: new Date("12/21/2020"),
-  //   endDate: new Date("12/21/2020"),
-  //   startTime : "7:00pm",
-  //   endTime : "10:00pm",
-  //   title: 'A Taste of Paradise Fundraising Gala Dinner & Silent Auction',
-  //   description : "Featuring a Uniquely Bahamian Mini Fashion Show",
-  //   calendarLink: "https://www.google.com/calendar/render?action=TEMPLATE&text=A+Taste+of+Paradise+Gala+Dinner&details=African+American+Museum+of+Dallas+-+3536+Grand+Ave%2C+Dallas%2C+TX+75210&location=3536+Grand+Ave%2C+Dallas%2C+TX+75210&dates=20190922T000000Z%2F20190922T030000Z",
-  //   mapURL : "https://goo.gl/maps/1K96gzDvLR2TiDn68",
-  //   location : "African American Museum At Fair Park"
+  {
+    allDay: false,
+    startDate: new Date("05/30/2021"),
+    endDate: new Date("06/01/2021"),
+    startTime : "3:00pm",
+    endTime : "12:00pm",
+    title: 'Fun Day at the Motts',
+    description : "It has definently been a crazy year, hasn't it?  Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
+    calendarLink: "https://calendar.google.com/event?action=TEMPLATE&tmeid=NXJvZ2Z1ODU3YjduMTZzZWdrYWlwczVrdXEgcmFzaGFkLmJhcm5ldHRAbQ&tmsrc=rashad.barnett%40gmail.com",
+    mapURL : "https://goo.gl/maps/zrRt4rtiPPJerJDYA",
+    location : "Mott Farms"
 
-  // },
+  },
   // {
   //   allDay: false,
   //   startDate: new Date("12/09/2020"),
