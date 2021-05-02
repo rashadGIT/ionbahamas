@@ -3,9 +3,9 @@ import Layout from '../components/Layout';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import FunDay from '../imgs/Fun Day.jpg'
 import {NavLink } from 'reactstrap';
 import { Carousel } from 'react-responsive-carousel';
-import Thanksgiving from '../imgs/thanksgiving.jpg'
 import {Link as RRNavLink } from "react-router-dom";
 import { Button } from 'reactstrap';
 import { shortcutLinks } from '../module/shortcuts'
@@ -57,33 +57,36 @@ const home = () => {
                 dynamicHeight={false}
                 className="carousel"
               >
-                {/* <div key={"Thanksgiving"}>
-                  <img alt="" src={Thanksgiving} />
-                  <div className="carouselTextContainerThanksgiving">
-                    <div className="auctionTextDescriptionThanksgiving">
-                      <h1 className="auctionTextTitleThanksgiving">
-                        <center><i>Thanksgiving Gift Card <br />Giveaway</i></center>
+                <div key={"Fun Day"}>
+                  <img alt="" src={FunDay}/>
+                  <div className="carouselTextContainer">
+                    <div className="auctionTextDescription">
+                      <h1 className="auctionTextTitle">
+                        <center><i>Fun Day <br />@ The Mott Family Farm</i></center>
                       </h1>
                       <center>
-                        <b>ION Bahamas is giving away thanksgiving gift cards to 5 families!</b>
-                        <p>
-                          Gift Card Drawing : <b>FRIDAY NOVEMBER 13TH</b>
-                        </p>
-                        <div>Application closes :  <b>Thursday NOVEMBER 12TH at midnight</b></div>
-                      </center>
+                        <b>Join Us for <br />Fun, Food, Sun, Rest and Relaxation</b>
+                      </center><br />
                       <center>
-                        <Button 
-                          onClick={(event) => window.open("https://docs.google.com/forms/d/e/1FAIpQLScxDh1Y8zt2kvsifeNKt82sNhN-lETK1NQ8RbCprdSVRHb1qg/viewform?usp=sf_link")}
-                          outline={false} 
-                          style={{color: 'black'}} 
-                          size="lg" 
-                          color="warning">
-                            Application Today!
-                        </Button>
+                        <RRNavLink
+                        // to={"https://twitter.com/Turkcell" }
+                        //   to={{
+                        //     //pathname: `https://www.signupgenius.com/go/70a094ea8ac2ca4fa7-funday`
+                        // }}
+                        // to="/donate/Agriculture"
+                        >
+                          <Button 
+                            outline={false}  
+                            onClick={(event) => window.open(`https://www.signupgenius.com/go/70a094ea8ac2ca4fa7-funday`)} 
+                            style={{color: 'black'}} 
+                            size="sm" color="warning">
+                              RSVP on SignUp Genius
+                          </Button>
+                        </RRNavLink>
                       </center>
                     </div>
                   </div>
-                </div> */}
+                </div>
                 <div key={"Agriculture"}>
                   <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
                   <div className="carouselTextContainer">
