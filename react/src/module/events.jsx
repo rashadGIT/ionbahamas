@@ -59,12 +59,12 @@ let scheduledMeetings = getGeneralMeetings()
 let list = [
   {
     allDay: false,
-    startDate: new Date("05/30/2021"),
-    endDate: new Date("06/01/2021"),
+    startDate: new Date("07/10/2021"),
+    endDate: new Date("07/12/2021"),
     startTime : "3:00pm",
     endTime : "12:00pm",
     title: 'Fun Day at the Motts',
-    description : "It has definently been a crazy year, hasn't it?  Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
+    description : "It has definitely been a crazy year, hasn't it?  Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
     calendarLink: "https://calendar.google.com/event?action=TEMPLATE&tmeid=NXJvZ2Z1ODU3YjduMTZzZWdrYWlwczVrdXEgcmFzaGFkLmJhcm5ldHRAbQ&tmsrc=rashad.barnett%40gmail.com",
     mapURL : "https://goo.gl/maps/zrRt4rtiPPJerJDYA",
     location : "Mott Farms"
