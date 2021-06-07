@@ -5,6 +5,7 @@ import home from './pages/home';
 import about from './pages/about';
 import donations from './pages/donations';
 import donate from './pages/donate'
+import event from './pages/event'
 import mission from './pages/mission';
 import testimonials from './pages/testimonials';
 import volunteer from './pages/volunteer';
@@ -36,6 +37,7 @@ ReactDOM.render(
                 <Route path="/signUps" component={newMemberList} />
                 <Route path="/donate/:type" component={donate} />
                 <Route path="/donations" component={donations} />
+                <Route path="/event/:type" component={event} />
                 <Route component={pageNotFound} />
             </Switch>
         </Provider>

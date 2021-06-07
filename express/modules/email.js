@@ -7,19 +7,27 @@ const resolve = path.resolve;
 const parentDir = resolve(__dirname, '..');
 require('dotenv').config({ path: `${parentDir}/env/email.env` });
 
-const transporter = nodemailer.createTransport({
-    host: process.env.emailHost,
-    port: process.env.emailPort,
-    secure: true, // true for 465, false for other ports
-    auth: {
-        user: process.env.emailUsername, // generated ethereal user
-        pass: process.env.emailPassword // generated ethereal password
-    },
-    tls: { rejectUnauthorized: false },
-    requireTLS: false, 
-    debug: false, // show debug output
-    logger: false // log information in console
-  });
+const transporter = nodemailer.createTransport(
+    {service: 'gmail',
+  auth: {
+    user: 'rashad.barnett@gmail.com',
+    pass: 'Kale1do5cope'
+  }}
+//     {
+//     host: process.env.emailHost,
+//     port: process.env.emailPort,
+//     secure: true, // true for 465, false for other ports
+//     auth: {
+//         user: process.env.emailUsername, // generated ethereal user
+//         pass: process.env.emailPassword // generated ethereal password
+//     },
+//     tls: { rejectUnauthorized: false },
+//     requireTLS: false, 
+//     debug: false, // show debug output
+//     logger: false // log information in console
+//   }
+  
+  );
 
 module.exports = {
     transporter

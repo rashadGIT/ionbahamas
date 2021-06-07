@@ -50,4 +50,42 @@ app.post('/donate', async (req, res) => {
   res.send(complete)
 })
 
+app.post('/event', async (req, res) => {
+  const body = req.body
+  let amount = body.amount;
+  let nonce = body.nonce;
+  let complete = {};
+  let record = {};
+  let email = {}
+  let isAnonymous = body.isAnonymous
+
+  let pay = await payment.submit(amount,nonce);
+  if(pay.status === 200){
+    complete.payment = {status : pay.status, title :pay.title, squareStatus : pay.result.payment.status};
+    let fName = body.fName;
+    let lName = body.lName;
+    let donorEmail = body.email;
+    let amount = body.amount;
+    let donation = body.donation
+
+    complete.record = {status : record.status}
+    email = await payment.sendThankYou(body,pay)
+    //   if(email.accepted.includes(body.email)){
+    //     complete.email = {status : 200, accepted : body.email}
+    //   }
+      console.log("fwuforewbngoe")
+  }
+  // if( (complete.payment && complete.payment.status === 200) && 
+  //     (complete.record && complete.record.status === 200) &&
+  //     (complete.email && complete.email.status === 200)
+  //   ){
+  //   complete.status = 200;
+  // }else{
+  //   complete.status = 411;
+  // }
+
+  // res.send(complete)
+  res.send("fdigfnoierg")
+})
+
 module.exports = app;
