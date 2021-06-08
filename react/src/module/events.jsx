@@ -60,6 +60,19 @@ let list = [
   {
     allDay: false,
     startDate: new Date("07/10/2021"),
+    endDate: new Date("07/10/2021"),
+    startTime : "8:00am",
+    endTime : "12:00pm",
+    title: 'Independence Walk-A-Thon',
+    description : "Come and join us for a walk around white rock lake to celebrate Bahamas Independence.",
+    calendarLink: null,
+    mapURL : "https://www.google.com/maps/place/32%C2%B050'35.7%22N+96%C2%B043'06.9%22W/@32.8432437,-96.7207657,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d32.8432437!4d-96.718577?hl=en",
+    location : "White Rock Lake"
+
+  },
+  {
+    allDay: false,
+    startDate: new Date("07/10/2021"),
     endDate: new Date("07/12/2021"),
     startTime : "3:00pm",
     endTime : "12:00pm",

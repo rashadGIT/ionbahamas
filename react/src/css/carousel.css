@@ -126,11 +126,20 @@
         display: block;
         padding-bottom: 20px;
     }
+
     .carouselTextContainer{
         position: absolute;
         left: 3%;
         top: 10%;
         max-width: 1000px;
+    }
+
+    .carouselTextContainerWalk{
+        position: absolute;
+        left: 30%;
+        top: 40%;
+        width: 100%;
+        max-width: 500px;
     }
 
     .auctionTextContainer{
@@ -202,6 +211,18 @@
         color: white;
         font-weight: bold;
         font-size: 40px;
+        font-family: "Times New Roman", Times, serif;
+        /* background-color: coral; */
+        -ms-transform: skew(-20deg);
+        -webkit-transform: skew(-20deg);
+        transform: skew(-20deg);
+        padding: 7px;
+    }
+
+    .auctionTextTitleWalk{
+        color: white;
+        font-weight: bold;
+        font-size: 30px;
         font-family: "Times New Roman", Times, serif;
         /* background-color: coral; */
         -ms-transform: skew(-20deg);
