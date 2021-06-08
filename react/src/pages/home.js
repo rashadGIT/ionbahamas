@@ -19,6 +19,7 @@ import { membershipTypes } from '../module/membershipTypes';
 import {StyleRoot} from 'radium';
 import MembershipBox from '../components/MembershipBox'
 import {styles} from '../module/styles'
+import walkAThon from '../imgs/walk-a-thon.jpg'
 
 const collegeMsgBox = "Texas College Student Relief Efforts";
 const smileLink = "https://smile.amazon.com/ch/84-2453440";
@@ -108,6 +109,37 @@ const home = () => {
                         >
                           <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate</Button>
                         </RRNavLink>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+                <div key={"Walk-A-Thon"}>
+                  <img alt="" src={walkAThon} height="100%"/>
+                  <div className="carouselTextContainerWalk">
+                    <div className="auctionTextDescription">
+                      <h4 className="auctionTextTitleWalk">
+                        <center><i>Independence  Walk-A-Thon<br />@<a href="https://www.google.com/maps/place/32%C2%B050'35.7%22N+96%C2%B043'06.9%22W/@32.8432437,-96.7207657,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d32.8432437!4d-96.718577?hl=en" target="_blank">White Rock Lake</a></i></center>
+                      </h4>
+                      <center>
+                        <b>Join Us on a walk around White Rock Lake <br />July 10th, 2021</b>
+                      </center><br />
+                      <center>
+                        {/* <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> */}
+                          {/* <input type="hidden" name="cmd" value="_s-xclick">
+                          <input type="hidden" name="hosted_button_id" value="56UQXPWYAB37L">
+                          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"> */}
+                        {/* </form> */}
+
+                        {/* <RRNavLink 
+                          to={{
+                            pathname: `/donate/Agriculture`
+                        }}
+                        
+                        // to="/donate/Agriculture"
+                        > */}
+                          <Button outline={false} onClick={() => window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMGTSVLH3SAFQ')} style={{color: 'black'}} size="sm" color="warning">Signup for Walk-A-Thon</Button>
+                        {/* </RRNavLink> */}
                       </center>
                     </div>
                   </div>
