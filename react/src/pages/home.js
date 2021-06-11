@@ -174,6 +174,9 @@ const home = () => {
                         <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                           Introduction to ION Bahamas Video
                         </NavLink>
+                        <NavLink tag={RRNavLink} to="#" onClick={() => window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMGTSVLH3SAFQ')}>
+                        Independence  Walk-A-Thon
+                        </NavLink>
                         <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open(smileLink)}>
                           Amazon Smile
                         </NavLink>
