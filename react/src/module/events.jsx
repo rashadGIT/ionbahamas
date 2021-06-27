@@ -47,7 +47,7 @@ let scheduledMeetings = getGeneralMeetings()
 .map(cancelledMeeting => {
   let arr = [
     new Date("03/28/2021").getTime(),
-    //new Date("06/27/2021").getTime()
+    new Date("06/27/2021").getTime()
     // new Date("09/26/2021").getTime()
   ]
   if(arr.includes(cancelledMeeting.startDate.getTime())){
