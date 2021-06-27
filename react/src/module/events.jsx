@@ -16,7 +16,7 @@ const getGeneralMeetings = () =>{
           startDate: meetingDate.toDate(),
           endDate: meetingDate.toDate(),
           startTime : "6:00pm",
-          endTime : "6:00pm",
+          endTime : "7:00pm",
           title: 'General Meeting',
           description : "Join the conversation.",
           calendarLink: null,
@@ -47,6 +47,7 @@ let scheduledMeetings = getGeneralMeetings()
 .map(cancelledMeeting => {
   let arr = [
     new Date("03/28/2021").getTime(),
+    new Date("06/27/2021").getTime()
     // new Date("09/26/2021").getTime()
   ]
   if(arr.includes(cancelledMeeting.startDate.getTime())){
@@ -57,31 +58,29 @@ let scheduledMeetings = getGeneralMeetings()
 ;
 
 let list = [
-  {
-    allDay: false,
-    startDate: new Date("07/10/2021"),
-    endDate: new Date("07/10/2021"),
-    startTime : "8:00am",
-    endTime : "12:00pm",
-    title: 'Independence Walk-A-Thon',
-    description : "Come and join us for a walk around white rock lake to celebrate Bahamas Independence.",
-    calendarLink: null,
-    mapURL : "https://www.google.com/maps/place/32%C2%B050'35.7%22N+96%C2%B043'06.9%22W/@32.8432437,-96.7207657,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d32.8432437!4d-96.718577?hl=en",
-    location : "White Rock Lake"
-
-  },
+  // {
+  //   allDay: false,
+  //   startDate: new Date("09/10/2021"),
+  //   endDate: new Date("09/10/2021"),
+  //   startTime : "8:00am",
+  //   endTime : "12:00pm",
+  //   title: 'ION Walk-A-Thon',
+  //   description : "Come and join us for a walk around white rock lake to celebrate Bahamas Independence.",
+  //   calendarLink: null,
+  //   mapURL : "https://www.google.com/maps/place/32%C2%B050'35.7%22N+96%C2%B043'06.9%22W/@32.8432437,-96.7207657,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d32.8432437!4d-96.718577?hl=en",
+  //   location : "White Rock Lake"
+  // },
   {
     allDay: false,
     startDate: new Date("07/10/2021"),
     endDate: new Date("07/12/2021"),
-    startTime : "3:00pm",
+    startTime : "1:00pm",
     endTime : "12:00pm",
     title: 'Fun Day at the Motts',
     description : "It has definitely been a crazy year, hasn't it?  Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
     calendarLink: "https://calendar.google.com/event?action=TEMPLATE&tmeid=NXJvZ2Z1ODU3YjduMTZzZWdrYWlwczVrdXEgcmFzaGFkLmJhcm5ldHRAbQ&tmsrc=rashad.barnett%40gmail.com",
     mapURL : "https://goo.gl/maps/zrRt4rtiPPJerJDYA",
     location : "Mott Farms"
-
   },
   // {
   //   allDay: false,
