@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Table from 'react-bootstrap/Table'
 import Avatar from 'react-avatar';
 import Rashad from '../imgs/board/Rashad.jpg';
-import Edward from '../imgs/board/Edward.png';
+import Cardell from '../imgs/board/Cardell.jpg';
 import Carlisle from '../imgs/board/Carlisle.jpeg';
 import Italia from '../imgs/board/Italia.jpeg'
 import Sean from '../imgs/board/Sean.jpg';
@@ -76,25 +76,30 @@ class member extends Component {
         position : "Assistant Chairman of the Board",
         order : 2
       },
-      // {
-      //   name: "Italia Wakefield",
-      //   bio : (<div>
-      //         <p>
-      //           Dr. Italia Hutchinson-Wakefield is a confident, passionate Bahamian medical doctor, currently employed at a medical facility in Dallas, Texas.
-      //           Italia received her Doctoral degree with a Bachelors in Medicine and a Bachelors in Surgery at The University of the West Indies (UWI),Trinidad and Tobago.
-      //         </p>
-      //         <p>
-      //           She is also an entrepreneurial visionary and a leadership coach for young adults at a summer program called Leap held yearly on the campus of UCLA.
-      //           Italia is a wife to a United States veteran, loving daughter and supportive sister.
-      //           She is passionate about making a positive difference in the lives of young women.
-      //           As the current CEO and founder of a non-profit organization called SOT Sisterhood of Texas,
-      //           she continues to  prove that she was not only born to make a living but also to make a difference in the lives of others.
-      //         </p>
-      //       </div>),
-      //   img : Italia,
-      //   position : "Secretary",
-      //   order : 3
-      // },
+      {
+        name: "Cardell Davis",
+        bio : (<div>
+                <p>
+                  Cardell Davis is a Tennessee native; his grandfather Thomas L. Mott Sr. is from Inaguga, 
+                  Cardell graduated from Middle Tennessee State University. He has been an entrepreneur for 
+                  the last three years. During that experience, he has gained a more profound passion for the 
+                  love of marketing and enhancing businesses.
+                </p>
+                <p>
+                  His goal is always to expand his horizons and achieve higher experiences. A quote that he 
+                  lives by is, “If the old door isn’t opening, then let me help you build a new door that 
+                  will open for you.” In other words, if the old setup isn’t working, let me assist you in 
+                  making a new setup.
+                </p>
+                <p>
+                  When he is not working, his hobbies are hanging with family and friends and hiking, 
+                  and going on new adventures.
+                </p>
+            </div>),
+        img : Cardell,
+        position : "Director of PR/ Marketing",
+        order : 9
+      },
       {
         name: "Maria Mott",
         bio : (<div>
