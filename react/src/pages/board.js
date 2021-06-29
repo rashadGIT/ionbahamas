@@ -80,7 +80,7 @@ class member extends Component {
         name: "Cardell Davis",
         bio : (<div>
                 <p>
-                  Cardell Davis is a Tennessee native; his grandfather Thomas L. Mott Sr. is from Inaguga, 
+                  Cardell Davis is a Tennessee native; his grandfather Thomas L. Mott Sr. is from Inagua, 
                   Cardell graduated from Middle Tennessee State University. He has been an entrepreneur for 
                   the last three years. During that experience, he has gained a more profound passion for the 
                   love of marketing and enhancing businesses.
