@@ -21,7 +21,7 @@ import MembershipBox from '../components/MembershipBox'
 import {styles} from '../module/styles'
 import walkAThon from '../imgs/walk-a-thon.jpg'
 
-const collegeMsgBox = "Texas College Student Relief Efforts";
+const collegeMsgBox = "College Student Relief Efforts";
 const smileLink = "https://smile.amazon.com/ch/84-2453440";
 
 const home = () => {
