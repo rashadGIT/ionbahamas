@@ -58,16 +58,16 @@ const home = () => {
                 dynamicHeight={false}
                 className="carousel"
               >
-                <div key={"Fun Day"}>
+                <div key={"A Bahamian Ting Potluck"}>
                   <img alt="" src={FunDay}/>
                   <div className="carouselTextContainer">
                     <div className="auctionTextDescription">
                       <h1 className="auctionTextTitle">
-                        <center><i>Fun Day <br />@ The Mott Family Farm</i></center>
+                        <center><i>A Bahamian Ting Potluck <br />@ The Mott Family Farm</i></center>
                       </h1>
                       <center>
-                        <b>Join Us for <br />Fun, Food, Sun, Rest and Relaxation</b>
-                        <br/>July 10th, 2021
+                        <b>Join Us for <br />Fun, Food, Sun, Music and Games</b>
+                        <br/>April 9th, 2022
                       </center><br />
                       <center>
                         <RRNavLink
@@ -79,7 +79,7 @@ const home = () => {
                         >
                           <Button 
                             outline={false}  
-                            onClick={(event) => window.open(`https://www.signupgenius.com/go/70a094ea8ac2ca4fa7-funday`)} 
+                            onClick={(event) => window.open(`https://www.signupgenius.com/go/70a094ea8ac2ca4fa7-abahamian1`)} 
                             style={{color: 'black'}} 
                             size="sm" color="warning">
                               RSVP on SignUp Genius
@@ -159,18 +159,18 @@ const home = () => {
                         <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open("https://youtu.be/0NXalyzcDj8")}>
                           Introduction to ION Bahamas Video
                         </NavLink>
-                        <NavLink tag={RRNavLink} to="#" onClick={() => window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMGTSVLH3SAFQ')}>
+                        {/* <NavLink tag={RRNavLink} to="#" onClick={() => window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QMGTSVLH3SAFQ')}>
                           Independence  Walk-A-Thon
-                        </NavLink>
+                        </NavLink> */}
                         <NavLink tag={RRNavLink} to="#" onClick={(event) => window.open(smileLink)}>
                           Amazon Smile
                         </NavLink>
-                        <NavLink tag={RRNavLink} to="/donate/Agriculture">
+                        {/* <NavLink tag={RRNavLink} to="/donate/Agriculture">
                           Support Bahamian Agriculture
-                        </NavLink>
-                        <NavLink tag={RRNavLink} to="/donate/StudentRelief">
+                        </NavLink> */}
+                        {/* <NavLink tag={RRNavLink} to="/donate/StudentRelief">
                           <b>{collegeMsgBox}</b>
-                        </NavLink>
+                        </NavLink> */}
                       </div>
                     </div>
                   </center>
@@ -184,8 +184,8 @@ const home = () => {
                       <p>Please follow the following link to our website and hit the Hurricane Dorian Relief Efforts button to donate.</p>
                       <p>We appreciate any help you can provide. We are our brothers’ keepers.</p>
                       <center>
-                        <RRNavLink to="/donate/DisasterRelief">
-                          <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate to Disaster Relief Fund</Button>
+                        <RRNavLink to="#" >
+                          <Button outline={false} style={{color: 'black'}} size="sm" color="warning" disabled={true}>Donate to Disaster Relief Fund</Button>
                         </RRNavLink>
                       </center>
                     </div>

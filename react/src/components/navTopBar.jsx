@@ -60,9 +60,9 @@ export default class Example extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {links.map(createNavItem)}
-              <NavItem>
+              {/* <NavItem>
                 <NavLink tag={RRNavLink} to="/donations">Donate</NavLink>
-              </NavItem>
+              </NavItem> */}
               {/* <NavItem>
                 <NavLink tag={RRNavLink} to="/donate/StudentRelief"><b>Texas College Student Relief Efforts</b></NavLink>
               </NavItem> */}

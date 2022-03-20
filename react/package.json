@@ -1,6 +1,7 @@
 {
   "name": "ionbahamas",
   "version": "0.1.0",
+  "homepage": "/build",
   "private": true,
   "proxy": "http://localhost:3001",
   "secure": false,

@@ -130,13 +130,10 @@ class member extends Component {
         name: "Chantel Jervis-Walton",
         bio : (<div>
             <p>
-              Chantel Jervis Walton is a native of northern Illinois, born to Bahamian father Cyril Jervis and Iowa native Julie V. Jervis.
-              Loving mother of three, Chantel has a passion for serving and being a resource in her community and abroad.
+              Chantel Marie is a native of northern Illinois, born to Bahamian father Cyril Jervis and Iowa native Julie V. Jervis. Loving mother of three, Chantel has a passion for serving and being a resource in her community and abroad.
             </p>
             <p>
-              She is a certified teacher in the state of Texas where she earned her Bachelor of Arts degree in Liberal Studies from Texas Wesleyan University and has professionally taught the last 7 years.
-              In addition to teaching, Chantel is also a aspiring real estate agent. She is committed to providing resources and support for others, using her gifts, education,
-              and authentic personality to be an asset to this organization and to those that take part.
+              She is a certified teacher in the state of Texas where she earned her Bachelor of Arts degree in Liberal Studies from Texas Wesleyan University and has professionally taught the last 15 years. In addition to teaching, Chantel is also a licensed real estate agent in the state of Texas. She is committed to providing resources and support for others, using her gifts, education, and authentic personality to be an asset to this organization and to those that take part.
             </p></div>),
         img : Chantel,
         position : "Director of Education & Resources",
@@ -163,9 +160,9 @@ class member extends Component {
         name: "Rashad Barnett",
         bio : (<div>
           <p>
-            Rashad Barnett was born in Freeport, Grand Bahama, Bahamas. He graduated from Florida State University in Tallahssee, FL.
+            Rashad Barnett was born in Freeport, Grand Bahama, Bahamas. He graduated from Florida State University in Tallahassee, FL.
             After receiving his education, Rashad moved to the Dallas/Fort Worth Metroplex to pursue his career.
-            Rashad currently works as a Software Developer at a fortune 500 company.
+            Rashad currently works as a Software Engineer at a fortune 500 company.
           </p>
           <p>Rashad is a loving son, supportive brother and lifelong friend to many.
             He is passionate about making a positive difference in the lives of others through his talents and drive.
