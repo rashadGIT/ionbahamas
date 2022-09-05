@@ -13,6 +13,7 @@ import calendar from './pages/calendar';
 import pageNotFound from './pages/pageNotFound';
 import pleasePrint from './pages/pleasePrint';
 import newMemberList from './pages/newMembers';
+import scholarship from './pages/scholarship';
 import member from './pages/member';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
@@ -36,6 +37,7 @@ ReactDOM.render(
                 <Route path="/signUps" component={newMemberList} />
                 <Route path="/donate/:type" component={donate} />
                 <Route path="/donations" component={donations} />
+                <Route path="/scholarship" component={scholarship} />
                 <Route component={pageNotFound} />
             </Switch>
         </Provider>

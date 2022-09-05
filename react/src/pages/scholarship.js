@@ -81,7 +81,7 @@ class index extends Component {
           <p className="upperCase">
             Deadline July 31, 2020
           </p>
-          <form onSubmit={this.handleSubmit}>
+          {/* <form onSubmit={this.handleSubmit}>
             <label>
               Name<br />
               <input className="textBox" type="text" value={this.state.name} onChange={this.handleNameChange} />
@@ -100,7 +100,8 @@ class index extends Component {
             </label>
             <br />
             <Button color="primary" onClick={this.handleSubmit} >Submit Application</Button>
-          </form>
+          </form> */}
+          <Button color="primary" mailto="mailto:no-reply@example.com" >Submit Application</Button>
         </center>
       </div>
     );

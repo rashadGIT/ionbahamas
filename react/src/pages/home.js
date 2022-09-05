@@ -19,7 +19,7 @@ import { membershipTypes } from '../module/membershipTypes';
 import {StyleRoot} from 'radium';
 import MembershipBox from '../components/MembershipBox'
 import {styles} from '../module/styles'
-import walkAThon from '../imgs/walk-a-thon.jpg'
+import gala from '../imgs/gala.jpg'
 
 const collegeMsgBox = "College Student Relief Efforts";
 const smileLink = "https://smile.amazon.com/ch/84-2453440";
@@ -58,7 +58,7 @@ const home = () => {
                 dynamicHeight={false}
                 className="carousel"
               >
-                <div key={"A Bahamian Ting Potluck"}>
+                {/* <div key={"A Bahamian Ting Potluck"}>
                   <img alt="" src={FunDay}/>
                   <div className="carouselTextContainer">
                     <div className="auctionTextDescription">
@@ -88,27 +88,37 @@ const home = () => {
                       </center>
                     </div>
                   </div>
-                </div>
-                <div key={"Agriculture"}>
-                  <img alt="" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" />
+                </div> */}
+                <div key={"Gala"}>
+                  <img 
+                    alt="" 
+                    src={gala}
+                    //src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" 
+                    />
                   <div className="carouselTextContainer">
                     <div className="auctionTextDescription">
                       <h1 className="auctionTextTitle">
-                        <center><i>Support Bahamian <br />Agriculture</i></center>
+                        <center>
+                          <i>
+                            Scholarship Fundraising 
+                            <br />
+                            Gala
+                          </i>
+                        </center>
                       </h1>
                       <center>
-                        <b>Join Us in the fight against food <br />insecurity in the Bahamas</b>
+                        <b>Join Us for Dinner <br />and Silent Auction</b>
                       </center><br />
                       <center>
-                        <RRNavLink 
+                        {/* <RRNavLink 
                           to={{
                             pathname: `/donate/Agriculture`
-                        }}
+                        }} */}
                         
-                        // to="/donate/Agriculture"
-                        >
-                          <Button outline={false} style={{color: 'black'}} size="sm" color="warning">Donate</Button>
-                        </RRNavLink>
+                        {/* // to="/donate/Agriculture" */}
+                        {/* > */}
+                          <Button  onClick={()=>window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JX33NTNBH52QQ')} outline={false} style={{color: 'black'}} size="sm" color="warning">Buy Tickets Here</Button>
+                        {/* </RRNavLink> */}
                       </center>
                     </div>
                   </div>

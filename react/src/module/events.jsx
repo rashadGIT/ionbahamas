@@ -82,6 +82,18 @@ let list = [
     mapURL : "https://goo.gl/maps/zrRt4rtiPPJerJDYA",
     location : "Mott Farms"
   },
+  {
+    allDay: false,
+    startDate: new Date("10/15/2022"),
+    endDate: new Date("10/15/2022"),
+    startTime : "7:30pm",
+    endTime : "10:30pm",
+    title: 'Annual Scholarship Fundraising Gala',
+    description : "Tickets $65 | Dinner included | Silent Auction | 6633 Virginia Parkway, Suite #102, McKinney",
+    calendarLink: null,
+    mapURL : "https://goo.gl/maps/wD6LUTTfRwhNfAH8A",
+    location : "The Guitar Sanctuary"
+  },
   // {
   //   allDay: false,
   //   startDate: new Date("12/09/2020"),
@@ -116,7 +128,7 @@ let list = [
   // }
 ];
 
-list = [...list, ...scheduledMeetings]
+//list = [...list, ...scheduledMeetings]
 
 let events = list
       .filter(x => {
