@@ -1,0 +1,30 @@
+.meetingBox{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    display: inline-block;
+    width: 95%;
+    min-height: 270px;
+    margin: 10px 10px 10px 10px;
+}
+.meetingBoxTitle{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: aqua;
+    text-align: center;
+    padding: 15px;
+}
+.meetingBoxDescription{
+    padding: 20px;
+}
+.meetingBoxDescription > p {
+    font-size: 12px;
+}
+@media only screen and (max-width: 768px) {
+    .meetingBox {
+        margin: 10px 0px 10px 0px;
+        width: 100%;
+        min-height: 270px;
+    }
+}

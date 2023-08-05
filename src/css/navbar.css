@@ -1,0 +1,26 @@
+.NavBar{
+    padding-bottom: 56px;
+}
+.logo{
+    max-width : 100px;
+    max-height : 100px;
+}
+.logo-img {
+    text-align: center;
+}
+
+.ml-auto{
+    margin: auto!important;
+}
+
+@media screen and (max-width: 769px) {
+    .logo-img {
+      display: none;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    #bannerLogo{
+        display: none;
+    }
+}
