@@ -9,8 +9,6 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import logo from '../imgs/logo.jpg';
-import img from '../imgs/ioniconflame.png'
 import '../css/navbar.css'
 
 const links = [
@@ -48,13 +46,10 @@ export default class Example extends Component {
       <div>
         <div className="logo-img">
           <a href="/">
-            <img className="logo" src={logo} alt="" />
+            {/* <img className="logo" src={logo} alt="" /> */}
           </a>
         </div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">
-            <img id="bannerLogo" style={{position : 'absolute', top : '0%'}} src={img} alt="" width="20" height="40" />
-          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

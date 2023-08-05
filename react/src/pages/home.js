@@ -3,29 +3,29 @@ import Layout from '../components/Layout';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import FunDay from '../imgs/Fun Day.jpg'
+// import FunDay from '../imgs/Fun Day.jpg'
 import {NavLink } from 'reactstrap';
-import { Carousel } from 'react-responsive-carousel';
+// import { Carousel } from 'react-responsive-carousel';
 import {Link as RRNavLink } from "react-router-dom";
 import { Button } from 'reactstrap';
 import { shortcutLinks } from '../module/shortcuts'
 import { environment as env } from '../env/env.js';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../css/carousel.css'
 import '../css/col.css';
 import '../css/meeting.css';
-import useAxios from 'axios-hooks'
+// import useAxios from 'axios-hooks'
 import { membershipTypes } from '../module/membershipTypes';
 import {StyleRoot} from 'radium';
 import MembershipBox from '../components/MembershipBox'
 import {styles} from '../module/styles'
-import gala from '../imgs/gala.jpg'
+// import gala from '../imgs/gala.jpg'
 
 const collegeMsgBox = "College Student Relief Efforts";
 const smileLink = "https://smile.amazon.com/ch/84-2453440";
 
 const home = () => {
-  const [{ data, loading, error, response }, refetch] = useAxios(`${env.proxy}/members/getMembershipData`)
+  // const [{ data, loading, error, response }, refetch] = useAxios(`${env.proxy}/members/getMembershipData`)
   const [memberType, setMemberType] = useState({});
 
   useEffect(() => {
@@ -34,18 +34,18 @@ const home = () => {
 
   useEffect(() => {
     document.title = "ION Bahamas";
-    if(data !== undefined){
-      for(let val in membershipTypes){
-        membershipTypes[val].amount = data[membershipTypes[val].type].price;
-      }
-      setMemberType(membershipTypes);
-    }
-  },[data]);
+    // if(data !== undefined){
+    //   for(let val in membershipTypes){
+    //     membershipTypes[val].amount = data[membershipTypes[val].type].price;
+    //   }
+    //   setMemberType(membershipTypes);
+    // }
+  },[]);
 
   return <Layout>
   <StyleRoot>
             <div className="highlights">
-              <Carousel
+              {/* <Carousel
                 showArrows={true}
                 showThumbs={false}
                 infiniteLoop={true}
@@ -57,7 +57,7 @@ const home = () => {
                 swipeable={true}
                 dynamicHeight={false}
                 className="carousel"
-              >
+              > */}
                 {/* <div key={"A Bahamian Ting Potluck"}>
                   <img alt="" src={FunDay}/>
                   <div className="carouselTextContainer">
@@ -90,11 +90,11 @@ const home = () => {
                   </div>
                 </div> */}
                 <div key={"Gala"}>
-                  <img 
+                  {/* <img 
                     alt="" 
                     src={gala}
                     //src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fthetribune.media.clients.ellingtoncms.com%2Fimg%2Fphotos%2F2012%2F11%2F13%2Fcubaagro_t670.jpg%3Fb3f6a5d7692ccc373d56e40cf708e3fa67d9af9d&f=1&nofb=1" 
-                    />
+                    /> */}
                   <div className="carouselTextContainer">
                     <div className="auctionTextDescription">
                       <h1 className="auctionTextTitle">
@@ -156,7 +156,7 @@ const home = () => {
                     </div>
                   </a>
                 </div>
-              </Carousel>
+              {/* </Carousel> */}
             </div>
             <Container fluid={true} style={{paddingTop : '10px'}}>
               <Row noGutters={true} center="xs" >

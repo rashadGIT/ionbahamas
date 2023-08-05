@@ -7,15 +7,14 @@ import Table from 'react-bootstrap/Table'
 import { sponsors } from '../module/about'
 import { events } from '../module/events'
 import { dateFormat } from '../module/util'
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 import '../css/col.css';
 import '../css/about.css';
 
-const about = (props) =>  {
+export default function about(props: any){
     return (
       <Layout style={{paddingTop : '20px'}}>
-      <h1 style={{paddingLeft : '15px', paddingTop : '20px'}}>About Us</h1>
-      <Container fluid={true}>
+      <h1 style={{paddingLeft : '15px', paddingTop : '60px'}}>About Us</h1>
+      <Container fluid={true}style={{paddingLeft : '30px'}}>
         <Row noGutters={false}>
           <Col xs={12} md={8}>
           <h4><b>Our Mission</b></h4>
@@ -45,7 +44,7 @@ const about = (props) =>  {
           </p>
           <hr />
           <h4><b>Objectives</b></h4>
-          <ul type="curcle" className="column">
+          <ul className="column">
             <li>Promoting opportunities for interaction and networking</li>
             <li>Increasing employment opportunities</li>
             <li>Enhancing the economic stability of our community</li>
@@ -106,7 +105,7 @@ const about = (props) =>  {
                         <br />
                         {(evt.calendarLink) ? 
                           <a rel="noopener noreferrer" target="_blank" href={evt.calendarLink}>
-                            <img alt="" border="0" src={"https://www.google.com/calendar/images/ext/gc_button1_en.gif"} />
+                            <img alt="" src={"https://www.google.com/calendar/images/ext/gc_button1_en.gif"} />
                           </a> : null}
                       </td>
                       <td>
@@ -126,7 +125,4 @@ const about = (props) =>  {
       </Container>
       </Layout>
     );
-  // }
-}
-export default about;
-// export default Layout(about);
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-import SocialMediaIcons from 'react-social-media-icons';
+// import SocialMediaIcons from 'react-social-media-icons';
 import '../css/footer.css';
 
 const FooterPage = () => {
@@ -78,11 +78,11 @@ const FooterPage = () => {
               </div> */}
               <h5>Follow Us</h5>
               <div className="socialMedia">
-                  <SocialMediaIcons
+                  {/* <SocialMediaIcons
                       icons={socialMediaIcons}
                       iconSize={'1.3em'}
                       iconColor={'#495056'}
-                  />
+                  /> */}
               </div>
               
             </MDBCol>

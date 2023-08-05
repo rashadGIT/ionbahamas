@@ -11,9 +11,6 @@ import {
 } from 'reactstrap';
 
 import '../css/navbar.css';
-import img from '../imgs/ioniconflame.png'
-import logo from '../imgs/logo.jpg'
-
 
 export default class Example extends React.Component {
   constructor(props) {
