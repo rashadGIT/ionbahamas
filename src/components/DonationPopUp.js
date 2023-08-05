@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/style.css';
 import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
 
 const override = css`
   display: block;
@@ -22,13 +21,7 @@ class DonationPopUp extends React.Component {
                 <div className='popup_inner'>
                     <div className='MessageBox'>
                         <div>
-                          <center>
-                            <ClipLoader
-                              css={override}
-                              size={150}
-                              color={"#123abc"}
-                              loading={this.state.loading}
-                            />                            
+                          <center>                          
                           </center>
                           <center>
                               <h1>{this.props.message}</h1>

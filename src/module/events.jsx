@@ -72,15 +72,27 @@ let list = [
   // },
   {
     allDay: false,
-    startDate: new Date("07/10/2021"),
-    endDate: new Date("07/12/2021"),
-    startTime : "1:00pm",
-    endTime : "12:00pm",
-    title: 'Fun Day at the Motts',
-    description : "It has definitely been a crazy year, hasn't it?  Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
-    calendarLink: "https://calendar.google.com/event?action=TEMPLATE&tmeid=NXJvZ2Z1ODU3YjduMTZzZWdrYWlwczVrdXEgcmFzaGFkLmJhcm5ldHRAbQ&tmsrc=rashad.barnett%40gmail.com",
+    startDate: new Date("04/09/2022"),
+    endDate: new Date("04/09/2022"),
+    startTime : "3:00pm",
+    endTime : "9:00pm",
+    title: 'A Bahamian Ting Potluck',
+    description : "Well, ION Bahamas is happy to present to you, Fun Day at the Motts'!  A time where we can safely gather and get some socialization going on.  Please RSVP by signing up so we can have an accuate head count. We would love for you to join us!",
+    calendarLink: "https://calendar.google.com/event?action=TEMPLATE&tmeid=XzY0czNlZGhqNzUyajBiOWg2OHM0MmI5azY4cTRjYjlvNnAwazhiOW42aDEzMGNpNDg1MmthZTlwOGcgcmFzaGFkLmJhcm5ldHRAbQ&tmsrc=rashad.barnett%40gmail.com",
     mapURL : "https://goo.gl/maps/zrRt4rtiPPJerJDYA",
     location : "Mott Farms"
+  },
+  {
+    allDay: false,
+    startDate: new Date("10/15/2022"),
+    endDate: new Date("10/15/2022"),
+    startTime : "7:30pm",
+    endTime : "10:30pm",
+    title: 'Annual Scholarship Fundraising Gala',
+    description : "Tickets $65 | Dinner included | Silent Auction | 6633 Virginia Parkway, Suite #102, McKinney",
+    calendarLink: null,
+    mapURL : "https://goo.gl/maps/wD6LUTTfRwhNfAH8A",
+    location : "The Guitar Sanctuary"
   },
   // {
   //   allDay: false,
@@ -116,7 +128,7 @@ let list = [
   // }
 ];
 
-list = [...list, ...scheduledMeetings]
+//list = [...list, ...scheduledMeetings]
 
 let events = list
       .filter(x => {

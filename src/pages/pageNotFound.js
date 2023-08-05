@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
-import pageNotFound from '../imgs/PageNotFound.gif';
+// import pageNotFound from '../imgs/PageNotFound.gif';
 
 class member extends Component {
   constructor(props){
@@ -28,7 +28,7 @@ class member extends Component {
       <div>
         <center>
           <h1>404 <br />Page Not Found</h1>
-          <img src={pageNotFound} alt="" />
+          {/* <img src={pageNotFound} alt="" /> */}
         </center>
       </div>
     );

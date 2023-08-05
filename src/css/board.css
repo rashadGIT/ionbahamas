@@ -1,6 +1,11 @@
 p { 
     /* text-indent: 20px; */
- }
+}
+
+.board{
+    text-align: center;
+}
+
 @media only screen and (min-width: 768px) {
     tbody{
         margin: auto;
