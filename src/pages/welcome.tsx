@@ -1,4 +1,4 @@
-import '../styles/App.css';
+import '../css/welcome.css';
 import SocialMedia from '../components/socialMedia'
 import Layout from '../components/Layout'
 

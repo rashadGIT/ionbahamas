@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "secure": false,
-  "main": "index.ts",
+  "main": "index.tsx",
   "author": "",
   "license": "ISC",
   "description": "",

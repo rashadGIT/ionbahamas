@@ -1,9 +1,5 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
@@ -13,55 +9,9 @@
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-package-lock.jsonstatus
-.gitignore
-src/imgs/
-react/node_modules/
-MemberShip.mwb
-MemberShip.mwb.bak
+.env
+npm-debug.log
+builsspec.yml
 package-lock.json
-.gitignore
-node/node_modules/
-react/src/env/env.js
-express/node_modules/
-
-index.php
-express/env/ssl.env
-#express/server.js
-
-.htaccess
-react/build/
-
-.easyssl_backup/
-backup/
-error_log
-sitemap.xml
-express/env/app.env
-express/env/ssl.env
-react/src/env/square.js
-
-express/docs/
-express/env/
-express/env/payment.env
-react/src/env/square.js
-react/src/logo.svg
-react/src/imgs/
-react/src/docs/
-express/env/
-react/public/
-react/src/env/
-react/src/serviceWorker.js
-react/src/App.test.js
-react/public/index.html
-express/ssl/ssl.js
-express/ssl/
-react/debug.log
+tsconfig.json
+/public
