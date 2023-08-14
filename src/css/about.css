@@ -25,3 +25,158 @@ ol.column, ul.column{
         width: '20%';
     }
 }
+
+/* AboutUsPage.css */
+.about-us-page {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f0f2f5;
+  }
+  
+  .header {
+    background-color: #3b5998;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .slogan {
+    font-size: 1.2rem;
+  }
+  
+  .about-us-section {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .about-us-section.alt {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+  }
+  
+  .footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .values-list {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+    margin: 2rem 0;
+  }
+  
+  .values-list li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  
+  .sponsors {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sponsor-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .sponsor-link {
+    display: inline-block;
+  }
+  
+  .sponsor-logo {
+    max-width: 150px;
+    height: auto;
+  }
+  
+
+  .icon-check-yellow {
+    color: #f0a500; /* Customize icon color */
+  }
+
+  .icon-check-blue {
+    color: #00abc9; /* Customize icon color */
+  }
+
+
+.pledge {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  
+  .pledge-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b5998;
+    margin-bottom: 1rem;
+  }
+  
+  .pledge-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .pledge-item {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+    color: #3b5998;
+  } */
+  
+  

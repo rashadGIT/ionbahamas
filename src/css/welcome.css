@@ -252,3 +252,124 @@ a.links{
   0% {opacity:0;}
   100% {opacity:1;}
   }
+/* LandingPage.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+.landing-page {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.header {
+  background-color: #000;
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.slogan {
+  font-size: 1.2rem;
+  color: #f0a500; /* Gold color */
+}
+
+.section {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.aquamarine-bg {
+  background-color: #00abc9; /* Aquamarine color */
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.gold-bg {
+  background-color: #f0a500; /* Gold color */
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.section-image {
+  max-width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  display: inline-block;
+  font-size: 2rem;
+  color: #f0a500; /* Gold color */
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #d38f00; /* Darker gold color */
+}
+
+.donate-button {
+  background-color: #f0a500; /* Gold color */
+  color: #000; /* Black color */
+  padding: 1.2rem 2.5rem; /* Adjusted padding for larger size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem; /* Slightly larger font size */
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+}
+
+.donate-button:hover {
+  background-color: #d38f00; /* Darker gold color on hover */
+}
+
+.time-section {
+  background-color: #f0a500; /* Gold color */
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.nassau-time {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: #f0a500; /* Gold color */
+}
+
+.footer {
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  background-color: #00abc9; /* Aquamarine color */
+  color: #fff;
+}

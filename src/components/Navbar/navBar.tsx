@@ -8,8 +8,6 @@ import {
 import links from '../../module/navBar'
 import NavigationItem from './NavigationItem';
 
-
-
 export default () =>  {
   const [isOpen, setIsOpen] = useState(false);  
     return (
