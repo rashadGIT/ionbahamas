@@ -12,3 +12,81 @@ p {
         width: '20%';
     }
 }
+
+/* BoardMembersPage.css */
+.board-members-page {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f0f2f5;
+  }
+  
+  .header {
+    background-color: #3b5998;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .slogan {
+    font-size: 1.2rem;
+  }
+  
+  .board-members-section {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .board-members-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .board-member {
+    background-color: #fff;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 280px; /* Set a fixed width */
+    margin: 0 auto 2rem;
+  }
+  
+  .board-member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+  }
+  
+  .board-member-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .board-member-position {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+  }
+  
+  .board-member-summary {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  

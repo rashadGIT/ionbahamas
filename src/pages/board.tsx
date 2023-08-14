@@ -22,9 +22,45 @@ import '../css/board.css';
 
 
 export default function Board(props: any){
-    return (
+    const boardMembers = [
+    {
+      name: 'John Doe',
+      position: 'Chairperson',
+      summary: 'Experienced leader with a passion for community development.',
+      photo: '/john-doe-photo.jpg', // Replace with photo path
+    },
+    {
+      name: 'Jane Smith',
+      position: 'Vice Chair',
+      summary: 'Advocate for education and empowering the next generation.',
+      photo: '/jane-smith-photo.jpg', // Replace with photo path
+    },
+    // Add more board members
+  ];
+  
+  return (
       <Layout style={{width : '90%', margin: 'auto'}}>
-        <Container fluid={true} style={{paddingTop: '100px'}}>
+    <div className="board-members-page">
+      <header className="header">
+        <h1 className="title">Board Members</h1>
+        <p className="slogan">Guiding Our Vision</p>
+      </header>
+      <section className="board-members-section">
+        <div className="board-members-list">
+          {board.map((member, index) => (
+            <div className="board-member" key={index}>
+              <img src={member.img} alt={member.name} className="board-member-photo" />
+              <h2 className="board-member-name">{member.name}</h2>
+              <p className="board-member-position">{member.position}</p>
+              {/* <p className="board-member-summary">gfingoir</p> */}
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+
+
+        {/* <Container fluid={true} style={{paddingTop: '100px'}}>
           <Row>
             <Table
               borderless
@@ -55,7 +91,7 @@ export default function Board(props: any){
               </tbody>
             </Table>
           </Row>
-        </Container>
+        </Container> */}
       </Layout>
     );
 }
