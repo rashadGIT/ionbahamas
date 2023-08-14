@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           </div>
           <SocialMedia />
           <div className="copyright" style={{paddingTop:'10px'}}>
-            <p>&copy; {new Date().getFullYear()} EmpowerChange. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} ION Bahamas. All rights reserved.</p>
           </div>
         </div>
       </footer>
