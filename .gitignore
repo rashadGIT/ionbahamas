@@ -15,3 +15,8 @@ builsspec.yml
 package-lock.json
 tsconfig.json
 /public
+/lambda
+/certification
+keytmp.pem
+postcss.config.js
+tailwind.config.js

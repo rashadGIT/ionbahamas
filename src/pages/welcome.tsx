@@ -2,6 +2,7 @@ import '../css/welcome.css';
 import SocialMedia from '../components/socialMedia'
 import Layout from '../components/Layout'
 import Time from '../components/Time'
+import Button from '../components/Buttons/linkButton'
 
 export default function Homepage(props: any){ 
   return (
@@ -47,6 +48,7 @@ export default function Homepage(props: any){
           <h2>Donate Today</h2>
           <p>Your support can make a difference. Contribute to our cause and be a part of something great.</p>
           {/* <button className="donate-button">Donate</button> */}
+          <Button to="/donate" label="Donate Now" />
         </div>
       </section>
       <section className="section time-section gold-bg">

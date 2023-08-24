@@ -15,7 +15,7 @@ export default () =>  {
           <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
           <Collapse isOpen={isOpen} navbar>
             <Nav navbar>
-              {links.map(({href, text }) => <NavigationItem href={href} text={text} />)}
+              {links.map(({href, text }, i) => <NavigationItem key={i} href={href} text={text} />)}
             </Nav>
           </Collapse>
         </Navbar>

@@ -20,3 +20,309 @@
         display: flex;
     }
 }
+
+/* DonationPage.css */
+.donation-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  .donation-header {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .donation-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .donation-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .donation-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+  }
+  
+  .donation-button {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    outline: none;
+  }
+  
+  .donation-button.loading {
+    background-color: #888;
+    cursor: not-allowed;
+  }
+  
+  .donation-button:hover {
+    background-color: #258cd1;
+    transform: scale(1.05);
+  }
+  
+  .donation-footer {
+    padding: 2rem;
+    text-align: center;
+    background-color: #3498db;
+    color: #fff;
+  }
+  .donation-section {
+    padding: 3rem 0;
+    text-align: center;
+  }
+  
+  .donation-section.alt {
+    background-color: #fff;
+    color: #333;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .donation-page {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f0f2f5;
+  }
+
+  .header {
+    background-color: #3b5998;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .slogan {
+    font-size: 1.2rem;
+  }
+
+  .donate-button {
+    background-color: #f0a500; /* Gold color */
+    color: #000; /* Black color */
+    padding: 1.2rem 2.5rem; /* Adjusted padding for larger size */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem; /* Slightly larger font size */
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  
+  .input-label {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.7rem;
+  }
+  
+  .select-box {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .select-box:focus {
+    border-color: #3498db;
+  }
+
+  .subtitle, .subtitle-image {
+    font-size: 1.3rem;
+    padding-top: 15px;
+    font-weight: bold;
+  }
+  .cause-description {
+    font-size: 1.3rem;
+    /* padding-top: 15px; */
+  }
+
+  .subtitle-container {
+    /* display: flex; */
+    /* align-items: center; */
+    gap: 0.5rem; /* Adjust the gap as needed */
+  }
+  
+  .subtitle-image {
+    max-width: 300px; /* Adjust the size of the image */
+    height: auto;
+  }
+
+  /* DonationPage.css */
+
+/* Style for the entire donation page */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .left-column {
+    width: 50%;
+    padding-right: 20px;
+  }
+  
+  .right-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fadeInOut 1s;
+  }
+  
+  /* Style for the donation container */
+  .donation-container {
+    margin-top: 20px;
+  }
+  
+  .radio-label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  input[type="number"] {
+    width: 150px;
+    margin-left: 5px;
+  }
+  
+  /* Style for the donate button */
+  .donate-button {
+    background-color: #ff9900;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Animation for fly-in and fly-out */
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* DonationPage.css */
+
+/* ... previous CSS code ... */
+
+.radio-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .radio-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+
+  .input-label {
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ffffff;
+  }
+
+  /* DonationPage.css */
+
+/* ... previous CSS code ... */
+
+.credit-card-section {
+  margin-top: 20px;
+  padding: 20px;
+  /* background-color: #f5f5f5; */
+  border-radius: 8px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.input-field {
+  flex: 3;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.personal-info-section {
+  /* margin-top: 20px; */
+  /* background-color: #f5f5f5; */
+  /* border-radius: 8px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ... other CSS rules ... */
+.container-square {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  /* height: 100vh; */
+}
+
